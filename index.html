@@ -197,9 +197,9 @@ p { color: var(--gray-500); line-height: 1.75; }
 .nav-links a {
   text-decoration: none;
   color: var(--gray-700);
-  font-size: .9rem;
+  font-size: .83rem;
   font-weight: 500;
-  padding: 7px 14px;
+  padding: 6px 12px;
   border-radius: 6px;
   transition: var(--transition);
   cursor: pointer;
@@ -209,79 +209,6 @@ p { color: var(--gray-500); line-height: 1.75; }
   background: var(--gray-50);
 }
 .nav-cta { margin-left: 10px; }
-
-/* ===== DROPDOWN NAV ===== */
-.nav-links li { position: relative; }
-.nav-links li:hover > .nav-dropdown { opacity: 1; visibility: visible; transform: translateY(0); }
-.nav-dropdown {
-  position: absolute;
-  top: calc(100% + 8px);
-  left: 50%;
-  transform: translateX(-50%) translateY(-6px);
-  background: #fff;
-  border: 1px solid var(--gray-200);
-  border-radius: 10px;
-  box-shadow: 0 8px 32px rgba(0,0,0,0.12);
-  padding: 8px;
-  min-width: 210px;
-  opacity: 0;
-  visibility: hidden;
-  transition: opacity .18s ease, transform .18s ease, visibility .18s;
-  z-index: 200;
-}
-.nav-dropdown::before {
-  content: '';
-  position: absolute;
-  top: -6px;
-  left: 50%;
-  transform: translateX(-50%);
-  border: 6px solid transparent;
-  border-bottom-color: var(--gray-200);
-  border-top: none;
-}
-.nav-dropdown::after {
-  content: '';
-  position: absolute;
-  top: -5px;
-  left: 50%;
-  transform: translateX(-50%);
-  border: 5px solid transparent;
-  border-bottom-color: #fff;
-  border-top: none;
-}
-.nav-dropdown a {
-  display: flex;
-  align-items: center;
-  gap: 10px;
-  padding: 9px 12px;
-  border-radius: 7px;
-  font-size: .875rem;
-  font-weight: 500;
-  color: var(--gray-700);
-  text-decoration: none;
-  transition: background .15s, color .15s;
-  white-space: nowrap;
-  background: none;
-}
-.nav-dropdown a:hover {
-  background: var(--gray-50);
-  color: var(--navy);
-}
-.nav-dropdown .dd-icon {
-  width: 30px;
-  height: 30px;
-  border-radius: 7px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  font-size: 1rem;
-  flex-shrink: 0;
-}
-.nav-dropdown .dd-text { display: flex; flex-direction: column; }
-.nav-dropdown .dd-label { font-weight: 600; color: var(--navy); font-size: .85rem; line-height: 1.2; }
-.nav-dropdown .dd-sub { font-size: .74rem; color: var(--gray-500); font-weight: 400; line-height: 1.3; margin-top: 1px; }
-.nav-dropdown .dd-divider { height: 1px; background: var(--gray-100); margin: 6px 4px; }
-.has-dropdown > a::after { content: ' ▾'; font-size: .65rem; opacity: .6; }
 .hamburger {
   display: none;
   flex-direction: column;
@@ -1696,50 +1623,10 @@ footer {
     <span class="logo" onclick="showPage('home')">Odyss<span class="logo-e">e</span>y Solutions</span>
     <ul class="nav-links">
       <li><a id="nav-home" class="active" onclick="showPage('home')">Home</a></li>
-
-      <!-- Services dropdown -->
-      <li class="has-dropdown">
-        <a id="nav-services" onclick="showPage('services')">Services</a>
-        <div class="nav-dropdown">
-          <a onclick="showPage('services')">
-            <span class="dd-icon" style="background:#eff6ff;">🖥️</span>
-            <span class="dd-text"><span class="dd-label">Managed IT</span><span class="dd-sub">Support, security & infrastructure</span></span>
-          </a>
-          <a onclick="showPage('services')">
-            <span class="dd-icon" style="background:#fff7ed;">🌐</span>
-            <span class="dd-text"><span class="dd-label">Web Development</span><span class="dd-sub">Sites that convert & rank</span></span>
-          </a>
-          <a onclick="showPage('services')">
-            <span class="dd-icon" style="background:#f0fdf4;">🦷</span>
-            <span class="dd-text"><span class="dd-label">Dental Billing & Staffing</span><span class="dd-sub">Remote dental staff from $X/hr</span></span>
-          </a>
-        </div>
-      </li>
-
-      <!-- HIPAA dropdown -->
-      <li class="has-dropdown">
-        <a id="nav-hipaa" onclick="showPage('hipaa')">HIPAA</a>
-        <div class="nav-dropdown">
-          <a onclick="showPage('hipaa');setTimeout(()=>{switchPricingTab('training',document.querySelectorAll('.ptab')[0])},100)">
-            <span class="dd-icon" style="background:#eff6ff;">🎓</span>
-            <span class="dd-text"><span class="dd-label">HIPAA Training</span><span class="dd-sub">Certify your team — one-time fee</span></span>
-          </a>
-          <div class="dd-divider"></div>
-          <a onclick="showPage('hipaa');setTimeout(()=>{switchPricingTab('compliance',document.querySelectorAll('.ptab')[1])},100)">
-            <span class="dd-icon" style="background:#fefce8;">🔍</span>
-            <span class="dd-text"><span class="dd-label">Risk Assessments</span><span class="dd-sub">Gap analysis & remediation plans</span></span>
-          </a>
-          <a onclick="showPage('hipaa');setTimeout(()=>{switchPricingTab('compliance',document.querySelectorAll('.ptab')[1])},100)">
-            <span class="dd-icon" style="background:#fdf4ff;">📋</span>
-            <span class="dd-text"><span class="dd-label">Policy Development</span><span class="dd-sub">Custom HIPAA policies for your practice</span></span>
-          </a>
-          <a onclick="showPage('hipaa');setTimeout(()=>{switchPricingTab('compliance',document.querySelectorAll('.ptab')[1])},100)">
-            <span class="dd-icon" style="background:#fff1f2;">🛡️</span>
-            <span class="dd-text"><span class="dd-label">IT Security Audits</span><span class="dd-sub">Network & endpoint security review</span></span>
-          </a>
-        </div>
-      </li>
-
+      <li><a id="nav-it" onclick="showPage('it')">IT Services</a></li>
+      <li><a id="nav-webdev" onclick="showPage('webdev')">Web Development</a></li>
+      <li><a id="nav-hipaa-training" onclick="showPage('hipaa-training')">HIPAA Training</a></li>
+      <li><a id="nav-hipaa-compliance" onclick="showPage('hipaa-compliance')">HIPAA Compliance</a></li>
       <li><a id="nav-about" onclick="showPage('about')">About</a></li>
       <li><a id="nav-contact" onclick="showPage('contact')">Contact</a></li>
     </ul>
@@ -1752,15 +1639,10 @@ footer {
 
 <div class="mobile-menu" id="mobileMenu">
   <a onclick="showPage('home');closeMobile()">Home</a>
-  <div style="font-size:.7rem;font-weight:700;text-transform:uppercase;letter-spacing:.08em;color:rgba(255,255,255,.4);padding:12px 0 4px;">Services</div>
-  <a onclick="showPage('services');closeMobile()" style="padding-left:16px;">🖥️ &nbsp;Managed IT</a>
-  <a onclick="showPage('services');closeMobile()" style="padding-left:16px;">🌐 &nbsp;Web Development</a>
-  <a onclick="showPage('services');closeMobile()" style="padding-left:16px;">🦷 &nbsp;Dental Billing & Staffing</a>
-  <div style="font-size:.7rem;font-weight:700;text-transform:uppercase;letter-spacing:.08em;color:rgba(255,255,255,.4);padding:12px 0 4px;">HIPAA</div>
-  <a onclick="showPage('hipaa');closeMobile()" style="padding-left:16px;">🎓 &nbsp;HIPAA Training</a>
-  <a onclick="showPage('hipaa');setTimeout(()=>{switchPricingTab('compliance',document.querySelectorAll('.ptab')[1])},100);closeMobile()" style="padding-left:16px;">🔍 &nbsp;Risk Assessments</a>
-  <a onclick="showPage('hipaa');setTimeout(()=>{switchPricingTab('compliance',document.querySelectorAll('.ptab')[1])},100);closeMobile()" style="padding-left:16px;">📋 &nbsp;Policy Development</a>
-  <a onclick="showPage('hipaa');setTimeout(()=>{switchPricingTab('compliance',document.querySelectorAll('.ptab')[1])},100);closeMobile()" style="padding-left:16px;">🛡️ &nbsp;IT Security Audits</a>
+  <a onclick="showPage('it');closeMobile()">🖥️ &nbsp;IT Services</a>
+  <a onclick="showPage('webdev');closeMobile()">🌐 &nbsp;Web Development</a>
+  <a onclick="showPage('hipaa-training');closeMobile()">🎓 &nbsp;HIPAA Training</a>
+  <a onclick="showPage('hipaa-compliance');closeMobile()">🛡️ &nbsp;HIPAA Compliance</a>
   <div style="height:1px;background:rgba(255,255,255,.1);margin:12px 0;"></div>
   <a onclick="showPage('about');closeMobile()">About</a>
   <a onclick="showPage('contact');closeMobile()">Contact</a>
@@ -1783,10 +1665,10 @@ footer {
           Texas-Based IT &amp; Compliance Experts
         </div>
         <h1>Secure. Compliant.<br><span class="accent">Digitally Unstoppable.</span></h1>
-        <p class="hero-sub">Odyssey Solutions delivers managed IT, HIPAA compliance training, web development, and dental billing &amp; remote staffing — built for Texas businesses ready to scale.</p>
+        <p class="hero-sub">Odyssey Solutions delivers managed IT, HIPAA compliance, and web development — purpose-built for Texas businesses ready to scale.</p>
         <div class="hero-btns">
           <a class="btn btn-primary btn-lg" onclick="showPage('contact')">Book Free Consultation →</a>
-          <a class="btn btn-outline btn-lg" onclick="showPage('hipaa')">Get Compliance Audit</a>
+          <a class="btn btn-outline btn-lg" onclick="showPage('hipaa-compliance')">Get Compliance Audit</a>
         </div>
         <div class="hero-divider"></div>
         <div class="hero-stats" id="heroStats">
@@ -1824,19 +1706,19 @@ footer {
           <div class="svc-icon">🖥️</div>
           <h3>Managed IT Services</h3>
           <p>24/7 helpdesk, network management, cloud infrastructure, and cybersecurity for SMBs and healthcare providers.</p>
-          <a class="learn-more" onclick="showPage('services')">Explore IT Services →</a>
+          <a class="learn-more" onclick="showPage('it')">Explore IT Services →</a>
         </div>
         <div class="service-card reveal">
           <div class="svc-icon">🛡️</div>
           <h3>HIPAA Compliance Training</h3>
           <p>Texas-focused employee certification, audit preparation, and policy documentation — the documented proof OCR demands before levying million-dollar penalties.</p>
-          <a class="learn-more" onclick="showPage('hipaa')">Explore HIPAA Training →</a>
+          <a class="learn-more" onclick="showPage('hipaa-training')">Explore HIPAA Training →</a>
         </div>
         <div class="service-card reveal">
           <div class="svc-icon">🌐</div>
           <h3>Web Development</h3>
           <p>High-converting business and healthcare websites with SEO optimization, hosting, and ongoing maintenance.</p>
-          <a class="learn-more" onclick="showPage('services')">Explore Web Services →</a>
+          <a class="learn-more" onclick="showPage('webdev')">Explore Web Services →</a>
         </div>
       </div>
     </div>
@@ -1877,13 +1759,12 @@ footer {
       <div class="solution-inner">
         <div class="solution-text">
           <span class="eyebrow">The Odyssey Difference</span>
-          <h2>One Partner.<br>Four Powerful Solutions.</h2>
+          <h2>One Partner.<br>Three Powerful Solutions.</h2>
           <p>Stop juggling multiple vendors and one-size-fits-all solutions. Odyssey Solutions is your single-source technology partner — purpose-built for Texas businesses in healthcare, services, and SMB sectors.</p>
           <ul class="check-list">
             <li><span class="check-mark">✓</span>Proactive IT management that prevents problems before they cost you</li>
             <li><span class="check-mark">✓</span>HIPAA compliance programs designed for Texas regulatory requirements</li>
             <li><span class="check-mark">✓</span>Conversion-focused websites engineered to generate real business results</li>
-            <li><span class="check-mark">✓</span>Expert dental billing &amp; remote staffing — U.S., Colombia, and Pakistan teams</li>
             <li><span class="check-mark">✓</span>Dedicated account management and 24/7 support — not a ticket queue</li>
           </ul>
           <a class="btn btn-primary" onclick="showPage('contact')">Start Your Partnership →</a>
@@ -2082,10 +1963,10 @@ footer {
         <div class="footer-col">
           <h5>Services</h5>
           <ul>
-            <li><a onclick="showPage('services')">Managed IT</a></li>
-            <li><a onclick="showPage('hipaa')">HIPAA Compliance</a></li>
-            <li><a onclick="showPage('services')">Web Development</a></li>
-            <li><a onclick="showPage('services')">Cybersecurity</a></li>
+            <li><a onclick="showPage('it')">IT Services</a></li>
+            <li><a onclick="showPage('webdev')">Web Development</a></li>
+            <li><a onclick="showPage('hipaa-training')">HIPAA Training</a></li>
+            <li><a onclick="showPage('hipaa-compliance')">HIPAA Compliance</a></li>
           </ul>
         </div>
         <div class="footer-col">
@@ -2122,7 +2003,7 @@ footer {
     <div class="container">
       <span class="badge badge-dark">Our Services</span>
       <h1>Three Pillars.<br>One Unstoppable Partner.</h1>
-      <p>Comprehensive IT, compliance, and digital solutions purpose-built for Texas businesses and healthcare providers.</p>
+      <p>Comprehensive IT, HIPAA compliance, and web development solutions purpose-built for Texas businesses and healthcare providers.</p>
     </div>
   </div>
 
@@ -2188,7 +2069,7 @@ footer {
             <li><span class="fi">✓</span>Creates certified, timestamped documentation that stops investigations before they escalate</li>
             <li><span class="fi">✓</span>Keeps your practice off the HHS public breach registry — permanently</li>
           </ul>
-          <a class="btn btn-primary" onclick="showPage('hipaa')">Start HIPAA Training →</a>
+          <a class="btn btn-primary" onclick="showPage('hipaa-training')">Start HIPAA Training →</a>
         </div>
       </div>
     </div>
@@ -2228,7 +2109,8 @@ footer {
     </div>
   </div>
 
-  <!-- Pillar D: Dental Billing & Staffing -->
+  <!-- ARCHIVED: Pillar D: Dental Billing & Staffing -->
+  <!--
   <section class="billing-service">
     <div class="container">
       <div class="billing-inner">
@@ -2297,6 +2179,7 @@ footer {
       </div>
     </div>
   </section>
+  -->
 
   <section class="final-cta">
     <div class="container">
@@ -2313,7 +2196,7 @@ footer {
           <span class="logo" onclick="showPage('home')">Odyss<span class="logo-e">e</span>y Solutions</span>
           <p>Texas-based IT, HIPAA compliance, and web development — built for growth.</p>
         </div>
-        <div class="footer-col"><h5>Services</h5><ul><li><a onclick="showPage('services')">Managed IT</a></li><li><a onclick="showPage('hipaa')">HIPAA Compliance</a></li><li><a onclick="showPage('services')">Web Development</a></li></ul></div>
+        <div class="footer-col"><h5>Services</h5><ul><li><a onclick="showPage('it')">IT Services</a></li><li><a onclick="showPage('webdev')">Web Development</a></li><li><a onclick="showPage('hipaa-training')">HIPAA Training</a></li><li><a onclick="showPage('hipaa-compliance')">HIPAA Compliance</a></li></ul></div>
         <div class="footer-col"><h5>Company</h5><ul><li><a onclick="showPage('about')">About</a></li><li><a onclick="showPage('contact')">Contact</a></li></ul></div>
         <div class="footer-col"><h5>Legal</h5><ul><li><a href="#">Privacy Policy</a></li><li><a href="#">HIPAA Notice</a></li></ul></div>
       </div>
@@ -2325,14 +2208,14 @@ footer {
 </div>
 
 <!-- ========================================== -->
-<!-- HIPAA PAGE                                 -->
+<!-- HIPAA TRAINING PAGE                        -->
 <!-- ========================================== -->
-<div id="page-hipaa" class="page">
+<div id="page-hipaa-training" class="page">
 
   <div class="hipaa-hero">
     <div class="hipaa-glow"></div>
     <div class="container">
-      <span class="badge badge-dark">HIPAA Compliance Training — Texas</span>
+      <span class="badge badge-dark">HIPAA Training — Texas</span>
       <h1>Stay Compliant. Stay Protected.<br>Stay Audit-Ready in Texas.</h1>
       <p>A single gap in your HIPAA compliance can trigger multi-million dollar OCR penalties, federal criminal charges, forced operational shutdowns, and permanent public exposure on the HHS breach registry — often within weeks of an investigation opening. We make sure that never happens to you.</p>
       <div class="hipaa-badges">
@@ -2466,14 +2349,8 @@ footer {
         <p style="max-width:500px;margin:0 auto;color:var(--gray-500);">HIPAA training is a one-time course — pay once, certify your whole team. Need deeper compliance work? We've got that too.</p>
       </div>
 
-      <!-- Tabs -->
-      <div class="pricing-tabs">
-        <button class="ptab active" onclick="switchPricingTab('training', this)">HIPAA Training</button>
-        <button class="ptab" onclick="switchPricingTab('compliance', this)">Compliance Services</button>
-      </div>
-
       <!-- ===== TRAINING PANEL ===== -->
-      <div class="pricing-panel active" id="pricing-training">
+      <div class="pricing-panel-training">
         <div class="pricing-grid">
 
           <!-- Solo -->
@@ -2547,57 +2424,6 @@ footer {
         <p style="text-align:center;color:var(--gray-500);font-size:.85rem;margin-top:24px;">Over 50 staff? <a onclick="showPage('contact')" style="color:var(--orange);cursor:pointer;font-weight:600;">Contact us</a> for a custom per-seat quote &mdash; volume discounts available.</p>
       </div>
 
-      <!-- ===== COMPLIANCE SERVICES PANEL ===== -->
-      <div class="pricing-panel" id="pricing-compliance">
-        <div class="compliance-list">
-          <div class="compliance-item">
-            <div class="ci-name">HIPAA Risk Assessment</div>
-            <div class="ci-desc">Full evaluation of administrative, physical &amp; technical safeguards with a written gap analysis and remediation plan.</div>
-            <div class="ci-price">Starting at <strong>$1,500</strong></div>
-          </div>
-          <div class="compliance-item">
-            <div class="ci-name">Policy &amp; Procedure Development</div>
-            <div class="ci-desc">Custom HIPAA policies written for your specific practice — not generic templates.</div>
-            <div class="ci-price">Starting at <strong>$1,500</strong></div>
-          </div>
-          <div class="compliance-item">
-            <div class="ci-name">IT Security Assessment</div>
-            <div class="ci-desc">Network vulnerability scan, firewall review, endpoint security evaluation, and written report.</div>
-            <div class="ci-price">Starting at <strong>$1,200</strong></div>
-          </div>
-          <div class="compliance-item">
-            <div class="ci-name">Business Associate Audit</div>
-            <div class="ci-desc">Review all vendor relationships, confirm BAA status, and close compliance gaps with third parties.</div>
-            <div class="ci-price">Starting at <strong>$800</strong></div>
-          </div>
-          <div class="compliance-item">
-            <div class="ci-name">Breach Response Planning</div>
-            <div class="ci-desc">Incident response plan, OCR notification procedures, and breach response templates.</div>
-            <div class="ci-price">Starting at <strong>$1,000</strong></div>
-          </div>
-          <div class="compliance-item">
-            <div class="ci-name">Physical Security Audit</div>
-            <div class="ci-desc">On-site review of access controls, facility security, workstation placement, and paper PHI handling.</div>
-            <div class="ci-price">Starting at <strong>$750</strong></div>
-          </div>
-          <div class="compliance-item">
-            <div class="ci-name">EHR Security Review</div>
-            <div class="ci-desc">Audit user access levels, audit logs, and security configuration of your EHR or practice management system.</div>
-            <div class="ci-price">Starting at <strong>$800</strong></div>
-          </div>
-          <div class="compliance-item">
-            <div class="ci-name">HIPAA Audit Preparation</div>
-            <div class="ci-desc">Mock OCR audit, documentation review, and readiness coaching so you're never caught off guard.</div>
-            <div class="ci-price">Starting at <strong>$1,500</strong></div>
-          </div>
-        </div>
-        <div class="compliance-cta-box">
-          <h3>Not Sure Where to Start?</h3>
-          <p>Most clients start with HIPAA Training to get their team certified, then we assess what compliance gaps exist and build a plan from there. First consultation is free.</p>
-          <a class="btn btn-primary btn-lg" onclick="showPage('contact')">Book a Free Consultation →</a>
-        </div>
-      </div>
-
     </div>
   </section>
 
@@ -2613,7 +2439,277 @@ footer {
     <div class="container">
       <div class="footer-inner">
         <div class="footer-brand"><span class="logo" onclick="showPage('home')">Odyss<span class="logo-e">e</span>y Solutions</span><p>Texas-based HIPAA compliance training and IT services for healthcare providers and SMBs.</p></div>
-        <div class="footer-col"><h5>Services</h5><ul><li><a onclick="showPage('services')">Managed IT</a></li><li><a onclick="showPage('hipaa')">HIPAA Compliance</a></li><li><a onclick="showPage('services')">Web Development</a></li></ul></div>
+        <div class="footer-col"><h5>Services</h5><ul><li><a onclick="showPage('it')">IT Services</a></li><li><a onclick="showPage('webdev')">Web Development</a></li><li><a onclick="showPage('hipaa-training')">HIPAA Training</a></li><li><a onclick="showPage('hipaa-compliance')">HIPAA Compliance</a></li></ul></div>
+        <div class="footer-col"><h5>Company</h5><ul><li><a onclick="showPage('about')">About</a></li><li><a onclick="showPage('contact')">Contact</a></li></ul></div>
+        <div class="footer-col"><h5>Legal</h5><ul><li><a href="#">Privacy Policy</a></li><li><a href="#">HIPAA Notice</a></li></ul></div>
+      </div>
+      <div class="footer-bottom"><p>© 2025 Odyssey Solutions. All rights reserved. <span>Texas-Proud.</span></p></div>
+    </div>
+  </footer>
+</div>
+
+<!-- ========================================== -->
+<!-- IT SERVICES PAGE                           -->
+<!-- ========================================== -->
+<div id="page-it" class="page">
+
+  <div class="page-hero">
+    <div class="container">
+      <span class="badge badge-dark">Managed IT Services</span>
+      <h1>Enterprise-Grade IT.<br>SMB-Friendly Pricing.</h1>
+      <p>Stop reacting to IT problems and start preventing them. Our managed IT services give you proactive monitoring, instant support, and rock-solid infrastructure — so your team stays productive and your data stays safe.</p>
+    </div>
+  </div>
+
+  <div class="pillar">
+    <div class="container">
+      <div class="pillar-inner">
+        <div class="pillar-left">
+          <div class="pillar-label">Managed IT Services</div>
+          <h2>Your Entire IT Department.<br>For a Flat Monthly Rate.</h2>
+          <p class="pillar-desc">Running a business without dedicated IT is like running a restaurant without a kitchen — eventually something breaks down and costs you far more than prevention would have. Odyssey Solutions gives you a full IT department at a fraction of the cost of one in-house hire.</p>
+          <div class="who-box">
+            <h4>🎯 Who It's For</h4>
+            <p>SMBs, healthcare practices, dental offices, logistics companies, and any Texas organization that depends on reliable technology to operate daily.</p>
+          </div>
+          <ul class="feat-list">
+            <li><span class="fi">✓</span>Eliminates costly IT downtime and emergency repair fees</li>
+            <li><span class="fi">✓</span>Replaces the need for a full-time in-house IT team</li>
+            <li><span class="fi">✓</span>Protects against ransomware, phishing, and data breaches</li>
+            <li><span class="fi">✓</span>Ensures business continuity with automated backup</li>
+            <li><span class="fi">✓</span>Microsoft 365 &amp; cloud infrastructure management</li>
+            <li><span class="fi">✓</span>24/7 monitoring with real Texas-based support</li>
+          </ul>
+          <a class="btn btn-primary" onclick="showPage('contact')">Get Free IT Assessment →</a>
+        </div>
+        <div class="pillar-right">
+          <div class="pillar-cards">
+            <div class="pm-card"><div class="pm-icon">🎧</div><div class="pm-title">24/7 Helpdesk Support</div><div class="pm-desc">Real humans, real answers. Our Texas-based team resolves issues fast — no overseas call centers.</div></div>
+            <div class="pm-card"><div class="pm-icon">🔗</div><div class="pm-title">Network Management</div><div class="pm-desc">Proactive monitoring, configuration, and optimization of your entire network infrastructure.</div></div>
+            <div class="pm-card"><div class="pm-icon">☁️</div><div class="pm-title">Cloud Infrastructure</div><div class="pm-desc">Microsoft 365, Azure, AWS — seamless migration, management, and optimization for your business.</div></div>
+            <div class="pm-card"><div class="pm-icon">🔒</div><div class="pm-title">Cybersecurity</div><div class="pm-desc">Endpoint protection, firewall management, security audits, and employee phishing training.</div></div>
+            <div class="pm-card"><div class="pm-icon">💾</div><div class="pm-title">Backup &amp; Recovery</div><div class="pm-desc">Automated daily backups with tested disaster recovery — so you're never caught off guard.</div></div>
+            <div class="pm-card"><div class="pm-icon">📊</div><div class="pm-title">IT Strategy &amp; Roadmap</div><div class="pm-desc">Quarterly technology reviews and roadmapping aligned to your business growth goals.</div></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <section class="final-cta">
+    <div class="container">
+      <h2>Ready to Stop Fighting<br>Your Own Technology?</h2>
+      <p>Book a free 30-minute IT assessment. We'll review your current setup, identify vulnerabilities, and recommend the right managed IT plan — no pressure, no obligation.</p>
+      <a class="btn btn-white btn-lg" onclick="showPage('contact')">Book Free IT Assessment →</a>
+    </div>
+  </section>
+
+  <footer>
+    <div class="container">
+      <div class="footer-inner">
+        <div class="footer-brand">
+          <span class="logo" onclick="showPage('home')">Odyss<span class="logo-e">e</span>y Solutions</span>
+          <p>Texas-based IT, HIPAA compliance, and web development — built for growth.</p>
+        </div>
+        <div class="footer-col"><h5>Services</h5><ul><li><a onclick="showPage('it')">IT Services</a></li><li><a onclick="showPage('webdev')">Web Development</a></li><li><a onclick="showPage('hipaa-training')">HIPAA Training</a></li><li><a onclick="showPage('hipaa-compliance')">HIPAA Compliance</a></li></ul></div>
+        <div class="footer-col"><h5>Company</h5><ul><li><a onclick="showPage('about')">About</a></li><li><a onclick="showPage('contact')">Contact</a></li></ul></div>
+        <div class="footer-col"><h5>Legal</h5><ul><li><a href="#">Privacy Policy</a></li><li><a href="#">HIPAA Notice</a></li></ul></div>
+      </div>
+      <div class="footer-bottom">
+        <p>© 2025 Odyssey Solutions. All rights reserved. <span>Texas-Proud.</span></p>
+      </div>
+    </div>
+  </footer>
+</div>
+
+<!-- ========================================== -->
+<!-- WEB DEVELOPMENT PAGE                       -->
+<!-- ========================================== -->
+<div id="page-webdev" class="page">
+
+  <div class="page-hero">
+    <div class="container">
+      <span class="badge badge-dark">Web Development</span>
+      <h1>Websites That Work<br>as Hard as You Do.</h1>
+      <p>Your website is your most powerful sales tool — or your biggest liability. We design high-converting business and healthcare websites that generate real leads, rank in search, and reflect the professionalism your clients expect.</p>
+    </div>
+  </div>
+
+  <div class="pillar">
+    <div class="container">
+      <div class="pillar-inner">
+        <div class="pillar-left">
+          <div class="pillar-label">Web Development Services</div>
+          <h2>Built to Convert.<br>Designed to Rank.</h2>
+          <p class="pillar-desc">Most small business websites are outdated, slow, and invisible on Google. Odyssey Solutions builds modern, fast, mobile-first websites that actually bring in customers — and for healthcare clients, every page is built HIPAA-compliant from day one.</p>
+          <div class="who-box">
+            <h4>🎯 Who It's For</h4>
+            <p>Local businesses, healthcare practices, dental offices, service providers, and any Texas organization ready to replace an outdated site with a modern, conversion-optimized digital presence.</p>
+          </div>
+          <ul class="feat-list">
+            <li><span class="fi">✓</span>Converts website visitors into booked appointments and leads</li>
+            <li><span class="fi">✓</span>Ranks higher in local Texas search results with built-in SEO</li>
+            <li><span class="fi">✓</span>HIPAA-compliant design for healthcare and medical practices</li>
+            <li><span class="fi">✓</span>Fully managed hosting, maintenance, and security updates</li>
+            <li><span class="fi">✓</span>Mobile-first design — 60% of traffic is on phones</li>
+            <li><span class="fi">✓</span>Fast load times, accessibility compliant, Google-friendly</li>
+          </ul>
+          <a class="btn btn-primary" onclick="showPage('contact')">Request Web Proposal →</a>
+        </div>
+        <div class="pillar-right">
+          <div class="pillar-cards">
+            <div class="pm-card"><div class="pm-icon">🏢</div><div class="pm-title">Business Websites</div><div class="pm-desc">Custom-designed, mobile-responsive sites that represent your brand and drive conversions.</div></div>
+            <div class="pm-card"><div class="pm-icon">🏥</div><div class="pm-title">Healthcare Websites</div><div class="pm-desc">HIPAA-compliant, patient-friendly sites built for medical and dental practices.</div></div>
+            <div class="pm-card"><div class="pm-icon">🔎</div><div class="pm-title">SEO Optimization</div><div class="pm-desc">Local Texas SEO strategy that gets you found on Google when customers are searching.</div></div>
+            <div class="pm-card"><div class="pm-icon">🛠️</div><div class="pm-title">Hosting &amp; Maintenance</div><div class="pm-desc">Fully managed hosting, uptime monitoring, security patches, and content updates included.</div></div>
+            <div class="pm-card"><div class="pm-icon">📈</div><div class="pm-title">Conversion Design</div><div class="pm-desc">Strategic layouts, clear CTAs, and trust signals engineered to turn visitors into customers.</div></div>
+            <div class="pm-card"><div class="pm-icon">📱</div><div class="pm-title">Mobile-First</div><div class="pm-desc">60% of web traffic is mobile. Every site we build is optimized for flawless mobile UX.</div></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <section class="final-cta">
+    <div class="container">
+      <h2>Ready for a Website<br>That Actually Grows Your Business?</h2>
+      <p>Tell us about your project and we'll put together a custom proposal — timeline, scope, and pricing — within 48 hours. First consultation is always free.</p>
+      <a class="btn btn-white btn-lg" onclick="showPage('contact')">Request Free Web Proposal →</a>
+    </div>
+  </section>
+
+  <footer>
+    <div class="container">
+      <div class="footer-inner">
+        <div class="footer-brand">
+          <span class="logo" onclick="showPage('home')">Odyss<span class="logo-e">e</span>y Solutions</span>
+          <p>Texas-based IT, HIPAA compliance, and web development — built for growth.</p>
+        </div>
+        <div class="footer-col"><h5>Services</h5><ul><li><a onclick="showPage('it')">IT Services</a></li><li><a onclick="showPage('webdev')">Web Development</a></li><li><a onclick="showPage('hipaa-training')">HIPAA Training</a></li><li><a onclick="showPage('hipaa-compliance')">HIPAA Compliance</a></li></ul></div>
+        <div class="footer-col"><h5>Company</h5><ul><li><a onclick="showPage('about')">About</a></li><li><a onclick="showPage('contact')">Contact</a></li></ul></div>
+        <div class="footer-col"><h5>Legal</h5><ul><li><a href="#">Privacy Policy</a></li><li><a href="#">HIPAA Notice</a></li></ul></div>
+      </div>
+      <div class="footer-bottom">
+        <p>© 2025 Odyssey Solutions. All rights reserved. <span>Texas-Proud.</span></p>
+      </div>
+    </div>
+  </footer>
+</div>
+
+<!-- ========================================== -->
+<!-- HIPAA COMPLIANCE PAGE                      -->
+<!-- ========================================== -->
+<div id="page-hipaa-compliance" class="page">
+
+  <div class="hipaa-hero">
+    <div class="hipaa-glow"></div>
+    <div class="container">
+      <span class="badge badge-dark">HIPAA Compliance Services — Texas</span>
+      <h1>Beyond Training.<br>Full HIPAA Compliance.</h1>
+      <p>Training certifies your team. Compliance protects your practice. Odyssey Solutions offers a full suite of HIPAA compliance services — from risk assessments to policy development to audit preparation — so your practice is protected from every angle.</p>
+      <div class="hipaa-badges">
+        <span class="hbadge">✓ Risk Assessments</span>
+        <span class="hbadge">✓ Policy Development</span>
+        <span class="hbadge">✓ IT Security Audits</span>
+        <span class="hbadge">✓ Audit Preparation</span>
+      </div>
+    </div>
+  </div>
+
+  <section class="hipaa-what">
+    <div class="container">
+      <div class="hipaa-what-inner">
+        <div>
+          <span class="eyebrow">What Is HIPAA Compliance?</span>
+          <h2>Training Is the Start.<br>Compliance Is the System.</h2>
+          <p>HIPAA training certifies your staff knows the rules. Compliance services ensure your entire organization — your technology, your policies, your vendor relationships, your physical space — actually follows them. When an OCR auditor shows up, it's your documented compliance program that protects you, not just employee certifications.</p>
+          <p>Odyssey Solutions builds the compliance infrastructure around your practice: written risk assessments, custom policies, IT security audits, Business Associate Agreement reviews, and mock audits that identify gaps before federal investigators do.</p>
+          <a class="btn btn-primary" onclick="showPage('contact')" style="margin-top:10px;">Get a Free Compliance Assessment →</a>
+        </div>
+        <div>
+          <div class="hipaa-pillars">
+            <div class="hp-item"><div class="hp-icon">🔍</div><div class="hp-title">Risk Assessment</div></div>
+            <div class="hp-item"><div class="hp-icon">📋</div><div class="hp-title">Policy Development</div></div>
+            <div class="hp-item"><div class="hp-icon">🖥️</div><div class="hp-title">IT Security Audit</div></div>
+            <div class="hp-item"><div class="hp-icon">🤝</div><div class="hp-title">BAA Review</div></div>
+            <div class="hp-item"><div class="hp-icon">🚨</div><div class="hp-title">Breach Response</div></div>
+            <div class="hp-item"><div class="hp-icon">⚖️</div><div class="hp-title">Audit Prep</div></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="hipaa-pricing">
+    <div class="container">
+      <div style="text-align:center;">
+        <span class="eyebrow">Compliance Services</span>
+        <h2>What We Offer</h2>
+        <p style="max-width:500px;margin:0 auto;color:var(--gray-500);">Every practice is different. We scope each engagement to your organization's size, risk level, and existing compliance posture. First consultation is always free.</p>
+      </div>
+      <div class="compliance-list" style="margin-top:40px;">
+        <div class="compliance-item">
+          <div class="ci-name">HIPAA Risk Assessment</div>
+          <div class="ci-desc">Full evaluation of administrative, physical &amp; technical safeguards with a written gap analysis and remediation plan.</div>
+          <div class="ci-price">Starting at <strong>$1,500</strong></div>
+        </div>
+        <div class="compliance-item">
+          <div class="ci-name">Policy &amp; Procedure Development</div>
+          <div class="ci-desc">Custom HIPAA policies written for your specific practice — not generic templates.</div>
+          <div class="ci-price">Starting at <strong>$1,500</strong></div>
+        </div>
+        <div class="compliance-item">
+          <div class="ci-name">IT Security Assessment</div>
+          <div class="ci-desc">Network vulnerability scan, firewall review, endpoint security evaluation, and written report.</div>
+          <div class="ci-price">Starting at <strong>$1,200</strong></div>
+        </div>
+        <div class="compliance-item">
+          <div class="ci-name">Business Associate Audit</div>
+          <div class="ci-desc">Review all vendor relationships, confirm BAA status, and close compliance gaps with third parties.</div>
+          <div class="ci-price">Starting at <strong>$800</strong></div>
+        </div>
+        <div class="compliance-item">
+          <div class="ci-name">Breach Response Planning</div>
+          <div class="ci-desc">Incident response plan, OCR notification procedures, and breach response templates.</div>
+          <div class="ci-price">Starting at <strong>$1,000</strong></div>
+        </div>
+        <div class="compliance-item">
+          <div class="ci-name">Physical Security Audit</div>
+          <div class="ci-desc">On-site review of access controls, facility security, workstation placement, and paper PHI handling.</div>
+          <div class="ci-price">Starting at <strong>$750</strong></div>
+        </div>
+        <div class="compliance-item">
+          <div class="ci-name">EHR Security Review</div>
+          <div class="ci-desc">Audit user access levels, audit logs, and security configuration of your EHR or practice management system.</div>
+          <div class="ci-price">Starting at <strong>$800</strong></div>
+        </div>
+        <div class="compliance-item">
+          <div class="ci-name">HIPAA Audit Preparation</div>
+          <div class="ci-desc">Mock OCR audit, documentation review, and readiness coaching so you're never caught off guard.</div>
+          <div class="ci-price">Starting at <strong>$1,500</strong></div>
+        </div>
+      </div>
+      <div class="compliance-cta-box">
+        <h3>Not Sure Where to Start?</h3>
+        <p>Most clients start with HIPAA Training to get their team certified, then we assess what compliance gaps exist and build a plan from there. First consultation is free.</p>
+        <a class="btn btn-primary btn-lg" onclick="showPage('contact')">Book a Free Consultation →</a>
+      </div>
+    </div>
+  </section>
+
+  <section class="hipaa-bottom-cta">
+    <div class="container">
+      <h2>By the Time OCR Calls,<br>It's Already Too Late.</h2>
+      <p>Every day without a documented HIPAA compliance program is another day of unprotected exposure. Our compliance assessment takes less than 30 days to complete — and costs a fraction of the smallest OCR penalty on record.</p>
+      <a class="btn btn-white btn-lg" onclick="showPage('contact')">Book Free Compliance Assessment →</a>
+    </div>
+  </section>
+
+  <footer>
+    <div class="container">
+      <div class="footer-inner">
+        <div class="footer-brand"><span class="logo" onclick="showPage('home')">Odyss<span class="logo-e">e</span>y Solutions</span><p>Texas-based HIPAA compliance and IT services for healthcare providers and SMBs.</p></div>
+        <div class="footer-col"><h5>Services</h5><ul><li><a onclick="showPage('it')">IT Services</a></li><li><a onclick="showPage('webdev')">Web Development</a></li><li><a onclick="showPage('hipaa-training')">HIPAA Training</a></li><li><a onclick="showPage('hipaa-compliance')">HIPAA Compliance</a></li></ul></div>
         <div class="footer-col"><h5>Company</h5><ul><li><a onclick="showPage('about')">About</a></li><li><a onclick="showPage('contact')">Contact</a></li></ul></div>
         <div class="footer-col"><h5>Legal</h5><ul><li><a href="#">Privacy Policy</a></li><li><a href="#">HIPAA Notice</a></li></ul></div>
       </div>
@@ -2730,7 +2826,7 @@ footer {
     <div class="container">
       <div class="footer-inner">
         <div class="footer-brand"><span class="logo" onclick="showPage('home')">Odyss<span class="logo-e">e</span>y Solutions</span><p>Texas-based IT, HIPAA compliance, and web development — built for growth.</p></div>
-        <div class="footer-col"><h5>Services</h5><ul><li><a onclick="showPage('services')">Managed IT</a></li><li><a onclick="showPage('hipaa')">HIPAA Compliance</a></li><li><a onclick="showPage('services')">Web Development</a></li></ul></div>
+        <div class="footer-col"><h5>Services</h5><ul><li><a onclick="showPage('it')">IT Services</a></li><li><a onclick="showPage('webdev')">Web Development</a></li><li><a onclick="showPage('hipaa-training')">HIPAA Training</a></li><li><a onclick="showPage('hipaa-compliance')">HIPAA Compliance</a></li></ul></div>
         <div class="footer-col"><h5>Company</h5><ul><li><a onclick="showPage('about')">About</a></li><li><a onclick="showPage('contact')">Contact</a></li></ul></div>
         <div class="footer-col"><h5>Legal</h5><ul><li><a href="#">Privacy Policy</a></li><li><a href="#">HIPAA Notice</a></li></ul></div>
       </div>
@@ -2813,7 +2909,7 @@ footer {
     <div class="container">
       <div class="footer-inner">
         <div class="footer-brand"><span class="logo" onclick="showPage('home')">Odyss<span class="logo-e">e</span>y Solutions</span><p>Texas-based IT, HIPAA compliance, and web development — built for growth.</p></div>
-        <div class="footer-col"><h5>Services</h5><ul><li><a onclick="showPage('services')">Managed IT</a></li><li><a onclick="showPage('hipaa')">HIPAA Compliance</a></li><li><a onclick="showPage('services')">Web Development</a></li></ul></div>
+        <div class="footer-col"><h5>Services</h5><ul><li><a onclick="showPage('it')">IT Services</a></li><li><a onclick="showPage('webdev')">Web Development</a></li><li><a onclick="showPage('hipaa-training')">HIPAA Training</a></li><li><a onclick="showPage('hipaa-compliance')">HIPAA Compliance</a></li></ul></div>
         <div class="footer-col"><h5>Company</h5><ul><li><a onclick="showPage('about')">About</a></li></ul></div>
         <div class="footer-col"><h5>Legal</h5><ul><li><a href="#">Privacy Policy</a></li><li><a href="#">HIPAA Notice</a></li></ul></div>
       </div>
