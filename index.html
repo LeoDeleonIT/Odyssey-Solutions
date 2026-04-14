@@ -938,17 +938,35 @@ p { color: var(--gray-500); line-height: 1.75; }
   white-space: nowrap;
 }
 .ptier { font-size: .74rem; font-weight: 700; text-transform: uppercase; letter-spacing: .1em; color: var(--orange); margin-bottom: 7px; }
-.pname { font-family: 'Orbitron', sans-serif; font-size: 1.5rem; font-weight: 700; color: var(--navy); margin-bottom: 5px; }
+.pname { font-family: 'Orbitron', sans-serif; font-size: 1.4rem; font-weight: 700; color: var(--navy); margin-bottom: 5px; }
 .pfor { font-size: .84rem; color: var(--gray-500); margin-bottom: 16px; }
 .pprice { display: flex; align-items: baseline; gap: 4px; margin-bottom: 4px; }
-.pprice-amount { font-family: 'Orbitron', sans-serif; font-size: 2.2rem; font-weight: 700; color: var(--navy); }
+.pprice-amount { font-family: 'Orbitron', sans-serif; font-size: 2.4rem; font-weight: 700; color: var(--navy); }
 .pprice-period { font-size: .85rem; color: var(--gray-500); }
-.pprice-sub { font-size: .78rem; color: var(--gray-500); margin-bottom: 24px; }
+.pprice-sub { font-size: .78rem; color: var(--gray-500); margin-bottom: 24px; line-height: 1.5; }
 .pprice-sub strong { color: var(--orange); }
+.pprice-recert { display: inline-flex; align-items: center; gap: 6px; background: #f0fdf4; border: 1px solid #bbf7d0; color: #15803d; font-size: .75rem; font-weight: 600; padding: 3px 10px; border-radius: 100px; margin-bottom: 20px; }
 .pdivider { height: 1px; background: var(--gray-100); margin-bottom: 24px; }
 .pfeats { list-style: none; display: flex; flex-direction: column; gap: 10px; margin-bottom: 32px; }
 .pfeats li { display: flex; align-items: center; gap: 10px; font-size: .875rem; color: var(--gray-700); }
 .pfeats li::before { content: '✓'; color: var(--orange); font-weight: 800; flex-shrink: 0; }
+/* Pricing section tabs */
+.pricing-tabs { display: flex; justify-content: center; gap: 8px; margin: 36px 0 48px; }
+.ptab { padding: 10px 28px; border-radius: 100px; font-size: .9rem; font-weight: 600; cursor: pointer; border: 2px solid var(--gray-200); background: #fff; color: var(--gray-500); transition: var(--transition); }
+.ptab.active { background: var(--navy); border-color: var(--navy); color: #fff; }
+.ptab:hover:not(.active) { border-color: var(--navy); color: var(--navy); }
+.pricing-panel { display: none; }
+.pricing-panel.active { display: block; }
+/* Compliance services list */
+.compliance-list { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; max-width: 860px; margin: 0 auto 48px; }
+@media (max-width: 640px) { .compliance-list { grid-template-columns: 1fr; } }
+.compliance-item { background: #fff; border-radius: var(--radius-lg); padding: 24px; border: 1px solid var(--gray-100); box-shadow: var(--shadow); display: flex; flex-direction: column; gap: 6px; }
+.ci-name { font-weight: 700; color: var(--navy); font-size: .95rem; }
+.ci-desc { font-size: .82rem; color: var(--gray-500); line-height: 1.5; }
+.ci-price { font-family: 'Orbitron', sans-serif; font-size: 1rem; font-weight: 700; color: var(--orange); margin-top: 4px; }
+.compliance-cta-box { background: linear-gradient(135deg, var(--navy), #16213e); border-radius: var(--radius-lg); padding: 40px; text-align: center; max-width: 860px; margin: 0 auto; }
+.compliance-cta-box h3 { color: #fff; margin-bottom: 10px; font-size: 1.4rem; }
+.compliance-cta-box p { color: rgba(255,255,255,.7); font-size: .9rem; margin-bottom: 24px; max-width: 480px; margin-left: auto; margin-right: auto; }
 
 .hipaa-bottom-cta { background: linear-gradient(135deg, var(--orange), #ea6a0a); padding: 88px 0; text-align: center; }
 .hipaa-bottom-cta h2 { color: #fff; margin-bottom: 18px; }
@@ -2321,72 +2339,141 @@ footer {
       <div style="text-align:center;">
         <span class="eyebrow">Pricing</span>
         <h2>Simple, Transparent Pricing</h2>
-        <p style="max-width:460px;margin:0 auto;color:var(--gray-500);">No hidden fees. No confusing tiers. Just comprehensive HIPAA compliance at the right scale for your organization.</p>
+        <p style="max-width:500px;margin:0 auto;color:var(--gray-500);">HIPAA training is a one-time course — pay once, certify your whole team. Need deeper compliance work? We've got that too.</p>
       </div>
-      <div class="pricing-grid">
-        <div class="pricing-card">
-          <div class="ptier">Starter</div>
-          <div class="pname">Small Practice</div>
-          <div class="pfor">Up to 10 employees · Solo Practices &amp; Clinics</div>
-          <div class="pprice">
-            <span class="pprice-amount">$299</span>
-            <span class="pprice-period">/mo</span>
+
+      <!-- Tabs -->
+      <div class="pricing-tabs">
+        <button class="ptab active" onclick="switchPricingTab('training', this)">HIPAA Training</button>
+        <button class="ptab" onclick="switchPricingTab('compliance', this)">Compliance Services</button>
+      </div>
+
+      <!-- ===== TRAINING PANEL ===== -->
+      <div class="pricing-panel active" id="pricing-training">
+        <div class="pricing-grid">
+
+          <!-- Solo -->
+          <div class="pricing-card">
+            <div class="ptier">Solo / Small</div>
+            <div class="pname">Up to 10 Staff</div>
+            <div class="pfor">Solo practices, small dental &amp; medical offices</div>
+            <div class="pprice">
+              <span class="pprice-amount">$299</span>
+            </div>
+            <div class="pprice-sub">One-time · entire office certified</div>
+            <div class="pprice-recert">↻ Annual recertification $149</div>
+            <div class="pdivider"></div>
+            <ul class="pfeats">
+              <li>Video training modules</li>
+              <li>Quiz + certificates for all staff</li>
+              <li>Completion tracking</li>
+              <li>BAA &amp; NPP templates</li>
+              <li>Email support</li>
+            </ul>
+            <a class="btn btn-outline-dark" onclick="showPage('contact')" style="width:100%;justify-content:center;">Get Started</a>
           </div>
-          <div class="pprice-sub">Flat rate — up to 10 users included</div>
-          <div class="pdivider"></div>
-          <ul class="pfeats">
-            <li>All 5 training modules</li>
-            <li>10 employee certifications</li>
-            <li>Compliance dashboard access</li>
-            <li>Basic policy templates</li>
-            <li>Email support</li>
-          </ul>
-          <a class="btn btn-outline-dark" onclick="showPage('contact')" style="width:100%;justify-content:center;">Get Started</a>
+
+          <!-- Group -->
+          <div class="pricing-card featured">
+            <span class="feat-badge">Most Popular</span>
+            <div class="ptier">Group Practice</div>
+            <div class="pname">Up to 25 Staff</div>
+            <div class="pfor">Group practices, multi-provider clinics</div>
+            <div class="pprice">
+              <span class="pprice-amount">$499</span>
+            </div>
+            <div class="pprice-sub">One-time · entire office certified</div>
+            <div class="pprice-recert">↻ Annual recertification $249</div>
+            <div class="pdivider"></div>
+            <ul class="pfeats">
+              <li>Video training modules</li>
+              <li>Quiz + certificates for all staff</li>
+              <li>Completion tracking dashboard</li>
+              <li>Custom policy documentation</li>
+              <li>BAA &amp; NPP templates</li>
+              <li>Priority phone &amp; email support</li>
+            </ul>
+            <a class="btn btn-primary" onclick="showPage('contact')" style="width:100%;justify-content:center;">Start Training</a>
+          </div>
+
+          <!-- Large -->
+          <div class="pricing-card">
+            <div class="ptier">Large Office</div>
+            <div class="pname">Up to 50 Staff</div>
+            <div class="pfor">Larger practices, specialty groups, DSOs</div>
+            <div class="pprice">
+              <span class="pprice-amount">$799</span>
+            </div>
+            <div class="pprice-sub">One-time · entire office certified</div>
+            <div class="pprice-recert">↻ Annual recertification $399</div>
+            <div class="pdivider"></div>
+            <ul class="pfeats">
+              <li>Video training modules</li>
+              <li>Quiz + certificates for all staff</li>
+              <li>Completion tracking dashboard</li>
+              <li>Custom policy documentation</li>
+              <li>BAA &amp; NPP templates</li>
+              <li>On-site training option available</li>
+              <li>Priority phone &amp; email support</li>
+            </ul>
+            <a class="btn btn-outline-dark" onclick="showPage('contact')" style="width:100%;justify-content:center;">Get Started</a>
+          </div>
+
         </div>
-        <div class="pricing-card featured">
-          <span class="feat-badge">Most Popular</span>
-          <div class="ptier">Professional</div>
-          <div class="pname">Mid-Size Clinic</div>
-          <div class="pfor">Up to 50 employees · Group Practices</div>
-          <div class="pprice">
-            <span class="pprice-amount">$599</span>
-            <span class="pprice-period">/mo</span>
+        <p style="text-align:center;color:var(--gray-500);font-size:.85rem;margin-top:24px;">Over 50 staff? <a onclick="showPage('contact')" style="color:var(--orange);cursor:pointer;font-weight:600;">Contact us</a> for a custom per-seat quote &mdash; volume discounts available.</p>
+      </div>
+
+      <!-- ===== COMPLIANCE SERVICES PANEL ===== -->
+      <div class="pricing-panel" id="pricing-compliance">
+        <div class="compliance-list">
+          <div class="compliance-item">
+            <div class="ci-name">HIPAA Risk Assessment</div>
+            <div class="ci-desc">Full evaluation of administrative, physical &amp; technical safeguards with a written gap analysis and remediation plan.</div>
+            <div class="ci-price">$1,500 – $3,500</div>
           </div>
-          <div class="pprice-sub">Base rate for up to 50 users &mdash; <strong>$12/user/mo</strong> after that</div>
-          <div class="pdivider"></div>
-          <ul class="pfeats">
-            <li>All 5 training modules</li>
-            <li>50 employee certifications</li>
-            <li>Advanced compliance dashboard</li>
-            <li>Custom policy documentation</li>
-            <li>Risk assessment support</li>
-            <li>Audit preparation package</li>
-            <li>Priority phone &amp; email support</li>
-          </ul>
-          <a class="btn btn-primary" onclick="showPage('contact')" style="width:100%;justify-content:center;">Start HIPAA Training</a>
+          <div class="compliance-item">
+            <div class="ci-name">Policy &amp; Procedure Development</div>
+            <div class="ci-desc">Custom HIPAA policies written for your specific practice — not generic templates.</div>
+            <div class="ci-price">$1,500 – $3,000</div>
+          </div>
+          <div class="compliance-item">
+            <div class="ci-name">IT Security Assessment</div>
+            <div class="ci-desc">Network vulnerability scan, firewall review, endpoint security evaluation, and written report.</div>
+            <div class="ci-price">$1,200 – $2,500</div>
+          </div>
+          <div class="compliance-item">
+            <div class="ci-name">Business Associate Audit</div>
+            <div class="ci-desc">Review all vendor relationships, confirm BAA status, and close compliance gaps with third parties.</div>
+            <div class="ci-price">$800 – $1,500</div>
+          </div>
+          <div class="compliance-item">
+            <div class="ci-name">Breach Response Planning</div>
+            <div class="ci-desc">Incident response plan, OCR notification procedures, and breach response templates.</div>
+            <div class="ci-price">$1,000 – $2,000</div>
+          </div>
+          <div class="compliance-item">
+            <div class="ci-name">Physical Security Audit</div>
+            <div class="ci-desc">On-site review of access controls, facility security, workstation placement, and paper PHI handling.</div>
+            <div class="ci-price">$750 – $1,500</div>
+          </div>
+          <div class="compliance-item">
+            <div class="ci-name">EHR Security Review</div>
+            <div class="ci-desc">Audit user access levels, audit logs, and security configuration of your EHR or practice management system.</div>
+            <div class="ci-price">$800 – $1,800</div>
+          </div>
+          <div class="compliance-item">
+            <div class="ci-name">HIPAA Audit Preparation</div>
+            <div class="ci-desc">Mock OCR audit, documentation review, and readiness coaching so you're never caught off guard.</div>
+            <div class="ci-price">$1,500 – $3,000</div>
+          </div>
         </div>
-        <div class="pricing-card">
-          <div class="ptier">Enterprise</div>
-          <div class="pname">Large Organization</div>
-          <div class="pfor">51+ employees · Health Systems</div>
-          <div class="pprice">
-            <span class="pprice-amount">$18</span>
-            <span class="pprice-period">/user/mo</span>
-          </div>
-          <div class="pprice-sub">Per-user pricing &mdash; volume discounts available</div>
-          <div class="pdivider"></div>
-          <ul class="pfeats">
-            <li>All modules + custom content</li>
-            <li>Per-seat certifications</li>
-            <li>Enterprise compliance portal</li>
-            <li>Full policy suite development</li>
-            <li>Dedicated compliance manager</li>
-            <li>On-site training available</li>
-            <li>Annual renewal program</li>
-          </ul>
-          <a class="btn btn-outline-dark" onclick="showPage('contact')" style="width:100%;justify-content:center;">Get a Custom Quote</a>
+        <div class="compliance-cta-box">
+          <h3>Not Sure Where to Start?</h3>
+          <p>Most clients start with HIPAA Training to get their team certified, then we assess what compliance gaps exist and build a plan from there. First consultation is free.</p>
+          <a class="btn btn-primary btn-lg" onclick="showPage('contact')">Book a Free Consultation →</a>
         </div>
       </div>
+
     </div>
   </section>
 
@@ -2669,6 +2756,13 @@ function animateCountup(el) {
 })();
 
 // ---- Page Navigation ----
+function switchPricingTab(tab, btn) {
+  document.querySelectorAll('.pricing-panel').forEach(p => p.classList.remove('active'));
+  document.querySelectorAll('.ptab').forEach(b => b.classList.remove('active'));
+  document.getElementById('pricing-' + tab).classList.add('active');
+  btn.classList.add('active');
+}
+
 function showPage(page) {
   document.querySelectorAll('.page').forEach(p => p.classList.remove('active'));
   document.getElementById('page-' + page).classList.add('active');
