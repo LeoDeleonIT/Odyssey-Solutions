@@ -209,6 +209,79 @@ p { color: var(--gray-500); line-height: 1.75; }
   background: var(--gray-50);
 }
 .nav-cta { margin-left: 10px; }
+
+/* ===== DROPDOWN NAV ===== */
+.nav-links li { position: relative; }
+.nav-links li:hover > .nav-dropdown { opacity: 1; visibility: visible; transform: translateY(0); }
+.nav-dropdown {
+  position: absolute;
+  top: calc(100% + 8px);
+  left: 50%;
+  transform: translateX(-50%) translateY(-6px);
+  background: #fff;
+  border: 1px solid var(--gray-200);
+  border-radius: 10px;
+  box-shadow: 0 8px 32px rgba(0,0,0,0.12);
+  padding: 8px;
+  min-width: 210px;
+  opacity: 0;
+  visibility: hidden;
+  transition: opacity .18s ease, transform .18s ease, visibility .18s;
+  z-index: 200;
+}
+.nav-dropdown::before {
+  content: '';
+  position: absolute;
+  top: -6px;
+  left: 50%;
+  transform: translateX(-50%);
+  border: 6px solid transparent;
+  border-bottom-color: var(--gray-200);
+  border-top: none;
+}
+.nav-dropdown::after {
+  content: '';
+  position: absolute;
+  top: -5px;
+  left: 50%;
+  transform: translateX(-50%);
+  border: 5px solid transparent;
+  border-bottom-color: #fff;
+  border-top: none;
+}
+.nav-dropdown a {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 9px 12px;
+  border-radius: 7px;
+  font-size: .875rem;
+  font-weight: 500;
+  color: var(--gray-700);
+  text-decoration: none;
+  transition: background .15s, color .15s;
+  white-space: nowrap;
+  background: none;
+}
+.nav-dropdown a:hover {
+  background: var(--gray-50);
+  color: var(--navy);
+}
+.nav-dropdown .dd-icon {
+  width: 30px;
+  height: 30px;
+  border-radius: 7px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1rem;
+  flex-shrink: 0;
+}
+.nav-dropdown .dd-text { display: flex; flex-direction: column; }
+.nav-dropdown .dd-label { font-weight: 600; color: var(--navy); font-size: .85rem; line-height: 1.2; }
+.nav-dropdown .dd-sub { font-size: .74rem; color: var(--gray-500); font-weight: 400; line-height: 1.3; margin-top: 1px; }
+.nav-dropdown .dd-divider { height: 1px; background: var(--gray-100); margin: 6px 4px; }
+.has-dropdown > a::after { content: ' ▾'; font-size: .65rem; opacity: .6; }
 .hamburger {
   display: none;
   flex-direction: column;
@@ -1623,8 +1696,50 @@ footer {
     <span class="logo" onclick="showPage('home')">Odyss<span class="logo-e">e</span>y Solutions</span>
     <ul class="nav-links">
       <li><a id="nav-home" class="active" onclick="showPage('home')">Home</a></li>
-      <li><a id="nav-services" onclick="showPage('services')">Services</a></li>
-      <li><a id="nav-hipaa" onclick="showPage('hipaa')">HIPAA Compliance</a></li>
+
+      <!-- Services dropdown -->
+      <li class="has-dropdown">
+        <a id="nav-services" onclick="showPage('services')">Services</a>
+        <div class="nav-dropdown">
+          <a onclick="showPage('services')">
+            <span class="dd-icon" style="background:#eff6ff;">🖥️</span>
+            <span class="dd-text"><span class="dd-label">Managed IT</span><span class="dd-sub">Support, security & infrastructure</span></span>
+          </a>
+          <a onclick="showPage('services')">
+            <span class="dd-icon" style="background:#fff7ed;">🌐</span>
+            <span class="dd-text"><span class="dd-label">Web Development</span><span class="dd-sub">Sites that convert & rank</span></span>
+          </a>
+          <a onclick="showPage('services')">
+            <span class="dd-icon" style="background:#f0fdf4;">🦷</span>
+            <span class="dd-text"><span class="dd-label">Dental Billing & Staffing</span><span class="dd-sub">Remote dental staff from $X/hr</span></span>
+          </a>
+        </div>
+      </li>
+
+      <!-- HIPAA dropdown -->
+      <li class="has-dropdown">
+        <a id="nav-hipaa" onclick="showPage('hipaa')">HIPAA</a>
+        <div class="nav-dropdown">
+          <a onclick="showPage('hipaa');setTimeout(()=>{switchPricingTab('training',document.querySelectorAll('.ptab')[0])},100)">
+            <span class="dd-icon" style="background:#eff6ff;">🎓</span>
+            <span class="dd-text"><span class="dd-label">HIPAA Training</span><span class="dd-sub">Certify your team — one-time fee</span></span>
+          </a>
+          <div class="dd-divider"></div>
+          <a onclick="showPage('hipaa');setTimeout(()=>{switchPricingTab('compliance',document.querySelectorAll('.ptab')[1])},100)">
+            <span class="dd-icon" style="background:#fefce8;">🔍</span>
+            <span class="dd-text"><span class="dd-label">Risk Assessments</span><span class="dd-sub">Gap analysis & remediation plans</span></span>
+          </a>
+          <a onclick="showPage('hipaa');setTimeout(()=>{switchPricingTab('compliance',document.querySelectorAll('.ptab')[1])},100)">
+            <span class="dd-icon" style="background:#fdf4ff;">📋</span>
+            <span class="dd-text"><span class="dd-label">Policy Development</span><span class="dd-sub">Custom HIPAA policies for your practice</span></span>
+          </a>
+          <a onclick="showPage('hipaa');setTimeout(()=>{switchPricingTab('compliance',document.querySelectorAll('.ptab')[1])},100)">
+            <span class="dd-icon" style="background:#fff1f2;">🛡️</span>
+            <span class="dd-text"><span class="dd-label">IT Security Audits</span><span class="dd-sub">Network & endpoint security review</span></span>
+          </a>
+        </div>
+      </li>
+
       <li><a id="nav-about" onclick="showPage('about')">About</a></li>
       <li><a id="nav-contact" onclick="showPage('contact')">Contact</a></li>
     </ul>
@@ -1637,8 +1752,16 @@ footer {
 
 <div class="mobile-menu" id="mobileMenu">
   <a onclick="showPage('home');closeMobile()">Home</a>
-  <a onclick="showPage('services');closeMobile()">Services</a>
-  <a onclick="showPage('hipaa');closeMobile()">HIPAA Compliance</a>
+  <div style="font-size:.7rem;font-weight:700;text-transform:uppercase;letter-spacing:.08em;color:rgba(255,255,255,.4);padding:12px 0 4px;">Services</div>
+  <a onclick="showPage('services');closeMobile()" style="padding-left:16px;">🖥️ &nbsp;Managed IT</a>
+  <a onclick="showPage('services');closeMobile()" style="padding-left:16px;">🌐 &nbsp;Web Development</a>
+  <a onclick="showPage('services');closeMobile()" style="padding-left:16px;">🦷 &nbsp;Dental Billing & Staffing</a>
+  <div style="font-size:.7rem;font-weight:700;text-transform:uppercase;letter-spacing:.08em;color:rgba(255,255,255,.4);padding:12px 0 4px;">HIPAA</div>
+  <a onclick="showPage('hipaa');closeMobile()" style="padding-left:16px;">🎓 &nbsp;HIPAA Training</a>
+  <a onclick="showPage('hipaa');setTimeout(()=>{switchPricingTab('compliance',document.querySelectorAll('.ptab')[1])},100);closeMobile()" style="padding-left:16px;">🔍 &nbsp;Risk Assessments</a>
+  <a onclick="showPage('hipaa');setTimeout(()=>{switchPricingTab('compliance',document.querySelectorAll('.ptab')[1])},100);closeMobile()" style="padding-left:16px;">📋 &nbsp;Policy Development</a>
+  <a onclick="showPage('hipaa');setTimeout(()=>{switchPricingTab('compliance',document.querySelectorAll('.ptab')[1])},100);closeMobile()" style="padding-left:16px;">🛡️ &nbsp;IT Security Audits</a>
+  <div style="height:1px;background:rgba(255,255,255,.1);margin:12px 0;"></div>
   <a onclick="showPage('about');closeMobile()">About</a>
   <a onclick="showPage('contact');closeMobile()">Contact</a>
   <a class="btn btn-primary" onclick="showPage('contact');closeMobile()">Book Free Consultation</a>
