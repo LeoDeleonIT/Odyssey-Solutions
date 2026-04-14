@@ -1,0 +1,1389 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>HIPAA Compliance Client Intake Form — Odyssey Solutions</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;600;700&family=Exo+2:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+html { scroll-behavior: smooth; font-size: 16px; }
+body {
+  font-family: 'Exo 2', sans-serif;
+  color: #1a1a2e;
+  background: #f8f9fa;
+  line-height: 1.6;
+}
+
+:root {
+  --dark: #0d0d1a;
+  --navy: #1a1a2e;
+  --orange: #F97316;
+  --orange-dark: #ea6a0a;
+  --orange-light: #fff7ed;
+  --gray-100: #f3f4f6;
+  --gray-200: #e5e7eb;
+  --gray-300: #d1d5db;
+  --gray-500: #6b7280;
+  --gray-700: #374151;
+  --white: #ffffff;
+  --radius: 8px;
+}
+
+/* ===== HEADER ===== */
+.form-header {
+  background: linear-gradient(135deg, var(--dark) 0%, var(--navy) 100%);
+  color: var(--white);
+  padding: 40px 20px;
+  text-align: center;
+}
+.form-header h1 {
+  font-family: 'Orbitron', sans-serif;
+  font-size: 1.8rem;
+  font-weight: 700;
+  margin-bottom: 8px;
+  color: var(--orange);
+}
+.form-header p {
+  font-size: 1rem;
+  opacity: 0.85;
+  max-width: 600px;
+  margin: 0 auto;
+}
+.form-header .logo-text {
+  font-family: 'Orbitron', sans-serif;
+  font-size: 0.9rem;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  margin-bottom: 20px;
+  opacity: 0.7;
+}
+
+/* ===== CONTAINER ===== */
+.form-container {
+  max-width: 900px;
+  margin: 0 auto;
+  padding: 20px;
+}
+
+/* ===== SECTIONS ===== */
+.form-section {
+  background: var(--white);
+  border-radius: var(--radius);
+  box-shadow: 0 1px 3px rgba(0,0,0,0.1);
+  margin-bottom: 24px;
+  overflow: hidden;
+}
+.section-header {
+  background: var(--navy);
+  color: var(--white);
+  padding: 16px 24px;
+  font-family: 'Orbitron', sans-serif;
+  font-size: 1rem;
+  font-weight: 600;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+.section-header .section-num {
+  background: var(--orange);
+  color: var(--white);
+  width: 30px;
+  height: 30px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 0.85rem;
+  flex-shrink: 0;
+}
+.section-body {
+  padding: 24px;
+}
+.section-note {
+  background: var(--orange-light);
+  border-left: 4px solid var(--orange);
+  padding: 12px 16px;
+  margin-bottom: 20px;
+  font-size: 0.9rem;
+  color: var(--gray-700);
+  border-radius: 0 var(--radius) var(--radius) 0;
+}
+
+/* ===== FORM FIELDS ===== */
+.field-row {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 16px;
+  margin-bottom: 16px;
+}
+.field-row.full {
+  grid-template-columns: 1fr;
+}
+.field-row.triple {
+  grid-template-columns: 1fr 1fr 1fr;
+}
+@media (max-width: 600px) {
+  .field-row, .field-row.triple {
+    grid-template-columns: 1fr;
+  }
+}
+.field-group {
+  display: flex;
+  flex-direction: column;
+}
+.field-group label {
+  font-size: 0.85rem;
+  font-weight: 500;
+  color: var(--gray-700);
+  margin-bottom: 4px;
+}
+.field-group label .required {
+  color: #ef4444;
+}
+.field-group input,
+.field-group select,
+.field-group textarea {
+  padding: 10px 12px;
+  border: 1px solid var(--gray-300);
+  border-radius: var(--radius);
+  font-family: 'Exo 2', sans-serif;
+  font-size: 0.95rem;
+  color: var(--navy);
+  transition: border-color 0.2s;
+}
+.field-group input:focus,
+.field-group select:focus,
+.field-group textarea:focus {
+  outline: none;
+  border-color: var(--orange);
+  box-shadow: 0 0 0 3px rgba(249,115,22,0.15);
+}
+.field-group textarea {
+  resize: vertical;
+  min-height: 80px;
+}
+
+/* ===== CHECKBOX / RADIO GROUPS ===== */
+.check-group {
+  margin-bottom: 16px;
+}
+.check-group .check-label {
+  font-size: 0.85rem;
+  font-weight: 500;
+  color: var(--gray-700);
+  margin-bottom: 8px;
+  display: block;
+}
+.check-options {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+}
+.check-options label {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 0.9rem;
+  cursor: pointer;
+  color: var(--navy);
+}
+.check-options input[type="checkbox"],
+.check-options input[type="radio"] {
+  accent-color: var(--orange);
+  width: 16px;
+  height: 16px;
+}
+
+/* ===== DYNAMIC TABLE ===== */
+.dynamic-table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-bottom: 16px;
+  font-size: 0.9rem;
+}
+.dynamic-table th {
+  background: var(--gray-100);
+  padding: 10px 12px;
+  text-align: left;
+  font-weight: 600;
+  color: var(--gray-700);
+  border-bottom: 2px solid var(--gray-200);
+  font-size: 0.8rem;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+.dynamic-table td {
+  padding: 8px 12px;
+  border-bottom: 1px solid var(--gray-200);
+}
+.dynamic-table td input,
+.dynamic-table td select {
+  width: 100%;
+  padding: 6px 8px;
+  border: 1px solid var(--gray-300);
+  border-radius: 4px;
+  font-family: 'Exo 2', sans-serif;
+  font-size: 0.85rem;
+}
+.add-row-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  padding: 8px 16px;
+  background: var(--orange-light);
+  color: var(--orange-dark);
+  border: 1px dashed var(--orange);
+  border-radius: var(--radius);
+  font-family: 'Exo 2', sans-serif;
+  font-size: 0.85rem;
+  font-weight: 500;
+  cursor: pointer;
+  transition: background 0.2s;
+}
+.add-row-btn:hover {
+  background: #fed7aa;
+}
+
+/* ===== DIVIDER ===== */
+.field-divider {
+  border: none;
+  border-top: 1px solid var(--gray-200);
+  margin: 20px 0;
+}
+
+/* ===== SUBMIT ===== */
+.submit-section {
+  text-align: center;
+  padding: 30px 20px;
+}
+.submit-btn {
+  padding: 14px 48px;
+  background: var(--orange);
+  color: var(--white);
+  border: none;
+  border-radius: var(--radius);
+  font-family: 'Orbitron', sans-serif;
+  font-size: 1rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background 0.2s, transform 0.1s;
+}
+.submit-btn:hover {
+  background: var(--orange-dark);
+  transform: translateY(-1px);
+}
+.print-btn {
+  padding: 14px 36px;
+  background: var(--navy);
+  color: var(--white);
+  border: none;
+  border-radius: var(--radius);
+  font-family: 'Exo 2', sans-serif;
+  font-size: 0.95rem;
+  font-weight: 500;
+  cursor: pointer;
+  margin-left: 12px;
+  transition: background 0.2s;
+}
+.print-btn:hover {
+  background: var(--dark);
+}
+
+/* ===== FOOTER ===== */
+.form-footer {
+  text-align: center;
+  padding: 20px;
+  color: var(--gray-500);
+  font-size: 0.8rem;
+}
+
+/* ===== PRINT STYLES ===== */
+@media print {
+  body { background: #fff; font-size: 11px; }
+  .form-header { padding: 20px; }
+  .form-container { padding: 0 10px; }
+  .form-section { box-shadow: none; border: 1px solid #ddd; break-inside: avoid; }
+  .submit-section, .print-btn { display: none; }
+  .add-row-btn { display: none; }
+  .field-group input, .field-group select, .field-group textarea {
+    border: none;
+    border-bottom: 1px solid #999;
+    border-radius: 0;
+    padding: 4px 2px;
+  }
+}
+</style>
+</head>
+<body>
+
+<div class="form-header">
+  <div class="logo-text">Odyssey Solutions</div>
+  <h1>HIPAA Compliance Client Intake Form</h1>
+  <p>Please complete all sections as thoroughly as possible. This information helps us assess your current compliance posture and build a customized plan for your organization.</p>
+</div>
+
+<div class="form-container">
+<form id="intakeForm">
+
+<!-- ==================== SECTION 1: PRACTICE INFO ==================== -->
+<div class="form-section">
+  <div class="section-header">
+    <span class="section-num">1</span>
+    Practice & Contact Information
+  </div>
+  <div class="section-body">
+    <div class="section-note">
+      Provide your organization's legal and operational details. All fields marked with <span style="color:#ef4444">*</span> are required.
+    </div>
+
+    <div class="field-row">
+      <div class="field-group">
+        <label>Legal Business Name <span class="required">*</span></label>
+        <input type="text" name="business_name" required>
+      </div>
+      <div class="field-group">
+        <label>DBA / Doing Business As</label>
+        <input type="text" name="dba">
+      </div>
+    </div>
+
+    <div class="field-row">
+      <div class="field-group">
+        <label>Type of Organization <span class="required">*</span></label>
+        <select name="org_type" required>
+          <option value="">— Select —</option>
+          <option value="dental">Dental Practice</option>
+          <option value="medical">Medical Practice / Clinic</option>
+          <option value="pharmacy">Pharmacy</option>
+          <option value="billing">Medical Billing Company</option>
+          <option value="mental_health">Mental / Behavioral Health</option>
+          <option value="chiropractic">Chiropractic</option>
+          <option value="optometry">Optometry / Ophthalmology</option>
+          <option value="home_health">Home Health Agency</option>
+          <option value="lab">Laboratory</option>
+          <option value="insurance">Health Plan / Insurance</option>
+          <option value="clearinghouse">Healthcare Clearinghouse</option>
+          <option value="business_associate">Business Associate</option>
+          <option value="other">Other</option>
+        </select>
+      </div>
+      <div class="field-group">
+        <label>If Other, specify</label>
+        <input type="text" name="org_type_other">
+      </div>
+    </div>
+
+    <div class="field-row full">
+      <div class="field-group">
+        <label>Physical Address <span class="required">*</span></label>
+        <input type="text" name="address" placeholder="Street, City, State, ZIP" required>
+      </div>
+    </div>
+
+    <div class="field-row full">
+      <div class="field-group">
+        <label>Mailing Address (if different)</label>
+        <input type="text" name="mailing_address" placeholder="Street, City, State, ZIP">
+      </div>
+    </div>
+
+    <div class="field-row triple">
+      <div class="field-group">
+        <label>Phone <span class="required">*</span></label>
+        <input type="tel" name="phone" required>
+      </div>
+      <div class="field-group">
+        <label>Fax</label>
+        <input type="tel" name="fax">
+      </div>
+      <div class="field-group">
+        <label>Website</label>
+        <input type="url" name="website" placeholder="https://">
+      </div>
+    </div>
+
+    <div class="field-row">
+      <div class="field-group">
+        <label>NPI Number</label>
+        <input type="text" name="npi">
+      </div>
+      <div class="field-group">
+        <label>Tax ID / EIN</label>
+        <input type="text" name="ein">
+      </div>
+    </div>
+
+    <div class="field-row">
+      <div class="field-group">
+        <label>Number of Locations <span class="required">*</span></label>
+        <input type="number" name="num_locations" min="1" value="1" required>
+      </div>
+      <div class="field-group">
+        <label>Total Number of Employees <span class="required">*</span></label>
+        <input type="number" name="num_employees" min="1" required>
+      </div>
+    </div>
+
+    <hr class="field-divider">
+    <h4 style="margin-bottom:12px; color:var(--navy);">Primary Contact</h4>
+    <div class="field-row">
+      <div class="field-group">
+        <label>Full Name <span class="required">*</span></label>
+        <input type="text" name="contact_name" required>
+      </div>
+      <div class="field-group">
+        <label>Title / Role <span class="required">*</span></label>
+        <input type="text" name="contact_title" required>
+      </div>
+    </div>
+    <div class="field-row">
+      <div class="field-group">
+        <label>Email <span class="required">*</span></label>
+        <input type="email" name="contact_email" required>
+      </div>
+      <div class="field-group">
+        <label>Phone <span class="required">*</span></label>
+        <input type="tel" name="contact_phone" required>
+      </div>
+    </div>
+
+    <hr class="field-divider">
+    <h4 style="margin-bottom:12px; color:var(--navy);">Secondary Contact (Optional)</h4>
+    <div class="field-row">
+      <div class="field-group">
+        <label>Full Name</label>
+        <input type="text" name="contact2_name">
+      </div>
+      <div class="field-group">
+        <label>Title / Role</label>
+        <input type="text" name="contact2_title">
+      </div>
+    </div>
+    <div class="field-row">
+      <div class="field-group">
+        <label>Email</label>
+        <input type="email" name="contact2_email">
+      </div>
+      <div class="field-group">
+        <label>Phone</label>
+        <input type="tel" name="contact2_phone">
+      </div>
+    </div>
+
+    <hr class="field-divider">
+    <h4 style="margin-bottom:12px; color:var(--navy);">Hours of Operation</h4>
+    <div class="field-row">
+      <div class="field-group">
+        <label>Office Hours</label>
+        <input type="text" name="office_hours" placeholder="e.g. Mon-Fri 8am-5pm">
+      </div>
+      <div class="field-group">
+        <label>Best Time to Contact</label>
+        <input type="text" name="best_contact_time" placeholder="e.g. Tues/Thurs mornings">
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ==================== SECTION 2: IT INFRASTRUCTURE ==================== -->
+<div class="form-section">
+  <div class="section-header">
+    <span class="section-num">2</span>
+    IT Infrastructure & Systems
+  </div>
+  <div class="section-body">
+    <div class="section-note">
+      Provide details about your current technology environment. This helps us identify risks and plan your compliance roadmap.
+    </div>
+
+    <h4 style="margin-bottom:12px; color:var(--navy);">Computers & Devices</h4>
+    <div class="field-row triple">
+      <div class="field-group">
+        <label>Desktop Computers</label>
+        <input type="number" name="num_desktops" min="0" value="0">
+      </div>
+      <div class="field-group">
+        <label>Laptops</label>
+        <input type="number" name="num_laptops" min="0" value="0">
+      </div>
+      <div class="field-group">
+        <label>Tablets / iPads</label>
+        <input type="number" name="num_tablets" min="0" value="0">
+      </div>
+    </div>
+
+    <div class="field-row">
+      <div class="field-group">
+        <label>Operating Systems in Use</label>
+        <div class="check-options">
+          <label><input type="checkbox" name="os" value="windows11"> Windows 11</label>
+          <label><input type="checkbox" name="os" value="windows10"> Windows 10</label>
+          <label><input type="checkbox" name="os" value="macos"> macOS</label>
+          <label><input type="checkbox" name="os" value="chromeos"> Chrome OS</label>
+          <label><input type="checkbox" name="os" value="linux"> Linux</label>
+        </div>
+      </div>
+    </div>
+
+    <div class="field-row">
+      <div class="field-group">
+        <label>Do you have an on-premises server?</label>
+        <select name="has_server">
+          <option value="">— Select —</option>
+          <option value="yes">Yes</option>
+          <option value="no">No</option>
+          <option value="unsure">Unsure</option>
+        </select>
+      </div>
+      <div class="field-group">
+        <label>If yes, server type / purpose</label>
+        <input type="text" name="server_details" placeholder="e.g. Dell PowerEdge, file server">
+      </div>
+    </div>
+
+    <hr class="field-divider">
+    <h4 style="margin-bottom:12px; color:var(--navy);">Software & EHR</h4>
+
+    <div class="field-row">
+      <div class="field-group">
+        <label>EHR / EMR System <span class="required">*</span></label>
+        <input type="text" name="ehr_system" placeholder="e.g. Dentrix, Epic, Athena, Open Dental" required>
+      </div>
+      <div class="field-group">
+        <label>Practice Management Software</label>
+        <input type="text" name="pm_software" placeholder="e.g. Eaglesoft, Kareo (if different from EHR)">
+      </div>
+    </div>
+
+    <div class="field-row">
+      <div class="field-group">
+        <label>Imaging / X-Ray Software</label>
+        <input type="text" name="imaging_software" placeholder="e.g. Dexis, Schick, Apteryx">
+      </div>
+      <div class="field-group">
+        <label>Billing / Claims Software</label>
+        <input type="text" name="billing_software" placeholder="If separate from EHR/PM">
+      </div>
+    </div>
+
+    <div class="field-row full">
+      <div class="field-group">
+        <label>Other Software That Stores or Transmits Patient Data</label>
+        <textarea name="other_phi_software" placeholder="List any additional software, cloud apps, or services that handle protected health information (PHI). Examples: patient portals, appointment scheduling, telehealth platforms, email services."></textarea>
+      </div>
+    </div>
+
+    <hr class="field-divider">
+    <h4 style="margin-bottom:12px; color:var(--navy);">Network & Internet</h4>
+
+    <div class="field-row">
+      <div class="field-group">
+        <label>Internet Service Provider (ISP)</label>
+        <input type="text" name="isp" placeholder="e.g. Comcast, AT&T, Spectrum">
+      </div>
+      <div class="field-group">
+        <label>Connection Type</label>
+        <select name="connection_type">
+          <option value="">— Select —</option>
+          <option value="fiber">Fiber</option>
+          <option value="cable">Cable</option>
+          <option value="dsl">DSL</option>
+          <option value="wireless">Fixed Wireless</option>
+          <option value="satellite">Satellite</option>
+          <option value="unsure">Unsure</option>
+        </select>
+      </div>
+    </div>
+
+    <div class="field-row">
+      <div class="field-group">
+        <label>Firewall / Router Brand</label>
+        <input type="text" name="firewall" placeholder="e.g. SonicWall, Ubiquiti, Meraki, consumer router">
+      </div>
+      <div class="field-group">
+        <label>Do you have a separate guest Wi-Fi network?</label>
+        <select name="guest_wifi">
+          <option value="">— Select —</option>
+          <option value="yes">Yes</option>
+          <option value="no">No</option>
+          <option value="unsure">Unsure</option>
+        </select>
+      </div>
+    </div>
+
+    <div class="field-row">
+      <div class="field-group">
+        <label>Do employees use personal devices for work?</label>
+        <select name="byod">
+          <option value="">— Select —</option>
+          <option value="yes">Yes</option>
+          <option value="no">No</option>
+          <option value="sometimes">Sometimes</option>
+        </select>
+      </div>
+      <div class="field-group">
+        <label>Remote access method (if any)</label>
+        <input type="text" name="remote_access" placeholder="e.g. VPN, RDP, TeamViewer, none">
+      </div>
+    </div>
+
+    <div class="field-row">
+      <div class="field-group">
+        <label>Phone System Type</label>
+        <select name="phone_system">
+          <option value="">— Select —</option>
+          <option value="voip">VoIP (internet-based)</option>
+          <option value="landline">Traditional Landline</option>
+          <option value="hybrid">Hybrid</option>
+          <option value="cell_only">Cell Phones Only</option>
+          <option value="unsure">Unsure</option>
+        </select>
+      </div>
+      <div class="field-group">
+        <label>VoIP Provider (if applicable)</label>
+        <input type="text" name="voip_provider" placeholder="e.g. RingCentral, Vonage, 8x8">
+      </div>
+    </div>
+
+    <hr class="field-divider">
+    <h4 style="margin-bottom:12px; color:var(--navy);">Printers, Scanners & Other Equipment</h4>
+    <div class="field-row">
+      <div class="field-group">
+        <label>Number of printers/copiers</label>
+        <input type="number" name="num_printers" min="0" value="0">
+      </div>
+      <div class="field-group">
+        <label>Do any printers have built-in hard drives?</label>
+        <select name="printer_hdd">
+          <option value="">— Select —</option>
+          <option value="yes">Yes</option>
+          <option value="no">No</option>
+          <option value="unsure">Unsure</option>
+        </select>
+      </div>
+    </div>
+
+    <div class="field-row full">
+      <div class="field-group">
+        <label>Network-connected medical devices</label>
+        <textarea name="medical_devices" placeholder="List any medical devices connected to your network (e.g., digital X-ray sensors, intraoral cameras, vital sign monitors, lab equipment). Include make/model if known."></textarea>
+      </div>
+    </div>
+
+    <hr class="field-divider">
+    <h4 style="margin-bottom:12px; color:var(--navy);">Cloud Services</h4>
+    <div class="check-group">
+      <span class="check-label">Which cloud services does your organization use?</span>
+      <div class="check-options">
+        <label><input type="checkbox" name="cloud" value="microsoft365"> Microsoft 365</label>
+        <label><input type="checkbox" name="cloud" value="google_workspace"> Google Workspace</label>
+        <label><input type="checkbox" name="cloud" value="dropbox"> Dropbox</label>
+        <label><input type="checkbox" name="cloud" value="box"> Box</label>
+        <label><input type="checkbox" name="cloud" value="aws"> AWS</label>
+        <label><input type="checkbox" name="cloud" value="azure"> Azure</label>
+        <label><input type="checkbox" name="cloud" value="icloud"> iCloud</label>
+      </div>
+    </div>
+    <div class="field-row full">
+      <div class="field-group">
+        <label>Other cloud services</label>
+        <input type="text" name="cloud_other" placeholder="List any other cloud platforms or SaaS tools used">
+      </div>
+    </div>
+
+    <hr class="field-divider">
+    <h4 style="margin-bottom:12px; color:var(--navy);">Current IT Support</h4>
+    <div class="field-row">
+      <div class="field-group">
+        <label>Who currently manages your IT?</label>
+        <select name="it_support">
+          <option value="">— Select —</option>
+          <option value="internal">Internal IT staff</option>
+          <option value="msp">Managed Service Provider (MSP)</option>
+          <option value="consultant">IT Consultant (as needed)</option>
+          <option value="office_manager">Office Manager / Staff</option>
+          <option value="none">No one / No formal IT support</option>
+        </select>
+      </div>
+      <div class="field-group">
+        <label>IT Provider Company Name (if applicable)</label>
+        <input type="text" name="it_provider_name">
+      </div>
+    </div>
+    <div class="field-row">
+      <div class="field-group">
+        <label>IT Contact Name</label>
+        <input type="text" name="it_contact_name">
+      </div>
+      <div class="field-group">
+        <label>IT Contact Phone / Email</label>
+        <input type="text" name="it_contact_info">
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ==================== SECTION 3: STAFF & ACCESS ==================== -->
+<div class="form-section">
+  <div class="section-header">
+    <span class="section-num">3</span>
+    Staff & Access Roles
+  </div>
+  <div class="section-body">
+    <div class="section-note">
+      Understanding who accesses patient data and how is critical for HIPAA compliance. Provide your best estimates if exact numbers are unknown.
+    </div>
+
+    <div class="field-row">
+      <div class="field-group">
+        <label>Number of staff with access to PHI <span class="required">*</span></label>
+        <input type="number" name="staff_phi_access" min="0" required>
+      </div>
+      <div class="field-group">
+        <label>Number of providers (doctors/dentists)</label>
+        <input type="number" name="num_providers" min="0">
+      </div>
+    </div>
+
+    <h4 style="margin:16px 0 12px; color:var(--navy);">Staff Roles with PHI Access</h4>
+    <table class="dynamic-table" id="staffTable">
+      <thead>
+        <tr>
+          <th style="width:25%">Role / Title</th>
+          <th style="width:15%">Count</th>
+          <th style="width:30%">What Systems Do They Access?</th>
+          <th style="width:30%">Type of PHI Access</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td><input type="text" placeholder="e.g. Front Desk"></td>
+          <td><input type="number" min="0" placeholder="0"></td>
+          <td><input type="text" placeholder="e.g. Dentrix, email"></td>
+          <td><select>
+            <option value="read">Read Only</option>
+            <option value="read_write">Read & Write</option>
+            <option value="full">Full Access / Admin</option>
+          </select></td>
+        </tr>
+        <tr>
+          <td><input type="text" placeholder="e.g. Hygienist"></td>
+          <td><input type="number" min="0" placeholder="0"></td>
+          <td><input type="text" placeholder="e.g. EHR, imaging"></td>
+          <td><select>
+            <option value="read">Read Only</option>
+            <option value="read_write" selected>Read & Write</option>
+            <option value="full">Full Access / Admin</option>
+          </select></td>
+        </tr>
+        <tr>
+          <td><input type="text" placeholder="e.g. Billing Clerk"></td>
+          <td><input type="number" min="0" placeholder="0"></td>
+          <td><input type="text" placeholder="e.g. billing software"></td>
+          <td><select>
+            <option value="read">Read Only</option>
+            <option value="read_write" selected>Read & Write</option>
+            <option value="full">Full Access / Admin</option>
+          </select></td>
+        </tr>
+      </tbody>
+    </table>
+    <button type="button" class="add-row-btn" onclick="addStaffRow()">+ Add Another Role</button>
+
+    <hr class="field-divider">
+    <h4 style="margin-bottom:12px; color:var(--navy);">User Account Management</h4>
+
+    <div class="field-row">
+      <div class="field-group">
+        <label>Does each employee have a unique login?</label>
+        <select name="unique_logins">
+          <option value="">— Select —</option>
+          <option value="yes">Yes — every employee has their own account</option>
+          <option value="some_shared">Some accounts are shared</option>
+          <option value="mostly_shared">Most accounts are shared</option>
+          <option value="unsure">Unsure</option>
+        </select>
+      </div>
+      <div class="field-group">
+        <label>Do you have a password policy?</label>
+        <select name="password_policy">
+          <option value="">— Select —</option>
+          <option value="enforced">Yes — enforced by system</option>
+          <option value="written">Yes — written policy only</option>
+          <option value="informal">Informal / verbal</option>
+          <option value="no">No password policy</option>
+        </select>
+      </div>
+    </div>
+
+    <div class="field-row">
+      <div class="field-group">
+        <label>Do you use multi-factor authentication (MFA)?</label>
+        <select name="mfa">
+          <option value="">— Select —</option>
+          <option value="yes_all">Yes — for all systems</option>
+          <option value="yes_some">Yes — for some systems</option>
+          <option value="no">No</option>
+          <option value="unsure">Unsure / What is MFA?</option>
+        </select>
+      </div>
+      <div class="field-group">
+        <label>Auto-lock screen timeout enabled?</label>
+        <select name="screen_lock">
+          <option value="">— Select —</option>
+          <option value="yes">Yes</option>
+          <option value="no">No</option>
+          <option value="some">On some devices</option>
+          <option value="unsure">Unsure</option>
+        </select>
+      </div>
+    </div>
+
+    <div class="field-row full">
+      <div class="field-group">
+        <label>What is your process when an employee leaves or is terminated?</label>
+        <textarea name="termination_process" placeholder="Describe how you disable accounts, collect keys/badges, revoke access to systems, etc. Write 'None' if no formal process exists."></textarea>
+      </div>
+    </div>
+
+    <div class="field-row">
+      <div class="field-group">
+        <label>Do volunteers, interns, or contractors access PHI?</label>
+        <select name="volunteers_phi">
+          <option value="">— Select —</option>
+          <option value="yes">Yes</option>
+          <option value="no">No</option>
+          <option value="sometimes">Occasionally</option>
+        </select>
+      </div>
+      <div class="field-group">
+        <label>If yes, how many?</label>
+        <input type="number" name="volunteer_count" min="0">
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ==================== SECTION 4: SECURITY & POLICIES ==================== -->
+<div class="form-section">
+  <div class="section-header">
+    <span class="section-num">4</span>
+    Current Security & Policies
+  </div>
+  <div class="section-body">
+    <div class="section-note">
+      Be honest about your current state — this isn't a test. The more accurate your answers, the better we can help you.
+    </div>
+
+    <h4 style="margin-bottom:12px; color:var(--navy);">Technical Safeguards</h4>
+
+    <div class="field-row">
+      <div class="field-group">
+        <label>Antivirus / Endpoint Protection</label>
+        <input type="text" name="antivirus" placeholder="e.g. Windows Defender, Sophos, Bitdefender, none">
+      </div>
+      <div class="field-group">
+        <label>Is it actively managed and updated?</label>
+        <select name="antivirus_managed">
+          <option value="">— Select —</option>
+          <option value="yes">Yes — centrally managed</option>
+          <option value="individual">Each user manages their own</option>
+          <option value="no">No / Not sure</option>
+        </select>
+      </div>
+    </div>
+
+    <div class="field-row">
+      <div class="field-group">
+        <label>Are hard drives encrypted?</label>
+        <select name="encryption_drives">
+          <option value="">— Select —</option>
+          <option value="all">Yes — all devices</option>
+          <option value="some">Some devices</option>
+          <option value="no">No</option>
+          <option value="unsure">Unsure</option>
+        </select>
+      </div>
+      <div class="field-group">
+        <label>Is email encrypted?</label>
+        <select name="encryption_email">
+          <option value="">— Select —</option>
+          <option value="yes">Yes — all email</option>
+          <option value="phi_only">Only when sending PHI</option>
+          <option value="no">No</option>
+          <option value="unsure">Unsure</option>
+        </select>
+      </div>
+    </div>
+
+    <hr class="field-divider">
+    <h4 style="margin-bottom:12px; color:var(--navy);">Backups</h4>
+
+    <div class="field-row">
+      <div class="field-group">
+        <label>Backup method</label>
+        <select name="backup_method">
+          <option value="">— Select —</option>
+          <option value="cloud_auto">Cloud — automatic</option>
+          <option value="cloud_manual">Cloud — manual</option>
+          <option value="local_auto">Local / external drive — automatic</option>
+          <option value="local_manual">Local / external drive — manual</option>
+          <option value="both">Both cloud and local</option>
+          <option value="none">No backups</option>
+          <option value="unsure">Unsure</option>
+        </select>
+      </div>
+      <div class="field-group">
+        <label>Backup frequency</label>
+        <select name="backup_frequency">
+          <option value="">— Select —</option>
+          <option value="realtime">Real-time / continuous</option>
+          <option value="daily">Daily</option>
+          <option value="weekly">Weekly</option>
+          <option value="monthly">Monthly</option>
+          <option value="irregular">Irregular / when remembered</option>
+          <option value="unsure">Unsure</option>
+        </select>
+      </div>
+    </div>
+
+    <div class="field-row">
+      <div class="field-group">
+        <label>Backup provider / software</label>
+        <input type="text" name="backup_provider" placeholder="e.g. Datto, Veeam, Carbonite, Time Machine">
+      </div>
+      <div class="field-group">
+        <label>Have you ever tested restoring from backup?</label>
+        <select name="backup_tested">
+          <option value="">— Select —</option>
+          <option value="yes_recent">Yes — within last 12 months</option>
+          <option value="yes_old">Yes — over 12 months ago</option>
+          <option value="no">Never</option>
+          <option value="unsure">Unsure</option>
+        </select>
+      </div>
+    </div>
+
+    <hr class="field-divider">
+    <h4 style="margin-bottom:12px; color:var(--navy);">Physical Security</h4>
+
+    <div class="check-group">
+      <span class="check-label">Which physical security measures are in place? (check all that apply)</span>
+      <div class="check-options">
+        <label><input type="checkbox" name="physical" value="locked_doors"> Locked entry doors</label>
+        <label><input type="checkbox" name="physical" value="keycard"> Keycard / badge access</label>
+        <label><input type="checkbox" name="physical" value="cameras"> Security cameras</label>
+        <label><input type="checkbox" name="physical" value="alarm"> Alarm system</label>
+        <label><input type="checkbox" name="physical" value="server_room_locked"> Server room locked</label>
+        <label><input type="checkbox" name="physical" value="locked_cabinets"> Locked file cabinets for records</label>
+        <label><input type="checkbox" name="physical" value="visitor_log"> Visitor sign-in log</label>
+        <label><input type="checkbox" name="physical" value="shredder"> Paper shredder on-site</label>
+      </div>
+    </div>
+
+    <div class="field-row full">
+      <div class="field-group">
+        <label>Where is paper PHI stored?</label>
+        <textarea name="paper_phi_storage" placeholder="Describe where physical patient records, charts, or printed PHI are stored (e.g., locked filing cabinet in front office, open shelves in back office)."></textarea>
+      </div>
+    </div>
+
+    <hr class="field-divider">
+    <h4 style="margin-bottom:12px; color:var(--navy);">HIPAA Policies & Compliance History</h4>
+
+    <div class="field-row">
+      <div class="field-group">
+        <label>Do you have written HIPAA policies?</label>
+        <select name="hipaa_policies">
+          <option value="">— Select —</option>
+          <option value="yes_current">Yes — current and up to date</option>
+          <option value="yes_outdated">Yes — but outdated</option>
+          <option value="partial">Partial / incomplete</option>
+          <option value="no">No</option>
+          <option value="unsure">Unsure</option>
+        </select>
+      </div>
+      <div class="field-group">
+        <label>When was your last HIPAA risk assessment?</label>
+        <select name="last_risk_assessment">
+          <option value="">— Select —</option>
+          <option value="within_year">Within the past year</option>
+          <option value="1_2_years">1–2 years ago</option>
+          <option value="over_2_years">Over 2 years ago</option>
+          <option value="never">Never</option>
+          <option value="unsure">Unsure</option>
+        </select>
+      </div>
+    </div>
+
+    <div class="field-row">
+      <div class="field-group">
+        <label>Is a Privacy Officer designated?</label>
+        <select name="privacy_officer">
+          <option value="">— Select —</option>
+          <option value="yes">Yes</option>
+          <option value="no">No</option>
+          <option value="unsure">Unsure</option>
+        </select>
+      </div>
+      <div class="field-group">
+        <label>Is a Security Officer designated?</label>
+        <select name="security_officer">
+          <option value="">— Select —</option>
+          <option value="yes">Yes</option>
+          <option value="no">No</option>
+          <option value="unsure">Unsure</option>
+        </select>
+      </div>
+    </div>
+
+    <div class="field-row">
+      <div class="field-group">
+        <label>When was your last staff HIPAA training?</label>
+        <select name="last_training">
+          <option value="">— Select —</option>
+          <option value="within_year">Within the past year</option>
+          <option value="1_2_years">1–2 years ago</option>
+          <option value="over_2_years">Over 2 years ago</option>
+          <option value="never">Never</option>
+          <option value="unsure">Unsure</option>
+        </select>
+      </div>
+      <div class="field-group">
+        <label>Has your organization experienced a data breach?</label>
+        <select name="breach_history">
+          <option value="">— Select —</option>
+          <option value="yes">Yes</option>
+          <option value="no">No</option>
+          <option value="suspected">Suspected but unconfirmed</option>
+          <option value="unsure">Unsure</option>
+        </select>
+      </div>
+    </div>
+
+    <div class="field-row full">
+      <div class="field-group">
+        <label>If a breach occurred, please briefly describe</label>
+        <textarea name="breach_details" placeholder="What happened, when, how many records were affected, and was it reported?"></textarea>
+      </div>
+    </div>
+
+    <hr class="field-divider">
+    <h4 style="margin-bottom:12px; color:var(--navy);">Business Associates</h4>
+    <div class="section-note">
+      Business Associates are any third-party vendors who create, receive, maintain, or transmit PHI on your behalf (e.g., billing companies, IT providers, cloud storage, shredding services).
+    </div>
+
+    <table class="dynamic-table" id="baTable">
+      <thead>
+        <tr>
+          <th style="width:30%">Vendor / Company Name</th>
+          <th style="width:30%">Service Provided</th>
+          <th style="width:20%">BAA Signed?</th>
+          <th style="width:20%">Date Signed</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td><input type="text" placeholder="e.g. Acme IT Services"></td>
+          <td><input type="text" placeholder="e.g. IT support"></td>
+          <td><select>
+            <option value="">—</option>
+            <option value="yes">Yes</option>
+            <option value="no">No</option>
+            <option value="unsure">Unsure</option>
+          </select></td>
+          <td><input type="text" placeholder="MM/YYYY"></td>
+        </tr>
+        <tr>
+          <td><input type="text" placeholder="e.g. SecureShred Co"></td>
+          <td><input type="text" placeholder="e.g. Document destruction"></td>
+          <td><select>
+            <option value="">—</option>
+            <option value="yes">Yes</option>
+            <option value="no">No</option>
+            <option value="unsure">Unsure</option>
+          </select></td>
+          <td><input type="text" placeholder="MM/YYYY"></td>
+        </tr>
+      </tbody>
+    </table>
+    <button type="button" class="add-row-btn" onclick="addBARow()">+ Add Another Vendor</button>
+
+    <hr class="field-divider">
+    <h4 style="margin-bottom:12px; color:var(--navy);">PHI Disposal</h4>
+
+    <div class="field-row">
+      <div class="field-group">
+        <label>How is paper PHI disposed of?</label>
+        <select name="paper_disposal">
+          <option value="">— Select —</option>
+          <option value="cross_shred">Cross-cut shredder</option>
+          <option value="strip_shred">Strip shredder</option>
+          <option value="shred_service">Professional shredding service</option>
+          <option value="regular_trash">Regular trash</option>
+          <option value="unsure">Unsure</option>
+        </select>
+      </div>
+      <div class="field-group">
+        <label>How are old computers / hard drives disposed of?</label>
+        <select name="device_disposal">
+          <option value="">— Select —</option>
+          <option value="wiped_certified">Wiped with certified software</option>
+          <option value="destroyed">Physically destroyed</option>
+          <option value="recycled">Recycled / donated (not wiped)</option>
+          <option value="stored">Stored in closet / unused</option>
+          <option value="no_process">No process</option>
+          <option value="unsure">Unsure</option>
+        </select>
+      </div>
+    </div>
+
+    <hr class="field-divider">
+    <h4 style="margin-bottom:12px; color:var(--navy);">Top Concerns & Goals</h4>
+
+    <div class="field-row full">
+      <div class="field-group">
+        <label>What are your biggest concerns about HIPAA compliance?</label>
+        <textarea name="concerns" placeholder="Tell us what keeps you up at night — data breaches, audits, staff training, not knowing where to start, etc."></textarea>
+      </div>
+    </div>
+
+    <div class="field-row full">
+      <div class="field-group">
+        <label>What prompted you to seek HIPAA compliance services now?</label>
+        <textarea name="trigger" placeholder="e.g. New regulation, audit notification, insurance requirement, expanding practice, incident, etc."></textarea>
+      </div>
+    </div>
+
+    <div class="field-row full">
+      <div class="field-group">
+        <label>Any additional information you'd like us to know?</label>
+        <textarea name="additional_info" placeholder="Anything else that would help us understand your organization and needs."></textarea>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ==================== SECTION 5: SERVICE SELECTION ==================== -->
+<div class="form-section">
+  <div class="section-header">
+    <span class="section-num">5</span>
+    Service Selection & Pricing
+  </div>
+  <div class="section-body">
+    <div class="section-note">
+      Select the package or services you're interested in. Pricing is subject to final assessment based on organization size and complexity. A detailed quote will be provided after intake review.
+    </div>
+
+    <h4 style="margin-bottom:12px; color:var(--navy);">Compliance Packages (One-Time Setup)</h4>
+    <div style="display:grid; grid-template-columns:repeat(3,1fr); gap:16px; margin-bottom:20px;">
+      <label style="display:flex; flex-direction:column; border:2px solid var(--gray-200); border-radius:8px; padding:16px; cursor:pointer; transition:border-color 0.2s;">
+        <div style="display:flex; align-items:center; gap:8px; margin-bottom:8px;">
+          <input type="radio" name="package" value="essentials" style="accent-color:var(--orange); width:18px; height:18px;">
+          <strong style="color:var(--navy);">Essentials</strong>
+        </div>
+        <div style="font-family:'Orbitron',sans-serif; font-size:1.5rem; color:var(--orange); font-weight:700; margin-bottom:4px;">$2,500</div>
+        <ul style="font-size:0.8rem; color:var(--gray-500); padding-left:16px; margin:0;">
+          <li>HIPAA Risk Assessment</li>
+          <li>Gap analysis & remediation plan</li>
+          <li>Core policies & procedures</li>
+          <li>Staff training (1 session)</li>
+          <li>BAA & breach notification templates</li>
+        </ul>
+      </label>
+      <label style="display:flex; flex-direction:column; border:2px solid var(--orange); border-radius:8px; padding:16px; cursor:pointer; position:relative;">
+        <span style="position:absolute; top:-10px; right:12px; background:var(--orange); color:white; font-size:0.65rem; font-weight:700; padding:2px 10px; border-radius:10px; letter-spacing:0.5px;">MOST POPULAR</span>
+        <div style="display:flex; align-items:center; gap:8px; margin-bottom:8px;">
+          <input type="radio" name="package" value="professional" style="accent-color:var(--orange); width:18px; height:18px;">
+          <strong style="color:var(--navy);">Professional</strong>
+        </div>
+        <div style="font-family:'Orbitron',sans-serif; font-size:1.5rem; color:var(--orange); font-weight:700; margin-bottom:4px;">$5,500</div>
+        <ul style="font-size:0.8rem; color:var(--gray-500); padding-left:16px; margin:0;">
+          <li>Everything in Essentials, plus:</li>
+          <li>IT security assessment & vuln scan</li>
+          <li>Full policy manual</li>
+          <li>Training (up to 3 sessions)</li>
+          <li>BAA audit & physical review</li>
+          <li>90-day follow-up review</li>
+        </ul>
+      </label>
+      <label style="display:flex; flex-direction:column; border:2px solid var(--gray-200); border-radius:8px; padding:16px; cursor:pointer; transition:border-color 0.2s;">
+        <div style="display:flex; align-items:center; gap:8px; margin-bottom:8px;">
+          <input type="radio" name="package" value="enterprise" style="accent-color:var(--orange); width:18px; height:18px;">
+          <strong style="color:var(--navy);">Enterprise</strong>
+        </div>
+        <div style="font-family:'Orbitron',sans-serif; font-size:1.5rem; color:var(--orange); font-weight:700; margin-bottom:4px;">$9,500</div>
+        <ul style="font-size:0.8rem; color:var(--gray-500); padding-left:16px; margin:0;">
+          <li>Everything in Professional, plus:</li>
+          <li>Multi-location audit</li>
+          <li>Penetration testing</li>
+          <li>Custom training program</li>
+          <li>EHR security review</li>
+          <li>12-month support & annual review</li>
+        </ul>
+      </label>
+    </div>
+
+    <hr class="field-divider">
+    <h4 style="margin-bottom:12px; color:var(--navy);">Ongoing Managed Compliance (Monthly)</h4>
+    <div style="display:grid; grid-template-columns:repeat(3,1fr); gap:16px; margin-bottom:20px;">
+      <label style="display:flex; align-items:center; gap:8px; border:1px solid var(--gray-200); border-radius:8px; padding:12px; cursor:pointer;">
+        <input type="radio" name="monthly" value="basic" style="accent-color:var(--orange); width:16px; height:16px;">
+        <div>
+          <strong style="color:var(--navy); font-size:0.9rem;">Basic Monitoring</strong>
+          <div style="font-family:'Orbitron',sans-serif; color:var(--orange); font-weight:700;">$299<span style="font-family:'Exo 2',sans-serif; font-size:0.75rem; color:var(--gray-500); font-weight:400;">/mo</span></div>
+        </div>
+      </label>
+      <label style="display:flex; align-items:center; gap:8px; border:1px solid var(--orange); border-radius:8px; padding:12px; cursor:pointer;">
+        <input type="radio" name="monthly" value="active" style="accent-color:var(--orange); width:16px; height:16px;">
+        <div>
+          <strong style="color:var(--navy); font-size:0.9rem;">Active Compliance</strong>
+          <div style="font-family:'Orbitron',sans-serif; color:var(--orange); font-weight:700;">$599<span style="font-family:'Exo 2',sans-serif; font-size:0.75rem; color:var(--gray-500); font-weight:400;">/mo</span></div>
+        </div>
+      </label>
+      <label style="display:flex; align-items:center; gap:8px; border:1px solid var(--gray-200); border-radius:8px; padding:12px; cursor:pointer;">
+        <input type="radio" name="monthly" value="full" style="accent-color:var(--orange); width:16px; height:16px;">
+        <div>
+          <strong style="color:var(--navy); font-size:0.9rem;">Full Managed</strong>
+          <div style="font-family:'Orbitron',sans-serif; color:var(--orange); font-weight:700;">$999<span style="font-family:'Exo 2',sans-serif; font-size:0.75rem; color:var(--gray-500); font-weight:400;">/mo</span></div>
+        </div>
+      </label>
+    </div>
+
+    <hr class="field-divider">
+    <h4 style="margin-bottom:12px; color:var(--navy);">A La Carte Add-Ons (check all that interest you)</h4>
+    <div style="display:grid; grid-template-columns:1fr 1fr; gap:8px 24px;">
+      <label style="display:flex; align-items:center; gap:8px; font-size:0.9rem; cursor:pointer; padding:4px 0;">
+        <input type="checkbox" name="addon" value="risk_assessment" style="accent-color:var(--orange);"> HIPAA Risk Assessment — <strong style="color:var(--orange);">$1,500 - $3,500</strong>
+      </label>
+      <label style="display:flex; align-items:center; gap:8px; font-size:0.9rem; cursor:pointer; padding:4px 0;">
+        <input type="checkbox" name="addon" value="it_security" style="accent-color:var(--orange);"> IT Security Assessment — <strong style="color:var(--orange);">$1,200 - $2,500</strong>
+      </label>
+      <label style="display:flex; align-items:center; gap:8px; font-size:0.9rem; cursor:pointer; padding:4px 0;">
+        <input type="checkbox" name="addon" value="pentest" style="accent-color:var(--orange);"> Penetration Testing — <strong style="color:var(--orange);">$2,000 - $5,000</strong>
+      </label>
+      <label style="display:flex; align-items:center; gap:8px; font-size:0.9rem; cursor:pointer; padding:4px 0;">
+        <input type="checkbox" name="addon" value="policies" style="accent-color:var(--orange);"> Policy & Procedure Dev — <strong style="color:var(--orange);">$1,500 - $3,000</strong>
+      </label>
+      <label style="display:flex; align-items:center; gap:8px; font-size:0.9rem; cursor:pointer; padding:4px 0;">
+        <input type="checkbox" name="addon" value="training" style="accent-color:var(--orange);"> Staff HIPAA Training — <strong style="color:var(--orange);">$500 / session</strong>
+      </label>
+      <label style="display:flex; align-items:center; gap:8px; font-size:0.9rem; cursor:pointer; padding:4px 0;">
+        <input type="checkbox" name="addon" value="breach" style="accent-color:var(--orange);"> Breach Response Planning — <strong style="color:var(--orange);">$1,000 - $2,000</strong>
+      </label>
+      <label style="display:flex; align-items:center; gap:8px; font-size:0.9rem; cursor:pointer; padding:4px 0;">
+        <input type="checkbox" name="addon" value="baa_audit" style="accent-color:var(--orange);"> Business Associate Audit — <strong style="color:var(--orange);">$800 - $1,500</strong>
+      </label>
+      <label style="display:flex; align-items:center; gap:8px; font-size:0.9rem; cursor:pointer; padding:4px 0;">
+        <input type="checkbox" name="addon" value="physical" style="accent-color:var(--orange);"> Physical Security Audit — <strong style="color:var(--orange);">$750 - $1,500</strong>
+      </label>
+      <label style="display:flex; align-items:center; gap:8px; font-size:0.9rem; cursor:pointer; padding:4px 0;">
+        <input type="checkbox" name="addon" value="ehr_review" style="accent-color:var(--orange);"> EHR Security Review — <strong style="color:var(--orange);">$800 - $1,800</strong>
+      </label>
+      <label style="display:flex; align-items:center; gap:8px; font-size:0.9rem; cursor:pointer; padding:4px 0;">
+        <input type="checkbox" name="addon" value="annual_review" style="accent-color:var(--orange);"> Annual Compliance Review — <strong style="color:var(--orange);">$1,200 - $2,500</strong>
+      </label>
+      <label style="display:flex; align-items:center; gap:8px; font-size:0.9rem; cursor:pointer; padding:4px 0;">
+        <input type="checkbox" name="addon" value="audit_prep" style="accent-color:var(--orange);"> HIPAA Audit Preparation — <strong style="color:var(--orange);">$1,500 - $3,000</strong>
+      </label>
+      <label style="display:flex; align-items:center; gap:8px; font-size:0.9rem; cursor:pointer; padding:4px 0;">
+        <input type="checkbox" name="addon" value="consulting" style="accent-color:var(--orange);"> Custom Consulting — <strong style="color:var(--orange);">$175 / hour</strong>
+      </label>
+    </div>
+
+    <div style="background:var(--orange-light); border-left:4px solid var(--orange); padding:12px 16px; margin-top:20px; border-radius:0 8px 8px 0; font-size:0.85rem; color:var(--gray-700);">
+      <strong>Note:</strong> All prices are estimates and may vary based on organization size, number of locations, and complexity. A complimentary 30-minute consultation is included. Payment plans available for packages over $3,000.
+    </div>
+  </div>
+</div>
+
+<!-- ==================== AUTHORIZATION ==================== -->
+<div class="form-section">
+  <div class="section-header">
+    <span class="section-num">6</span>
+    Authorization & Signature
+  </div>
+  <div class="section-body">
+    <p style="margin-bottom:16px; color:var(--gray-700); font-size:0.9rem;">
+      By signing below, I confirm that the information provided in this form is accurate to the best of my knowledge.
+      I authorize Odyssey Solutions to use this information to assess our organization's HIPAA compliance posture
+      and develop a customized compliance plan. I understand that this information will be kept confidential
+      and handled in accordance with applicable privacy regulations.
+    </p>
+
+    <div class="field-row">
+      <div class="field-group">
+        <label>Printed Name <span class="required">*</span></label>
+        <input type="text" name="sig_name" required>
+      </div>
+      <div class="field-group">
+        <label>Title <span class="required">*</span></label>
+        <input type="text" name="sig_title" required>
+      </div>
+    </div>
+    <div class="field-row">
+      <div class="field-group">
+        <label>Signature</label>
+        <div style="border:1px solid var(--gray-300); border-radius:var(--radius); height:60px; background:var(--gray-100);"></div>
+      </div>
+      <div class="field-group">
+        <label>Date <span class="required">*</span></label>
+        <input type="date" name="sig_date" required>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ==================== SUBMIT ==================== -->
+<div class="submit-section">
+  <button type="button" class="print-btn" onclick="window.print()">Print / Save as PDF</button>
+</div>
+
+</form>
+</div>
+
+<div class="form-footer">
+  &copy; 2026 Odyssey Solutions. All information collected is confidential and protected.<br>
+  This form is for internal use in HIPAA compliance assessment only.
+</div>
+
+<script>
+function addStaffRow() {
+  const tbody = document.querySelector('#staffTable tbody');
+  const tr = document.createElement('tr');
+  tr.innerHTML = `
+    <td><input type="text" placeholder="e.g. Office Manager"></td>
+    <td><input type="number" min="0" placeholder="0"></td>
+    <td><input type="text" placeholder="e.g. EHR, billing"></td>
+    <td><select>
+      <option value="read">Read Only</option>
+      <option value="read_write">Read & Write</option>
+      <option value="full">Full Access / Admin</option>
+    </select></td>
+  `;
+  tbody.appendChild(tr);
+}
+
+function addBARow() {
+  const tbody = document.querySelector('#baTable tbody');
+  const tr = document.createElement('tr');
+  tr.innerHTML = `
+    <td><input type="text" placeholder="Vendor name"></td>
+    <td><input type="text" placeholder="Service provided"></td>
+    <td><select>
+      <option value="">—</option>
+      <option value="yes">Yes</option>
+      <option value="no">No</option>
+      <option value="unsure">Unsure</option>
+    </select></td>
+    <td><input type="text" placeholder="MM/YYYY"></td>
+  `;
+  tbody.appendChild(tr);
+}
+</script>
+</body>
+</html>

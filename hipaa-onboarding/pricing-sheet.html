@@ -1,0 +1,498 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>HIPAA Compliance Services Pricing — Odyssey Solutions</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;600;700&family=Exo+2:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<style>
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+html { font-size: 16px; }
+body {
+  font-family: 'Exo 2', sans-serif;
+  color: #1a1a2e;
+  background: #f8f9fa;
+  line-height: 1.6;
+}
+
+:root {
+  --dark: #0d0d1a;
+  --navy: #1a1a2e;
+  --orange: #F97316;
+  --orange-dark: #ea6a0a;
+  --orange-light: #fff7ed;
+  --gray-100: #f3f4f6;
+  --gray-200: #e5e7eb;
+  --gray-300: #d1d5db;
+  --gray-500: #6b7280;
+  --gray-700: #374151;
+  --white: #ffffff;
+  --green: #059669;
+  --green-light: #ecfdf5;
+  --radius: 10px;
+}
+
+/* Header */
+.header {
+  background: linear-gradient(135deg, var(--dark) 0%, var(--navy) 100%);
+  color: var(--white);
+  padding: 48px 20px;
+  text-align: center;
+}
+.header .logo { font-family: 'Orbitron', sans-serif; font-size: 0.85rem; letter-spacing: 3px; text-transform: uppercase; opacity: 0.6; margin-bottom: 16px; }
+.header h1 { font-family: 'Orbitron', sans-serif; font-size: 2rem; font-weight: 700; color: var(--orange); margin-bottom: 8px; }
+.header p { font-size: 1rem; opacity: 0.8; max-width: 600px; margin: 0 auto; }
+
+/* Container */
+.container { max-width: 1100px; margin: 0 auto; padding: 32px 20px; }
+
+/* Packages grid */
+.packages { display: grid; grid-template-columns: repeat(3, 1fr); gap: 24px; margin-bottom: 48px; }
+@media (max-width: 900px) { .packages { grid-template-columns: 1fr; max-width: 500px; margin-left: auto; margin-right: auto; } }
+
+.package {
+  background: var(--white);
+  border-radius: var(--radius);
+  box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  transition: transform 0.2s, box-shadow 0.2s;
+}
+.package:hover { transform: translateY(-4px); box-shadow: 0 8px 24px rgba(0,0,0,0.12); }
+.package.featured { border: 2px solid var(--orange); position: relative; }
+.package.featured::before {
+  content: "MOST POPULAR";
+  position: absolute;
+  top: 12px;
+  right: -30px;
+  background: var(--orange);
+  color: var(--white);
+  font-size: 0.65rem;
+  font-weight: 700;
+  letter-spacing: 1px;
+  padding: 4px 40px;
+  transform: rotate(45deg);
+}
+
+.pkg-header {
+  padding: 28px 24px 20px;
+  text-align: center;
+}
+.pkg-header h3 {
+  font-family: 'Orbitron', sans-serif;
+  font-size: 1.1rem;
+  font-weight: 700;
+  color: var(--navy);
+  margin-bottom: 4px;
+}
+.pkg-header .subtitle {
+  font-size: 0.85rem;
+  color: var(--gray-500);
+  margin-bottom: 16px;
+}
+.pkg-header .price {
+  font-family: 'Orbitron', sans-serif;
+  font-size: 2rem;
+  font-weight: 700;
+  color: var(--orange);
+}
+.pkg-header .price-note {
+  font-size: 0.8rem;
+  color: var(--gray-500);
+  margin-top: 2px;
+}
+
+.pkg-body {
+  padding: 0 24px 24px;
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+}
+.pkg-body ul {
+  list-style: none;
+  flex: 1;
+}
+.pkg-body li {
+  padding: 8px 0;
+  border-bottom: 1px solid var(--gray-100);
+  font-size: 0.9rem;
+  color: var(--gray-700);
+  display: flex;
+  align-items: flex-start;
+  gap: 8px;
+}
+.pkg-body li::before {
+  content: "\2713";
+  color: var(--green);
+  font-weight: 700;
+  flex-shrink: 0;
+  margin-top: 1px;
+}
+.pkg-body li:last-child { border-bottom: none; }
+
+.pkg-cta {
+  display: block;
+  text-align: center;
+  padding: 12px;
+  margin-top: 16px;
+  border-radius: var(--radius);
+  font-weight: 600;
+  font-size: 0.95rem;
+  text-decoration: none;
+  transition: background 0.2s;
+}
+.pkg-cta.primary { background: var(--orange); color: var(--white); }
+.pkg-cta.primary:hover { background: var(--orange-dark); }
+.pkg-cta.secondary { background: var(--gray-100); color: var(--navy); }
+.pkg-cta.secondary:hover { background: var(--gray-200); }
+
+/* A La Carte section */
+.alacarte {
+  background: var(--white);
+  border-radius: var(--radius);
+  box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+  overflow: hidden;
+  margin-bottom: 48px;
+}
+.alacarte-header {
+  background: var(--navy);
+  color: var(--white);
+  padding: 18px 28px;
+  font-family: 'Orbitron', sans-serif;
+  font-size: 1.1rem;
+  font-weight: 600;
+}
+.alacarte-body { padding: 0; }
+.alacarte table {
+  width: 100%;
+  border-collapse: collapse;
+}
+.alacarte th {
+  text-align: left;
+  padding: 12px 28px;
+  font-size: 0.8rem;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  color: var(--gray-500);
+  font-weight: 600;
+  background: var(--gray-100);
+  border-bottom: 2px solid var(--gray-200);
+}
+.alacarte td {
+  padding: 14px 28px;
+  border-bottom: 1px solid var(--gray-100);
+  font-size: 0.9rem;
+}
+.alacarte tr:last-child td { border-bottom: none; }
+.alacarte .svc-name { color: var(--navy); font-weight: 600; }
+.alacarte .svc-desc { color: var(--gray-500); font-size: 0.85rem; }
+.alacarte .svc-price { font-family: 'Orbitron', sans-serif; font-weight: 600; color: var(--orange); white-space: nowrap; }
+
+/* Monthly plans section */
+.monthly {
+  background: var(--white);
+  border-radius: var(--radius);
+  box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+  overflow: hidden;
+  margin-bottom: 48px;
+}
+.monthly-header {
+  background: var(--navy);
+  color: var(--white);
+  padding: 18px 28px;
+  font-family: 'Orbitron', sans-serif;
+  font-size: 1.1rem;
+  font-weight: 600;
+}
+.monthly-body { padding: 24px 28px; }
+.monthly-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; }
+@media (max-width: 700px) { .monthly-grid { grid-template-columns: 1fr; } }
+.monthly-plan {
+  border: 1px solid var(--gray-200);
+  border-radius: var(--radius);
+  padding: 20px;
+  text-align: center;
+}
+.monthly-plan h4 { font-size: 1rem; color: var(--navy); margin-bottom: 4px; }
+.monthly-plan .mo-price { font-family: 'Orbitron', sans-serif; font-size: 1.5rem; font-weight: 700; color: var(--orange); }
+.monthly-plan .mo-note { font-size: 0.8rem; color: var(--gray-500); margin-bottom: 12px; }
+.monthly-plan ul { list-style: none; text-align: left; }
+.monthly-plan li { font-size: 0.85rem; color: var(--gray-700); padding: 4px 0; }
+.monthly-plan li::before { content: "\2713"; color: var(--green); margin-right: 6px; font-weight: 700; }
+
+/* Notes */
+.notes {
+  background: var(--orange-light);
+  border-left: 4px solid var(--orange);
+  border-radius: 0 var(--radius) var(--radius) 0;
+  padding: 20px 24px;
+  margin-bottom: 32px;
+}
+.notes h4 { font-size: 0.95rem; color: var(--navy); margin-bottom: 8px; }
+.notes ul { list-style: disc; padding-left: 20px; }
+.notes li { font-size: 0.85rem; color: var(--gray-700); margin-bottom: 4px; }
+
+/* Footer */
+.footer {
+  text-align: center;
+  padding: 24px 20px;
+  color: var(--gray-500);
+  font-size: 0.8rem;
+}
+
+/* Print */
+@media print {
+  body { background: #fff; font-size: 11px; }
+  .header { padding: 24px; }
+  .package:hover { transform: none; box-shadow: none; }
+  .package, .alacarte, .monthly { box-shadow: none; border: 1px solid #ddd; }
+  .packages { grid-template-columns: repeat(3, 1fr); }
+  .monthly-grid { grid-template-columns: repeat(3, 1fr); }
+}
+</style>
+</head>
+<body>
+
+<div class="header">
+  <div class="logo">Odyssey Solutions</div>
+  <h1>HIPAA Compliance Services</h1>
+  <p>Customized compliance solutions for healthcare organizations of all sizes. Protect your patients, your practice, and your reputation.</p>
+</div>
+
+<div class="container">
+
+<!-- ===== PACKAGES ===== -->
+<h2 style="font-family:'Orbitron',sans-serif; text-align:center; margin-bottom:8px; color:var(--navy); font-size:1.3rem;">Compliance Packages</h2>
+<p style="text-align:center; color:var(--gray-500); margin-bottom:24px; font-size:0.9rem;">One-time setup packages to get your organization compliant</p>
+
+<div class="packages">
+
+  <!-- ESSENTIALS -->
+  <div class="package">
+    <div class="pkg-header">
+      <h3>Essentials</h3>
+      <div class="subtitle">For small practices getting started</div>
+      <div class="price">$2,500</div>
+      <div class="price-note">one-time setup</div>
+    </div>
+    <div class="pkg-body">
+      <ul>
+        <li>HIPAA Risk Assessment</li>
+        <li>Gap analysis report with remediation plan</li>
+        <li>Written policies & procedures (core set)</li>
+        <li>Staff HIPAA awareness training (1 session)</li>
+        <li>Notice of Privacy Practices template</li>
+        <li>Business Associate Agreement templates</li>
+        <li>Breach notification plan</li>
+      </ul>
+      <a class="pkg-cta secondary">Get Started</a>
+    </div>
+  </div>
+
+  <!-- PROFESSIONAL -->
+  <div class="package featured">
+    <div class="pkg-header">
+      <h3>Professional</h3>
+      <div class="subtitle">For growing practices & clinics</div>
+      <div class="price">$5,500</div>
+      <div class="price-note">one-time setup</div>
+    </div>
+    <div class="pkg-body">
+      <ul>
+        <li>Everything in Essentials, plus:</li>
+        <li>Comprehensive IT security assessment</li>
+        <li>Network vulnerability scan</li>
+        <li>Full policy & procedure manual</li>
+        <li>Staff training (up to 3 sessions)</li>
+        <li>Business Associate inventory & BAA audit</li>
+        <li>Physical safeguards review</li>
+        <li>Incident response plan</li>
+        <li>90-day follow-up review</li>
+      </ul>
+      <a class="pkg-cta primary">Get Started</a>
+    </div>
+  </div>
+
+  <!-- ENTERPRISE -->
+  <div class="package">
+    <div class="pkg-header">
+      <h3>Enterprise</h3>
+      <div class="subtitle">For multi-location organizations</div>
+      <div class="price">$9,500</div>
+      <div class="price-note">one-time setup</div>
+    </div>
+    <div class="pkg-body">
+      <ul>
+        <li>Everything in Professional, plus:</li>
+        <li>Multi-location compliance assessment</li>
+        <li>On-site security audit (each location)</li>
+        <li>Penetration testing</li>
+        <li>Custom employee training program</li>
+        <li>EHR security configuration review</li>
+        <li>Vendor risk management program</li>
+        <li>Dedicated compliance officer support</li>
+        <li>12-month follow-up & annual review</li>
+      </ul>
+      <a class="pkg-cta secondary">Get Started</a>
+    </div>
+  </div>
+
+</div>
+
+<!-- ===== MONTHLY MANAGED COMPLIANCE ===== -->
+<div class="monthly">
+  <div class="monthly-header">Ongoing Managed Compliance</div>
+  <div class="monthly-body">
+    <p style="color:var(--gray-500); margin-bottom:20px; font-size:0.9rem;">Stay continuously compliant with monthly managed services. Recommended after initial setup.</p>
+    <div class="monthly-grid">
+      <div class="monthly-plan">
+        <h4>Basic Monitoring</h4>
+        <div class="mo-price">$299</div>
+        <div class="mo-note">per month</div>
+        <ul>
+          <li>Annual risk assessment update</li>
+          <li>Policy review & updates</li>
+          <li>Quarterly compliance check-in</li>
+          <li>Email & phone support</li>
+          <li>Regulatory update alerts</li>
+        </ul>
+      </div>
+      <div class="monthly-plan" style="border-color:var(--orange);">
+        <h4>Active Compliance</h4>
+        <div class="mo-price">$599</div>
+        <div class="mo-note">per month</div>
+        <ul>
+          <li>Everything in Basic, plus:</li>
+          <li>Monthly security monitoring</li>
+          <li>Annual staff retraining</li>
+          <li>Incident response support</li>
+          <li>BAA management & tracking</li>
+          <li>Audit preparation assistance</li>
+        </ul>
+      </div>
+      <div class="monthly-plan">
+        <h4>Full Managed</h4>
+        <div class="mo-price">$999</div>
+        <div class="mo-note">per month</div>
+        <ul>
+          <li>Everything in Active, plus:</li>
+          <li>Dedicated compliance advisor</li>
+          <li>Continuous network monitoring</li>
+          <li>Ongoing staff training program</li>
+          <li>Vendor compliance management</li>
+          <li>Priority breach response (24hr)</li>
+          <li>Annual penetration testing</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ===== A LA CARTE ===== -->
+<div class="alacarte">
+  <div class="alacarte-header">A La Carte Services</div>
+  <div class="alacarte-body">
+    <table>
+      <thead>
+        <tr>
+          <th>Service</th>
+          <th>Description</th>
+          <th>Price</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td class="svc-name">HIPAA Risk Assessment</td>
+          <td class="svc-desc">Comprehensive evaluation of administrative, physical, and technical safeguards</td>
+          <td class="svc-price">$1,500 - $3,500</td>
+        </tr>
+        <tr>
+          <td class="svc-name">IT Security Assessment</td>
+          <td class="svc-desc">Network vulnerability scan, firewall review, endpoint security evaluation</td>
+          <td class="svc-price">$1,200 - $2,500</td>
+        </tr>
+        <tr>
+          <td class="svc-name">Penetration Testing</td>
+          <td class="svc-desc">Simulated attack to identify exploitable vulnerabilities</td>
+          <td class="svc-price">$2,000 - $5,000</td>
+        </tr>
+        <tr>
+          <td class="svc-name">Policy & Procedure Development</td>
+          <td class="svc-desc">Custom HIPAA policies tailored to your practice</td>
+          <td class="svc-price">$1,500 - $3,000</td>
+        </tr>
+        <tr>
+          <td class="svc-name">Staff HIPAA Training</td>
+          <td class="svc-desc">On-site or virtual training session (up to 25 employees)</td>
+          <td class="svc-price">$500 / session</td>
+        </tr>
+        <tr>
+          <td class="svc-name">Breach Response Planning</td>
+          <td class="svc-desc">Incident response plan, notification procedures, reporting templates</td>
+          <td class="svc-price">$1,000 - $2,000</td>
+        </tr>
+        <tr>
+          <td class="svc-name">Business Associate Audit</td>
+          <td class="svc-desc">Review all vendor relationships, BAA status, and compliance gaps</td>
+          <td class="svc-price">$800 - $1,500</td>
+        </tr>
+        <tr>
+          <td class="svc-name">Physical Security Audit</td>
+          <td class="svc-desc">On-site evaluation of physical safeguards, access controls, and facility security</td>
+          <td class="svc-price">$750 - $1,500</td>
+        </tr>
+        <tr>
+          <td class="svc-name">EHR Security Review</td>
+          <td class="svc-desc">Audit user access, permissions, audit logs, and configuration of your EHR system</td>
+          <td class="svc-price">$800 - $1,800</td>
+        </tr>
+        <tr>
+          <td class="svc-name">Annual Compliance Review</td>
+          <td class="svc-desc">Yearly re-assessment to maintain compliance and address changes</td>
+          <td class="svc-price">$1,200 - $2,500</td>
+        </tr>
+        <tr>
+          <td class="svc-name">HIPAA Audit Preparation</td>
+          <td class="svc-desc">Mock audit, documentation review, and readiness coaching</td>
+          <td class="svc-price">$1,500 - $3,000</td>
+        </tr>
+        <tr>
+          <td class="svc-name">Custom Consulting</td>
+          <td class="svc-desc">Hourly consulting for specific compliance questions or projects</td>
+          <td class="svc-price">$175 / hour</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>
+
+<!-- ===== NOTES ===== -->
+<div class="notes">
+  <h4>Important Notes</h4>
+  <ul>
+    <li>All prices are estimates and may vary based on organization size, number of locations, and complexity.</li>
+    <li>A complimentary 30-minute consultation is included to determine the best package for your needs.</li>
+    <li>Package pricing includes the initial intake assessment. No hidden fees.</li>
+    <li>Multi-year and multi-location discounts available upon request.</li>
+    <li>Payment plans available for packages over $3,000.</li>
+    <li>All services include documentation delivered in print and digital formats.</li>
+    <li>Prices effective as of 2026. Subject to change.</li>
+  </ul>
+</div>
+
+<div style="text-align:center; margin-bottom:24px;">
+  <button onclick="window.print()" style="padding:12px 36px; background:var(--navy); color:var(--white); border:none; border-radius:var(--radius); font-family:'Exo 2',sans-serif; font-size:0.95rem; font-weight:500; cursor:pointer;">Print / Save as PDF</button>
+</div>
+
+</div>
+
+<div class="footer">
+  &copy; 2026 Odyssey Solutions. All prices are subject to change.<br>
+  Contact us for a free consultation and customized quote.
+</div>
+
+</body>
+</html>
