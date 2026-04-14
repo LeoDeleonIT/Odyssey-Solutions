@@ -1,0 +1,29 @@
+{
+  "version": "0.0.1",
+  "configurations": [
+    {
+      "name": "IT Asset Tracker (Python HTTP)",
+      "runtimeExecutable": "python",
+      "runtimeArgs": ["-m", "http.server", "8080", "--directory", "C:\\Users\\leode"],
+      "port": 8080
+    },
+    {
+      "name": "IT Asset Tracker (Node HTTP)",
+      "runtimeExecutable": "npx",
+      "runtimeArgs": ["serve", "-l", "8080", "C:\\Users\\leode"],
+      "port": 8080
+    },
+    {
+      "name": "Carnar Epoxy",
+      "runtimeExecutable": "python",
+      "runtimeArgs": ["-m", "http.server", "8081", "--directory", "D:\\epoxy\\carnar-epoxy"],
+      "port": 8081
+    },
+    {
+      "name": "boostsmall",
+      "runtimeExecutable": "npm",
+      "runtimeArgs": ["run", "dev", "--", "--host"],
+      "port": 5173
+    }
+  ]
+}
