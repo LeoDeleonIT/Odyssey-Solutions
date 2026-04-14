@@ -939,8 +939,13 @@ p { color: var(--gray-500); line-height: 1.75; }
 }
 .ptier { font-size: .74rem; font-weight: 700; text-transform: uppercase; letter-spacing: .1em; color: var(--orange); margin-bottom: 7px; }
 .pname { font-family: 'Orbitron', sans-serif; font-size: 1.5rem; font-weight: 700; color: var(--navy); margin-bottom: 5px; }
-.pfor { font-size: .84rem; color: var(--gray-500); margin-bottom: 28px; }
-.pdivider { height: 1px; background: var(--gray-100); margin-bottom: 28px; }
+.pfor { font-size: .84rem; color: var(--gray-500); margin-bottom: 16px; }
+.pprice { display: flex; align-items: baseline; gap: 4px; margin-bottom: 4px; }
+.pprice-amount { font-family: 'Orbitron', sans-serif; font-size: 2.2rem; font-weight: 700; color: var(--navy); }
+.pprice-period { font-size: .85rem; color: var(--gray-500); }
+.pprice-sub { font-size: .78rem; color: var(--gray-500); margin-bottom: 24px; }
+.pprice-sub strong { color: var(--orange); }
+.pdivider { height: 1px; background: var(--gray-100); margin-bottom: 24px; }
 .pfeats { list-style: none; display: flex; flex-direction: column; gap: 10px; margin-bottom: 32px; }
 .pfeats li { display: flex; align-items: center; gap: 10px; font-size: .875rem; color: var(--gray-700); }
 .pfeats li::before { content: '✓'; color: var(--orange); font-weight: 800; flex-shrink: 0; }
@@ -2323,6 +2328,11 @@ footer {
           <div class="ptier">Starter</div>
           <div class="pname">Small Practice</div>
           <div class="pfor">Up to 10 employees · Solo Practices &amp; Clinics</div>
+          <div class="pprice">
+            <span class="pprice-amount">$299</span>
+            <span class="pprice-period">/mo</span>
+          </div>
+          <div class="pprice-sub">Flat rate — up to 10 users included</div>
           <div class="pdivider"></div>
           <ul class="pfeats">
             <li>All 5 training modules</li>
@@ -2338,6 +2348,11 @@ footer {
           <div class="ptier">Professional</div>
           <div class="pname">Mid-Size Clinic</div>
           <div class="pfor">Up to 50 employees · Group Practices</div>
+          <div class="pprice">
+            <span class="pprice-amount">$599</span>
+            <span class="pprice-period">/mo</span>
+          </div>
+          <div class="pprice-sub">Base rate for up to 50 users &mdash; <strong>$12/user/mo</strong> after that</div>
           <div class="pdivider"></div>
           <ul class="pfeats">
             <li>All 5 training modules</li>
@@ -2353,18 +2368,23 @@ footer {
         <div class="pricing-card">
           <div class="ptier">Enterprise</div>
           <div class="pname">Large Organization</div>
-          <div class="pfor">Unlimited employees · Health Systems</div>
+          <div class="pfor">51+ employees · Health Systems</div>
+          <div class="pprice">
+            <span class="pprice-amount">$18</span>
+            <span class="pprice-period">/user/mo</span>
+          </div>
+          <div class="pprice-sub">Per-user pricing &mdash; volume discounts available</div>
           <div class="pdivider"></div>
           <ul class="pfeats">
             <li>All modules + custom content</li>
-            <li>Unlimited certifications</li>
+            <li>Per-seat certifications</li>
             <li>Enterprise compliance portal</li>
             <li>Full policy suite development</li>
             <li>Dedicated compliance manager</li>
             <li>On-site training available</li>
             <li>Annual renewal program</li>
           </ul>
-          <a class="btn btn-outline-dark" onclick="showPage('contact')" style="width:100%;justify-content:center;">Contact for Pricing</a>
+          <a class="btn btn-outline-dark" onclick="showPage('contact')" style="width:100%;justify-content:center;">Get a Custom Quote</a>
         </div>
       </div>
     </div>
