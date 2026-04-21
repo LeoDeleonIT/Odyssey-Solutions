@@ -1232,6 +1232,84 @@ p { color: var(--gray-500); line-height: 1.75; }
 .dark-card p { color: rgba(255,255,255,.5); font-size: .86rem; margin: 0; }
 .dark-card strong { color: var(--orange); }
 
+/* ===================== LEGAL PAGES (Privacy / Terms / HIPAA Notice) ===================== */
+.legal-hero {
+  background: linear-gradient(135deg, #0d0d1a 0%, #1a1a2e 60%, #16213e 100%);
+  padding: 140px 0 72px;
+  color: #fff;
+  position: relative;
+  overflow: hidden;
+}
+.legal-hero::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(circle at 85% 30%, rgba(249,115,22,.15), transparent 55%);
+  pointer-events: none;
+}
+.legal-hero h1 {
+  color: #fff;
+  font-size: clamp(1.8rem, 3.5vw, 2.6rem);
+  margin-bottom: 12px;
+  position: relative;
+}
+.legal-hero .eyebrow { color: var(--orange); }
+.legal-hero .legal-meta {
+  color: rgba(255,255,255,.65);
+  font-size: .9rem;
+  margin-top: 14px;
+  position: relative;
+}
+.legal-hero .legal-meta span { margin-right: 18px; }
+.legal-body {
+  padding: 72px 0 96px;
+  background: #fff;
+}
+.legal-body .container { max-width: 820px; }
+.legal-body h2 {
+  font-size: 1.35rem;
+  margin: 48px 0 14px;
+  color: var(--navy);
+  padding-bottom: 8px;
+  border-bottom: 1px solid var(--gray-100);
+}
+.legal-body h2:first-of-type { margin-top: 0; }
+.legal-body h3 {
+  font-size: 1.05rem;
+  margin: 28px 0 10px;
+  color: var(--navy);
+}
+.legal-body p, .legal-body li {
+  color: var(--gray-700);
+  font-size: .98rem;
+  line-height: 1.75;
+}
+.legal-body p { margin-bottom: 14px; }
+.legal-body ul, .legal-body ol {
+  margin: 0 0 18px 22px;
+  padding: 0;
+}
+.legal-body li { margin-bottom: 8px; }
+.legal-body strong { color: var(--navy); }
+.legal-body a { color: var(--orange); text-decoration: underline; }
+.legal-intro {
+  background: var(--gray-50);
+  border-left: 4px solid var(--orange);
+  padding: 18px 22px;
+  border-radius: 6px;
+  margin-bottom: 40px;
+  font-size: .95rem;
+}
+.legal-contact-card {
+  background: var(--gray-50);
+  border: 1px solid var(--gray-100);
+  border-radius: var(--radius-lg);
+  padding: 28px;
+  margin-top: 48px;
+}
+.legal-contact-card h3 { margin-top: 0; }
+.legal-contact-card p { margin-bottom: 6px; }
+
 /* ===================== FOOTER ===================== */
 footer {
   background: var(--dark);
@@ -2652,9 +2730,9 @@ footer {
         <div class="footer-col">
           <h5>Legal</h5>
           <ul>
-            <li><a href="#">Privacy Policy</a></li>
-            <li><a href="#">Terms of Service</a></li>
-            <li><a href="#">HIPAA Notice</a></li>
+            <li><a onclick="showPage('privacy')">Privacy Policy</a></li>
+            <li><a onclick="showPage('terms')">Terms of Service</a></li>
+            <li><a onclick="showPage('hipaa-notice')">HIPAA Notice</a></li>
           </ul>
         </div>
       </div>
@@ -2871,7 +2949,7 @@ footer {
         </div>
         <div class="footer-col"><h5>Services</h5><ul><li><a onclick="showPage('it')">IT Services</a></li><li><a onclick="showPage('webdev')">Web Development</a></li><li><a onclick="showPage('hipaa-training')">HIPAA Training</a></li></ul></div>
         <div class="footer-col"><h5>Company</h5><ul><li><a onclick="showPage('about')">About</a></li><li><a onclick="showPage('contact')">Contact</a></li></ul></div>
-        <div class="footer-col"><h5>Legal</h5><ul><li><a href="#">Privacy Policy</a></li><li><a href="#">HIPAA Notice</a></li></ul></div>
+        <div class="footer-col"><h5>Legal</h5><ul><li><a onclick="showPage('privacy')">Privacy Policy</a></li><li><a onclick="showPage('terms')">Terms of Service</a></li><li><a onclick="showPage('hipaa-notice')">HIPAA Notice</a></li></ul></div>
       </div>
       <div class="footer-bottom">
         <p>© 2026 Odyssey Solutions. All rights reserved. <span>Texas-Proud.</span></p>
@@ -3100,7 +3178,7 @@ footer {
         <div class="footer-brand"><span class="logo" onclick="showPage('home')">Odyss<span class="logo-e">e</span>y Solutions</span><p>Texas-based HIPAA compliance training and IT services for healthcare providers and SMBs.</p></div>
         <div class="footer-col"><h5>Services</h5><ul><li><a onclick="showPage('it')">IT Services</a></li><li><a onclick="showPage('webdev')">Web Development</a></li><li><a onclick="showPage('hipaa-training')">HIPAA Training</a></li></ul></div>
         <div class="footer-col"><h5>Company</h5><ul><li><a onclick="showPage('about')">About</a></li><li><a onclick="showPage('contact')">Contact</a></li></ul></div>
-        <div class="footer-col"><h5>Legal</h5><ul><li><a href="#">Privacy Policy</a></li><li><a href="#">HIPAA Notice</a></li></ul></div>
+        <div class="footer-col"><h5>Legal</h5><ul><li><a onclick="showPage('privacy')">Privacy Policy</a></li><li><a onclick="showPage('terms')">Terms of Service</a></li><li><a onclick="showPage('hipaa-notice')">HIPAA Notice</a></li></ul></div>
       </div>
       <div class="footer-bottom"><p>© 2026 Odyssey Solutions. All rights reserved. <span>Texas-Proud.</span></p></div>
     </div>
@@ -3317,7 +3395,7 @@ footer {
         </div>
         <div class="footer-col"><h5>Services</h5><ul><li><a onclick="showPage('it')">IT Services</a></li><li><a onclick="showPage('webdev')">Web Development</a></li><li><a onclick="showPage('hipaa-training')">HIPAA Training</a></li></ul></div>
         <div class="footer-col"><h5>Company</h5><ul><li><a onclick="showPage('about')">About</a></li><li><a onclick="showPage('contact')">Contact</a></li></ul></div>
-        <div class="footer-col"><h5>Legal</h5><ul><li><a href="#">Privacy Policy</a></li><li><a href="#">HIPAA Notice</a></li></ul></div>
+        <div class="footer-col"><h5>Legal</h5><ul><li><a onclick="showPage('privacy')">Privacy Policy</a></li><li><a onclick="showPage('terms')">Terms of Service</a></li><li><a onclick="showPage('hipaa-notice')">HIPAA Notice</a></li></ul></div>
       </div>
       <div class="footer-bottom">
         <p>© 2026 Odyssey Solutions. All rights reserved. <span>Texas-Proud.</span></p>
@@ -3391,7 +3469,7 @@ footer {
         </div>
         <div class="footer-col"><h5>Services</h5><ul><li><a onclick="showPage('it')">IT Services</a></li><li><a onclick="showPage('webdev')">Web Development</a></li><li><a onclick="showPage('hipaa-training')">HIPAA Training</a></li></ul></div>
         <div class="footer-col"><h5>Company</h5><ul><li><a onclick="showPage('about')">About</a></li><li><a onclick="showPage('contact')">Contact</a></li></ul></div>
-        <div class="footer-col"><h5>Legal</h5><ul><li><a href="#">Privacy Policy</a></li><li><a href="#">HIPAA Notice</a></li></ul></div>
+        <div class="footer-col"><h5>Legal</h5><ul><li><a onclick="showPage('privacy')">Privacy Policy</a></li><li><a onclick="showPage('terms')">Terms of Service</a></li><li><a onclick="showPage('hipaa-notice')">HIPAA Notice</a></li></ul></div>
       </div>
       <div class="footer-bottom">
         <p>© 2026 Odyssey Solutions. All rights reserved. <span>Texas-Proud.</span></p>
@@ -3510,7 +3588,7 @@ footer {
         <div class="footer-brand"><span class="logo" onclick="showPage('home')">Odyss<span class="logo-e">e</span>y Solutions</span><p>Texas-based IT, HIPAA compliance, and web development — built for growth.</p></div>
         <div class="footer-col"><h5>Services</h5><ul><li><a onclick="showPage('it')">IT Services</a></li><li><a onclick="showPage('webdev')">Web Development</a></li><li><a onclick="showPage('hipaa-training')">HIPAA Training</a></li></ul></div>
         <div class="footer-col"><h5>Company</h5><ul><li><a onclick="showPage('about')">About</a></li><li><a onclick="showPage('contact')">Contact</a></li></ul></div>
-        <div class="footer-col"><h5>Legal</h5><ul><li><a href="#">Privacy Policy</a></li><li><a href="#">HIPAA Notice</a></li></ul></div>
+        <div class="footer-col"><h5>Legal</h5><ul><li><a onclick="showPage('privacy')">Privacy Policy</a></li><li><a onclick="showPage('terms')">Terms of Service</a></li><li><a onclick="showPage('hipaa-notice')">HIPAA Notice</a></li></ul></div>
       </div>
       <div class="footer-bottom"><p>© 2026 Odyssey Solutions. All rights reserved. <span>Texas-Proud.</span></p></div>
     </div>
@@ -3639,12 +3717,325 @@ footer {
         <div class="footer-brand"><span class="logo" onclick="showPage('home')">Odyss<span class="logo-e">e</span>y Solutions</span><p>Texas-based IT, HIPAA compliance, and web development — built for growth.</p></div>
         <div class="footer-col"><h5>Services</h5><ul><li><a onclick="showPage('it')">IT Services</a></li><li><a onclick="showPage('webdev')">Web Development</a></li><li><a onclick="showPage('hipaa-training')">HIPAA Training</a></li></ul></div>
         <div class="footer-col"><h5>Company</h5><ul><li><a onclick="showPage('about')">About</a></li></ul></div>
-        <div class="footer-col"><h5>Legal</h5><ul><li><a href="#">Privacy Policy</a></li><li><a href="#">HIPAA Notice</a></li></ul></div>
+        <div class="footer-col"><h5>Legal</h5><ul><li><a onclick="showPage('privacy')">Privacy Policy</a></li><li><a onclick="showPage('terms')">Terms of Service</a></li><li><a onclick="showPage('hipaa-notice')">HIPAA Notice</a></li></ul></div>
       </div>
       <div class="footer-bottom">
         <p>© 2026 Odyssey Solutions. All rights reserved. <span>Texas-Proud.</span></p>
         <p>IT Services · HIPAA Compliance · Web Development</p>
       </div>
+    </div>
+  </footer>
+</div>
+
+<!-- ========================================== -->
+<!-- PRIVACY POLICY PAGE                        -->
+<!-- ========================================== -->
+<div id="page-privacy" class="page">
+  <section class="legal-hero">
+    <div class="container">
+      <span class="eyebrow">Legal</span>
+      <h1>Privacy Policy</h1>
+      <div class="legal-meta">
+        <span><strong>Effective Date:</strong> April 21, 2026</span>
+        <span><strong>Last Updated:</strong> April 21, 2026</span>
+      </div>
+    </div>
+  </section>
+
+  <section class="legal-body">
+    <div class="container">
+      <div class="legal-intro">
+        <p style="margin:0;"><strong>Odyssey Solutions</strong> ("we," "us," "our") provides managed IT services, HIPAA training and compliance services, and web development to Texas businesses. This Privacy Policy describes what information we collect through our website and in the course of delivering services, how we use and safeguard that information, and the rights you have regarding it.</p>
+      </div>
+
+      <h2>1. Information We Collect</h2>
+
+      <h3>Website Visitors</h3>
+      <p>When you visit <strong>odysseysolutions.co</strong>, we may automatically collect limited technical information through cookies and server log files, including your IP address, browser type, operating system, referring URL, pages viewed, and time of visit. Cookies are small text files stored on your device that help us understand how the site is used. We use this information internally to improve site performance and content — we do not sell it to third parties.</p>
+
+      <h3>Contact Form &amp; Consultation Requests</h3>
+      <p>When you request a free consultation or contact us through the website, we ask you to provide: your name, business or practice name, email address, phone number, and a description of your IT, compliance, or web-development needs. Providing this information is voluntary, but required to respond to your inquiry.</p>
+
+      <h3>Client Information</h3>
+      <p>When your business engages Odyssey Solutions for services, we collect additional information necessary to deliver those services, including business contact information, billing details, system and network information, and — where we act as a Business Associate under HIPAA — Protected Health Information (PHI) belonging to your patients. All PHI is handled strictly in accordance with our HIPAA Notice and the signed Business Associate Agreement with each covered-entity client.</p>
+
+      <h2>2. How We Use Your Information</h2>
+      <ul>
+        <li>Respond to consultation requests and communicate about our services</li>
+        <li>Deliver, configure, monitor, and support the services you engage us for</li>
+        <li>Process payments and issue invoices</li>
+        <li>Send service-related communications (scheduled maintenance, incident notices, compliance updates, renewals)</li>
+        <li>Improve our services, website, and internal operations</li>
+        <li>Detect and prevent fraud, unauthorized access, or security incidents</li>
+        <li>Comply with legal, regulatory, and contractual obligations</li>
+        <li>Enforce our Terms of Service and protect our legal rights</li>
+      </ul>
+      <p>We may use your information for more than one of these purposes at a time. We do not sell your personal information, and we do not share it for third-party marketing.</p>
+
+      <h2>3. How We Share Your Information</h2>
+      <p>We only share your information in the following limited circumstances:</p>
+      <ul>
+        <li><strong>Service providers and subcontractors</strong> that help us deliver our services (cloud infrastructure, email, backup, ticketing, payment processing). Each provider is bound by contract to protect your data; where PHI is involved, each is covered by a Business Associate Agreement.</li>
+        <li><strong>Your authorized representatives</strong> (staff, managed-service vendors, auditors) when you direct us to share information with them.</li>
+        <li><strong>Legal and regulatory authorities</strong> when required by law, subpoena, or court order, or to respond to a credible threat to health or safety.</li>
+        <li><strong>Successors</strong> in the event of a merger, acquisition, or sale of assets — subject to the same obligations described here.</li>
+      </ul>
+      <p><strong>We will never</strong> sell, rent, or trade your personal information; share website analytics data with unaffiliated third parties for marketing; or disclose client PHI outside the terms of your Business Associate Agreement.</p>
+
+      <h2>4. Text Message (SMS) Communication</h2>
+      <p>With your consent, we may send text messages for appointment reminders, scheduling confirmations, service-incident alerts, and compliance-program communications. You can opt out at any time by replying <strong>STOP</strong> to any message. Replying <strong>HELP</strong> will return contact information. Message and data rates may apply. To re-enroll, contact us at the Privacy Officer details below.</p>
+
+      <h2>5. Cookies &amp; Analytics</h2>
+      <p>Our website uses first-party cookies to remember preferences and may use privacy-respecting analytics to measure site performance. You can disable cookies in your browser settings; some site features may not work without them. We do not use third-party advertising cookies or cross-site tracking.</p>
+
+      <h2>6. Data Security</h2>
+      <p>We maintain administrative, physical, and technical safeguards aligned with the HIPAA Security Rule and industry best practices, including: encryption of data in transit and at rest, role-based access control, multi-factor authentication, continuous monitoring, regular backup and restore testing, documented risk assessments, and a written incident-response plan. No internet-connected system can guarantee absolute security, but we treat protecting your data as foundational to our business.</p>
+
+      <h2>7. Data Retention</h2>
+      <p>We retain personal information only as long as needed to deliver our services, satisfy legal and regulatory requirements, resolve disputes, and enforce our agreements. Client records covered by HIPAA are retained for at least six (6) years from creation or last effective date, consistent with HIPAA documentation-retention rules. Website log data is retained for a limited period and purged on a rolling basis.</p>
+
+      <h2>8. Your Rights</h2>
+      <ul>
+        <li><strong>Access</strong> the personal information we hold about you</li>
+        <li><strong>Correct</strong> information that is inaccurate or incomplete</li>
+        <li><strong>Request deletion</strong> of information we are not legally or contractually required to retain</li>
+        <li><strong>Restrict or object</strong> to certain uses of your information</li>
+        <li><strong>Withdraw consent</strong> for communications or processing where consent was the basis</li>
+        <li><strong>Opt out</strong> of SMS communications (reply STOP)</li>
+      </ul>
+      <p>To exercise any of these rights, contact our Privacy Officer using the details below. We will respond within a reasonable time frame and at no cost to you.</p>
+
+      <h2>9. Children's Privacy</h2>
+      <p>Our services are offered to businesses. Our website is not directed to children under 13, and we do not knowingly collect personal information from children. If you believe a child has submitted information through our site, contact us and we will delete it.</p>
+
+      <h2>10. Changes to This Policy</h2>
+      <p>We may update this Privacy Policy from time to time. The "Last Updated" date at the top of the page reflects the most recent revision. Material changes will be communicated through a notice on our website or directly to clients via email at the address on file. Continued use of our services after changes take effect constitutes acceptance of the revised policy.</p>
+
+      <div class="legal-contact-card">
+        <h3>Contact Our Privacy Officer</h3>
+        <p><strong>Odyssey Solutions</strong></p>
+        <p>Email: <a href="mailto:leo@odysseysolutions.co">leo@odysseysolutions.co</a></p>
+        <p>Phone: <a href="tel:+18328058467">(832) 805-8467</a></p>
+        <p style="margin-top:12px;">For complaints about how your information has been handled, you may also contact the U.S. Department of Health and Human Services, Office for Civil Rights, at 200 Independence Ave SW, Washington D.C. 20201 or 1-800-368-1019. We will not retaliate against anyone who files a complaint.</p>
+      </div>
+    </div>
+  </section>
+
+  <footer>
+    <div class="container">
+      <div class="footer-inner">
+        <div class="footer-brand"><span class="logo" onclick="showPage('home')">Odyss<span class="logo-e">e</span>y Solutions</span><p>Texas-based IT, HIPAA compliance, and web development — built for growth.</p></div>
+        <div class="footer-col"><h5>Services</h5><ul><li><a onclick="showPage('it')">IT Services</a></li><li><a onclick="showPage('webdev')">Web Development</a></li><li><a onclick="showPage('hipaa-training')">HIPAA Training</a></li></ul></div>
+        <div class="footer-col"><h5>Company</h5><ul><li><a onclick="showPage('about')">About</a></li><li><a onclick="showPage('contact')">Contact</a></li></ul></div>
+        <div class="footer-col"><h5>Legal</h5><ul><li><a onclick="showPage('privacy')">Privacy Policy</a></li><li><a onclick="showPage('terms')">Terms of Service</a></li><li><a onclick="showPage('hipaa-notice')">HIPAA Notice</a></li></ul></div>
+      </div>
+      <div class="footer-bottom"><p>© 2026 Odyssey Solutions. All rights reserved. <span>Texas-Proud.</span></p></div>
+    </div>
+  </footer>
+</div>
+
+<!-- ========================================== -->
+<!-- TERMS OF SERVICE PAGE                      -->
+<!-- ========================================== -->
+<div id="page-terms" class="page">
+  <section class="legal-hero">
+    <div class="container">
+      <span class="eyebrow">Legal</span>
+      <h1>Terms of Service</h1>
+      <div class="legal-meta">
+        <span><strong>Effective Date:</strong> April 21, 2026</span>
+        <span><strong>Last Updated:</strong> April 21, 2026</span>
+      </div>
+    </div>
+  </section>
+
+  <section class="legal-body">
+    <div class="container">
+      <div class="legal-intro">
+        <p style="margin:0;">These Terms of Service ("Terms") govern your use of the Odyssey Solutions website and any services we provide. By using our site or engaging our services, you agree to these Terms. Separate signed agreements (Master Services Agreements, Statements of Work, Business Associate Agreements) govern specific client engagements and take precedence where there is a conflict.</p>
+      </div>
+
+      <h2>1. Who We Are</h2>
+      <p><strong>Odyssey Solutions</strong> is a Texas-based provider of managed IT services, HIPAA compliance and training services, and web development. References to "we," "us," or "our" mean Odyssey Solutions. References to "you" or "Client" mean the individual or business accessing our website or engaging our services.</p>
+
+      <h2>2. Services</h2>
+      <p>We provide the services described on this website, including but not limited to: managed IT services, cybersecurity, HIPAA program design and staff training, risk assessments, policy development, Business Associate Agreement management, web design and development, and ongoing support. The specific scope, deliverables, fees, and timelines for any engagement are set out in a written Statement of Work (SOW) or service agreement signed by both parties.</p>
+
+      <h2>3. Your Responsibilities</h2>
+      <ul>
+        <li>Provide accurate, complete, and current information when you submit inquiries or engage our services</li>
+        <li>Designate authorized personnel to make decisions on behalf of your organization</li>
+        <li>Grant timely access to systems, facilities, and information we reasonably need to deliver services</li>
+        <li>Maintain lawful licensing for any third-party software or content you ask us to install, host, or work with</li>
+        <li>Keep your own account credentials secure and notify us immediately of any suspected compromise</li>
+        <li>Comply with applicable laws, including privacy and healthcare regulations, regarding the data you share with us</li>
+      </ul>
+
+      <h2>4. Fees &amp; Payment</h2>
+      <p>Fees are set out in your signed SOW or service agreement. Unless otherwise agreed, invoices are due within thirty (30) days of issuance. Past-due balances may accrue interest at 1.5% per month or the maximum permitted by Texas law, whichever is less. We may suspend services for accounts more than 30 days past due, after reasonable notice.</p>
+
+      <h2>5. Intellectual Property</h2>
+      <p>All content on this website — including text, graphics, logos, images, and code — is owned by Odyssey Solutions or its licensors and protected by U.S. and international intellectual-property law. You may not copy, modify, redistribute, or create derivative works from our content without prior written consent.</p>
+      <p>For client engagements: upon full payment, you own the final, delivered work product (website, written policies, configuration documentation) specific to your business. We retain ownership of our underlying tools, templates, methodologies, know-how, and any general-purpose software or components we develop. We grant you a perpetual, non-exclusive license to use those underlying materials as needed to benefit from the delivered work.</p>
+
+      <h2>6. Confidentiality</h2>
+      <p>Each party agrees to protect the other's confidential information with at least the same care used for its own, and only to use that information for the purposes of the engagement. Where Protected Health Information is involved, the terms of the signed Business Associate Agreement govern — see our HIPAA Notice for details.</p>
+
+      <h2>7. Disclaimers</h2>
+      <p>Our website and any free content on it are provided "as is" without warranty of any kind. Client engagements are governed by the warranties (if any) expressly set out in the signed SOW or service agreement — no additional warranties are implied. We do not warrant that our website will be uninterrupted, error-free, or free of viruses or other harmful components.</p>
+
+      <h2>8. Limitation of Liability</h2>
+      <p>To the fullest extent permitted by law, Odyssey Solutions is not liable for any indirect, incidental, consequential, special, or punitive damages arising out of or related to your use of our website, including lost profits, lost data, or business interruption. For paid engagements, our total aggregate liability for any claim is limited to the fees paid by the Client to Odyssey Solutions in the twelve (12) months immediately preceding the claim. These limits do not apply to liability that cannot be limited under applicable law, or to obligations under a signed Business Associate Agreement.</p>
+
+      <h2>9. Indemnification</h2>
+      <p>You agree to indemnify and hold Odyssey Solutions harmless from claims, damages, and expenses (including reasonable attorneys' fees) arising from: (a) your breach of these Terms or any signed service agreement; (b) your violation of applicable law; or (c) your unlawful use of the services we provide.</p>
+
+      <h2>10. Termination</h2>
+      <p>Either party may terminate an engagement in accordance with the termination provisions in the signed SOW. Either party may terminate for material breach if the breach is not cured within thirty (30) days of written notice. On termination, we will return or securely destroy client data as required by the Business Associate Agreement (if applicable) and assist with a reasonable, good-faith transition at then-current rates.</p>
+
+      <h2>11. Third-Party Services</h2>
+      <p>We integrate with and rely on third-party vendors (cloud providers, email providers, backup services, payment processors, scheduling tools). Your use of those services through us is also subject to the third party's terms. We are not responsible for the acts, omissions, or outages of third-party services except as expressly agreed in a signed SOW.</p>
+
+      <h2>12. Governing Law &amp; Disputes</h2>
+      <p>These Terms are governed by the laws of the State of Texas, without regard to conflict-of-laws rules. Any dispute arising out of or related to these Terms or our services will be brought exclusively in the state or federal courts located in Harris County, Texas, and both parties consent to the jurisdiction of those courts.</p>
+
+      <h2>13. Changes to These Terms</h2>
+      <p>We may update these Terms periodically. Material changes will be posted on this page with a new "Last Updated" date and, for active clients, communicated via email. Continued use of our website or services after the effective date constitutes acceptance.</p>
+
+      <h2>14. Entire Agreement</h2>
+      <p>These Terms, together with our Privacy Policy, HIPAA Notice, and any signed SOW or service agreement, form the complete agreement between you and Odyssey Solutions regarding the subject matter. If any provision is held unenforceable, the remaining provisions remain in full effect.</p>
+
+      <div class="legal-contact-card">
+        <h3>Questions About These Terms?</h3>
+        <p><strong>Odyssey Solutions</strong></p>
+        <p>Email: <a href="mailto:leo@odysseysolutions.co">leo@odysseysolutions.co</a></p>
+        <p>Phone: <a href="tel:+18328058467">(832) 805-8467</a></p>
+      </div>
+    </div>
+  </section>
+
+  <footer>
+    <div class="container">
+      <div class="footer-inner">
+        <div class="footer-brand"><span class="logo" onclick="showPage('home')">Odyss<span class="logo-e">e</span>y Solutions</span><p>Texas-based IT, HIPAA compliance, and web development — built for growth.</p></div>
+        <div class="footer-col"><h5>Services</h5><ul><li><a onclick="showPage('it')">IT Services</a></li><li><a onclick="showPage('webdev')">Web Development</a></li><li><a onclick="showPage('hipaa-training')">HIPAA Training</a></li></ul></div>
+        <div class="footer-col"><h5>Company</h5><ul><li><a onclick="showPage('about')">About</a></li><li><a onclick="showPage('contact')">Contact</a></li></ul></div>
+        <div class="footer-col"><h5>Legal</h5><ul><li><a onclick="showPage('privacy')">Privacy Policy</a></li><li><a onclick="showPage('terms')">Terms of Service</a></li><li><a onclick="showPage('hipaa-notice')">HIPAA Notice</a></li></ul></div>
+      </div>
+      <div class="footer-bottom"><p>© 2026 Odyssey Solutions. All rights reserved. <span>Texas-Proud.</span></p></div>
+    </div>
+  </footer>
+</div>
+
+<!-- ========================================== -->
+<!-- HIPAA NOTICE PAGE (Business Associate)     -->
+<!-- ========================================== -->
+<div id="page-hipaa-notice" class="page">
+  <section class="legal-hero">
+    <div class="container">
+      <span class="eyebrow">Legal</span>
+      <h1>HIPAA Notice</h1>
+      <div class="legal-meta">
+        <span><strong>Effective Date:</strong> April 21, 2026</span>
+        <span><strong>Last Updated:</strong> April 21, 2026</span>
+      </div>
+    </div>
+  </section>
+
+  <section class="legal-body">
+    <div class="container">
+      <div class="legal-intro">
+        <p style="margin:0;"><strong>About this notice:</strong> Odyssey Solutions is a <strong>Business Associate</strong> under the Health Insurance Portability and Accountability Act (HIPAA), not a Covered Entity. We do not treat patients or collect PHI directly from individuals. We handle Protected Health Information (PHI) on behalf of the healthcare practices and Covered Entities that engage our services. This notice explains our HIPAA obligations, how we safeguard PHI, and how our clients and their patients can reach us with questions.</p>
+      </div>
+
+      <h2>1. Our Role Under HIPAA</h2>
+      <p>A Covered Entity (for example, a dental practice, medical clinic, or mental-health provider) collects and maintains PHI in the course of patient care. When that Covered Entity engages Odyssey Solutions to deliver IT infrastructure, cybersecurity, backups, EHR support, policy development, or HIPAA training, we become a <strong>Business Associate</strong>. Our responsibilities are governed by:</p>
+      <ul>
+        <li>The <strong>HIPAA Privacy Rule</strong> (45 CFR Part 160 and Subparts A and E of Part 164)</li>
+        <li>The <strong>HIPAA Security Rule</strong> (45 CFR Part 160 and Subparts A and C of Part 164)</li>
+        <li>The <strong>HIPAA Breach Notification Rule</strong> (45 CFR §§ 164.400-414)</li>
+        <li>The <strong>HITECH Act</strong> and subsequent Omnibus rulemaking</li>
+        <li>A signed <strong>Business Associate Agreement (BAA)</strong> with each Covered Entity client</li>
+      </ul>
+
+      <h2>2. Business Associate Agreements</h2>
+      <p>We sign a Business Associate Agreement with every Covered Entity client before handling any PHI. The BAA sets out the permitted uses and disclosures of PHI, the safeguards we must implement, our breach-notification obligations, and the terms under which we return or destroy PHI at the end of the engagement.</p>
+      <p>When our engagement requires PHI to pass through third-party vendors (cloud hosting, offsite backup, email filtering, helpdesk tooling), we sign downstream BAAs with each of those subcontractors. If a subcontractor will not sign a BAA, we do not route PHI through them.</p>
+
+      <h2>3. Safeguards We Maintain</h2>
+
+      <h3>Administrative Safeguards</h3>
+      <ul>
+        <li>Written HIPAA Security policies and procedures, reviewed at least annually</li>
+        <li>Documented risk analysis and risk-management plan</li>
+        <li>Role-based access controls — workforce members only access the PHI required for their assigned duties</li>
+        <li>Mandatory HIPAA training for every technician before they are assigned to a covered account</li>
+        <li>Sanctions policy for workforce members who violate HIPAA policies</li>
+        <li>Written incident-response and breach-notification procedures</li>
+      </ul>
+
+      <h3>Technical Safeguards</h3>
+      <ul>
+        <li>Encryption of PHI in transit (TLS) and at rest (AES-256 or equivalent)</li>
+        <li>Multi-factor authentication for all workforce and vendor access to PHI systems</li>
+        <li>Unique user IDs, automatic session timeouts, and audit logging</li>
+        <li>Endpoint protection, patch management, and vulnerability monitoring</li>
+        <li>Segmented networks, firewall rules, and VPN-only remote access for administrative tasks</li>
+        <li>Backup integrity testing and documented recovery procedures</li>
+      </ul>
+
+      <h3>Physical Safeguards</h3>
+      <ul>
+        <li>Workstation use and device controls per written policy</li>
+        <li>Secure disposal and media re-use procedures for any device that has stored PHI</li>
+        <li>Facility and workstation security guidance issued to every client as part of onboarding</li>
+      </ul>
+
+      <h2>4. Permitted Uses &amp; Disclosures of PHI</h2>
+      <p>We use and disclose PHI only as permitted by the signed BAA with the relevant Covered Entity and as required or permitted by law. Typical permitted activities include:</p>
+      <ul>
+        <li>Performing the IT, security, backup, EHR-support, or compliance services specified in the engagement</li>
+        <li>Providing required reporting to the Covered Entity about incidents, backups, and security events</li>
+        <li>Disclosure to our own subcontractors under BAA, strictly as needed</li>
+        <li>Disclosures required by law, subpoena, or valid regulatory request</li>
+      </ul>
+      <p>We <strong>do not</strong> use or disclose PHI for marketing, advertising, sale, or any purpose outside the scope of the BAA.</p>
+
+      <h2>5. Breach Notification</h2>
+      <p>If we discover a breach or suspected breach of unsecured PHI, we will notify the affected Covered Entity without unreasonable delay and no later than the time frame required by the BAA and 45 CFR § 164.410 (generally, within 60 days of discovery). Our notification will include the information reasonably available to us about the incident, the individuals and systems involved, the steps taken to mitigate harm, and our plan to prevent recurrence. The Covered Entity remains responsible for any required notifications to affected individuals and the U.S. Department of Health and Human Services.</p>
+
+      <h2>6. Workforce Training</h2>
+      <p>Every Odyssey Solutions technician, engineer, and compliance consultant completes HIPAA Privacy, Security, and Breach Notification training before handling any PHI and annually thereafter. Training records are maintained for at least six (6) years and are available to audited Covered Entity clients on request.</p>
+
+      <h2>7. Record Retention</h2>
+      <p>We retain HIPAA-required documentation (policies, risk assessments, training records, incident reports, access logs, BAAs, backup verification logs) for at least six (6) years from the date of creation or the date last in effect, whichever is later, consistent with 45 CFR § 164.316(b)(2).</p>
+
+      <h2>8. Termination of Engagement</h2>
+      <p>At the end of a client engagement, we return or securely destroy all PHI in our possession — including PHI held by our subcontractors — unless return or destruction is not feasible, in which case the protections of the BAA continue for as long as we retain the information.</p>
+
+      <h2>9. Changes to This Notice</h2>
+      <p>We may update this HIPAA Notice to reflect changes in law, our practices, or our engagements. The "Last Updated" date at the top of the page identifies the most recent revision. Material changes are communicated directly to Covered Entity clients.</p>
+
+      <div class="legal-contact-card">
+        <h3>Contact Our HIPAA Security &amp; Privacy Officer</h3>
+        <p><strong>Odyssey Solutions</strong></p>
+        <p>Email: <a href="mailto:leo@odysseysolutions.co">leo@odysseysolutions.co</a></p>
+        <p>Phone: <a href="tel:+18328058467">(832) 805-8467</a></p>
+        <p style="margin-top:12px;"><strong>For patients of our Covered Entity clients:</strong> your rights under HIPAA run through the healthcare practice that treats you. Please contact that practice's Privacy Officer directly for access, amendment, or complaint requests about your own health record. We will support your practice in responding.</p>
+        <p style="margin-top:12px;">You may also file a complaint with the U.S. Department of Health and Human Services, Office for Civil Rights, at 200 Independence Ave SW, Washington D.C. 20201, or by calling 1-800-368-1019. There will be no retaliation for filing a complaint.</p>
+      </div>
+    </div>
+  </section>
+
+  <footer>
+    <div class="container">
+      <div class="footer-inner">
+        <div class="footer-brand"><span class="logo" onclick="showPage('home')">Odyss<span class="logo-e">e</span>y Solutions</span><p>Texas-based IT, HIPAA compliance, and web development — built for growth.</p></div>
+        <div class="footer-col"><h5>Services</h5><ul><li><a onclick="showPage('it')">IT Services</a></li><li><a onclick="showPage('webdev')">Web Development</a></li><li><a onclick="showPage('hipaa-training')">HIPAA Training</a></li></ul></div>
+        <div class="footer-col"><h5>Company</h5><ul><li><a onclick="showPage('about')">About</a></li><li><a onclick="showPage('contact')">Contact</a></li></ul></div>
+        <div class="footer-col"><h5>Legal</h5><ul><li><a onclick="showPage('privacy')">Privacy Policy</a></li><li><a onclick="showPage('terms')">Terms of Service</a></li><li><a onclick="showPage('hipaa-notice')">HIPAA Notice</a></li></ul></div>
+      </div>
+      <div class="footer-bottom"><p>© 2026 Odyssey Solutions. All rights reserved. <span>Texas-Proud.</span></p></div>
     </div>
   </footer>
 </div>
