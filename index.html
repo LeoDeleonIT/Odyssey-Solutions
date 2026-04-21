@@ -1962,6 +1962,48 @@ footer {
   .service-area::after { display: none; }
 }
 
+/* ===================== CONTACT — Calendly Scheduler ===================== */
+.schedule-section {
+  padding: 72px 0 32px;
+  background: var(--white);
+}
+.schedule-header {
+  text-align: center;
+  max-width: 640px;
+  margin: 0 auto 36px;
+}
+.schedule-header .eyebrow { margin-bottom: 10px; display: inline-block; }
+.schedule-header h2 { margin-bottom: 12px; }
+.schedule-header p { color: var(--gray-500); }
+.calendly-wrap {
+  max-width: 1040px;
+  margin: 0 auto;
+  border-radius: var(--radius-lg);
+  overflow: hidden;
+  background: var(--white);
+  box-shadow: var(--shadow);
+  border: 1px solid var(--gray-200);
+}
+.schedule-divider {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  max-width: 640px;
+  margin: 48px auto 0;
+  color: var(--gray-400);
+  font-size: .85rem;
+  letter-spacing: .08em;
+  text-transform: uppercase;
+  font-weight: 600;
+}
+.schedule-divider::before,
+.schedule-divider::after {
+  content: '';
+  flex: 1;
+  height: 1px;
+  background: var(--gray-200);
+}
+
 /* ===================== IT PAGE — Industries Strip ===================== */
 .it-industries {
   padding: 56px 0;
@@ -3441,6 +3483,23 @@ footer {
     </div>
   </div>
 
+  <section class="schedule-section">
+    <div class="container">
+      <div class="schedule-header">
+        <span class="eyebrow">Pick a Time</span>
+        <h2>Book a 30-Minute Discovery Call</h2>
+        <p>Grab a slot on our calendar that works for you. We'll review your current setup and map out next steps — no pressure, no obligation.</p>
+      </div>
+      <div class="calendly-wrap">
+        <!-- Calendly inline widget begin -->
+        <div class="calendly-inline-widget" data-url="https://calendly.com/zain-odysseysolutions/30min?hide_gdpr_banner=1&primary_color=ffb400" style="min-width:320px;height:700px;"></div>
+        <script type="text/javascript" src="https://assets.calendly.com/assets/external/widget.js" async></script>
+        <!-- Calendly inline widget end -->
+      </div>
+      <div class="schedule-divider">or send us a message</div>
+    </div>
+  </section>
+
   <section class="contact-main">
     <div class="container">
       <div class="contact-grid">
@@ -3476,7 +3535,7 @@ footer {
           <div class="free-card">
             <h4>🎁 Free IT &amp; HIPAA Risk Consultation</h4>
             <p>Not sure where to start? Book a 30-minute consultation with our Texas team. We'll assess your current risk and recommend a clear action plan — at zero cost.</p>
-            <button class="free-card-btn">Schedule Free Call →</button>
+            <button class="free-card-btn" onclick="document.querySelector('.schedule-section').scrollIntoView({behavior:'smooth',block:'start'})">Schedule Free Call →</button>
           </div>
           <div class="cinfo-card">
             <h4>Contact Information</h4>
