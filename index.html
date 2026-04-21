@@ -1680,21 +1680,50 @@ footer {
 
 /* ===================== HOME — Service Area ===================== */
 .service-area {
-  padding: 96px 0;
-  background: var(--gray-50);
+  padding: 104px 0;
+  background: linear-gradient(180deg, #0d0d1a 0%, #1a1a2e 50%, #16213e 100%);
   position: relative;
   overflow: hidden;
+  color: var(--white);
 }
+/* Grid overlay */
+.service-area::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background-image:
+    linear-gradient(rgba(249,115,22,.07) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(249,115,22,.07) 1px, transparent 1px);
+  background-size: 48px 48px;
+  -webkit-mask-image: radial-gradient(ellipse at center, black 35%, transparent 75%);
+          mask-image: radial-gradient(ellipse at center, black 35%, transparent 75%);
+  pointer-events: none;
+}
+/* Ambient glow */
+.service-area::after {
+  content: '';
+  position: absolute;
+  top: 50%; right: -10%;
+  width: 520px; height: 520px;
+  transform: translateY(-50%);
+  background: radial-gradient(circle, rgba(249,115,22,.18) 0%, transparent 65%);
+  filter: blur(40px);
+  pointer-events: none;
+}
+.service-area .container { position: relative; z-index: 1; }
+.service-area h2 { color: var(--white); }
+.service-area .eyebrow { color: var(--orange); }
+
 .sa-inner {
   display: grid;
   grid-template-columns: 1.1fr 1fr;
-  gap: 56px;
+  gap: 64px;
   align-items: center;
 }
 .sa-left h2 { margin-bottom: 16px; }
 .sa-left .eyebrow { margin-bottom: 10px; display: inline-block; }
 .sa-lead {
-  color: var(--gray-500);
+  color: rgba(255,255,255,.72);
   font-size: 1.05rem;
   line-height: 1.65;
   margin-bottom: 28px;
@@ -1707,115 +1736,230 @@ footer {
   margin-bottom: 24px;
 }
 .sa-city {
-  background: var(--white);
-  color: var(--navy);
+  background: rgba(255,255,255,.04);
+  color: rgba(255,255,255,.88);
   font-weight: 600;
   padding: 8px 14px;
   border-radius: 999px;
   font-size: .82rem;
-  border: 1px solid var(--gray-200);
+  border: 1px solid rgba(255,255,255,.14);
   transition: var(--transition);
 }
 .sa-city.hub {
   background: var(--orange);
   color: var(--white);
   border-color: var(--orange);
-  box-shadow: 0 0 0 3px rgba(249,115,22,.18);
+  box-shadow: 0 0 0 3px rgba(249,115,22,.25), 0 0 24px rgba(249,115,22,.55);
 }
-.sa-city:hover { border-color: var(--orange); color: var(--orange); }
-.sa-city.hub:hover { color: var(--white); }
-.sa-note { color: var(--gray-500); font-size: .9rem; font-style: italic; }
+.sa-city:hover {
+  background: rgba(249,115,22,.15);
+  border-color: var(--orange);
+  color: var(--white);
+  transform: translateY(-2px);
+}
+.sa-city.hub:hover { background: var(--orange); }
+.sa-note { color: rgba(255,255,255,.55); font-size: .9rem; font-style: italic; }
 .sa-note a { color: var(--orange); cursor: pointer; font-weight: 600; font-style: normal; text-decoration: none; }
 .sa-note a:hover { text-decoration: underline; }
 
+/* Radar visual */
 .sa-visual {
   position: relative;
   width: 100%;
   aspect-ratio: 1 / 1;
-  max-width: 440px;
+  max-width: 460px;
   margin: 0 auto;
 }
+
 .sa-radar {
   position: absolute;
   inset: 0;
   border-radius: 50%;
-  background: radial-gradient(circle at center, rgba(249,115,22,.14) 0%, rgba(249,115,22,.05) 60%, transparent 100%);
-  border: 2px solid rgba(249,115,22,.4);
+  background:
+    radial-gradient(circle at center, rgba(249,115,22,.1) 0%, rgba(249,115,22,.025) 55%, transparent 80%);
+  border: 2px solid rgba(249,115,22,.55);
+  box-shadow:
+    0 0 80px rgba(249,115,22,.18),
+    inset 0 0 60px rgba(249,115,22,.1);
 }
 .sa-radar::before, .sa-radar::after {
   content: '';
   position: absolute;
   border-radius: 50%;
-  border: 1px dashed rgba(249,115,22,.3);
+  border: 1px dashed rgba(249,115,22,.4);
 }
 .sa-radar::before { inset: 18%; }
 .sa-radar::after { inset: 36%; }
+
+/* Cross-hairs */
+.sa-crosshair {
+  position: absolute;
+  inset: 0;
+  border-radius: 50%;
+  pointer-events: none;
+  -webkit-mask: radial-gradient(circle, black 99%, transparent 100%);
+          mask: radial-gradient(circle, black 99%, transparent 100%);
+}
+.sa-crosshair::before, .sa-crosshair::after {
+  content: '';
+  position: absolute;
+  background: rgba(249,115,22,.18);
+}
+.sa-crosshair::before { top: 50%; left: 0; right: 0; height: 1px; }
+.sa-crosshair::after { left: 50%; top: 0; bottom: 0; width: 1px; }
+
+/* Rotating sweep */
+.sa-sweep {
+  position: absolute;
+  inset: 0;
+  border-radius: 50%;
+  background: conic-gradient(from 0deg,
+    rgba(249,115,22,0) 0deg,
+    rgba(249,115,22,0) 290deg,
+    rgba(249,115,22,.45) 352deg,
+    rgba(249,115,22,.18) 360deg);
+  animation: sa-sweep 4.5s linear infinite;
+  mix-blend-mode: screen;
+  pointer-events: none;
+  -webkit-mask: radial-gradient(circle, black 99%, transparent 100%);
+          mask: radial-gradient(circle, black 99%, transparent 100%);
+}
+@keyframes sa-sweep {
+  to { transform: rotate(360deg); }
+}
+
+/* Expanding pings from hub */
+.sa-ping {
+  position: absolute;
+  top: 50%; left: 50%;
+  width: 76px; height: 76px;
+  margin: -38px 0 0 -38px;
+  border-radius: 50%;
+  border: 2px solid rgba(249,115,22,.6);
+  animation: sa-ping 3.6s ease-out infinite;
+  opacity: 0;
+  pointer-events: none;
+}
+.sa-ping.delay-1 { animation-delay: 1.2s; }
+.sa-ping.delay-2 { animation-delay: 2.4s; }
+@keyframes sa-ping {
+  0%   { transform: scale(1); opacity: .9; }
+  100% { transform: scale(5); opacity: 0; }
+}
+
+/* Compass ticks */
+.sa-compass {
+  position: absolute;
+  font-family: 'Orbitron', sans-serif;
+  font-size: .68rem;
+  font-weight: 800;
+  color: rgba(249,115,22,.8);
+  letter-spacing: .2em;
+  z-index: 3;
+}
+.sa-compass.n { top: -4px; left: 50%; transform: translateX(-50%); }
+.sa-compass.s { bottom: -4px; left: 50%; transform: translateX(-50%); }
+.sa-compass.e { right: -18px; top: 50%; transform: translateY(-50%); }
+.sa-compass.w { left: -18px; top: 50%; transform: translateY(-50%); }
+
+/* Hub */
 .sa-hub {
   position: absolute;
   top: 50%; left: 50%;
   transform: translate(-50%, -50%);
-  width: 72px; height: 72px;
+  width: 78px; height: 78px;
   border-radius: 50%;
-  background: var(--orange);
+  background: radial-gradient(circle at 30% 30%, #fb923c 0%, var(--orange) 55%, #c2410c 100%);
   color: var(--white);
   display: flex; align-items: center; justify-content: center;
   font-family: 'Orbitron', sans-serif;
-  font-size: 1.3rem;
+  font-size: 1.25rem;
   font-weight: 800;
   letter-spacing: .02em;
-  box-shadow: 0 0 0 8px rgba(249,115,22,.2), 0 0 0 20px rgba(249,115,22,.08);
-  z-index: 3;
+  box-shadow:
+    0 0 0 6px rgba(249,115,22,.25),
+    0 0 0 16px rgba(249,115,22,.1),
+    0 0 50px rgba(249,115,22,.7);
+  z-index: 4;
+  animation: sa-hub-pulse 2.6s ease-in-out infinite;
+}
+@keyframes sa-hub-pulse {
+  0%, 100% { box-shadow: 0 0 0 6px rgba(249,115,22,.25), 0 0 0 16px rgba(249,115,22,.1), 0 0 50px rgba(249,115,22,.7); }
+  50%      { box-shadow: 0 0 0 10px rgba(249,115,22,.35), 0 0 0 24px rgba(249,115,22,.14), 0 0 70px rgba(249,115,22,.9); }
 }
 .sa-hub-sub {
   position: absolute;
   top: 50%; left: 50%;
-  transform: translate(-50%, 44px);
+  transform: translate(-50%, 56px);
   font-family: 'Exo 2', sans-serif;
-  font-size: .72rem;
-  font-weight: 600;
-  color: var(--navy);
-  letter-spacing: .12em;
+  font-size: .7rem;
+  font-weight: 700;
+  color: var(--orange);
+  letter-spacing: .18em;
   text-transform: uppercase;
-  z-index: 3;
+  z-index: 4;
+  white-space: nowrap;
 }
+
+/* Radius badge */
 .sa-radius-label {
   position: absolute;
-  top: 4%; left: 50%;
+  top: 3%; left: 50%;
   transform: translateX(-50%);
-  background: var(--navy);
-  color: var(--white);
-  padding: 6px 14px;
+  background: var(--white);
+  color: var(--navy);
+  padding: 7px 16px;
   border-radius: 999px;
   font-family: 'Orbitron', sans-serif;
-  font-size: .78rem;
-  font-weight: 700;
-  letter-spacing: .1em;
-  z-index: 3;
+  font-size: .76rem;
+  font-weight: 800;
+  letter-spacing: .14em;
+  z-index: 4;
+  box-shadow: 0 0 24px rgba(249,115,22,.5), 0 4px 12px rgba(0,0,0,.4);
 }
+
+/* Markers */
 .sa-marker {
   position: absolute;
   width: 10px; height: 10px;
   border-radius: 50%;
-  background: var(--navy);
-  box-shadow: 0 0 0 3px rgba(26,26,46,.15);
+  background: var(--orange);
+  box-shadow: 0 0 0 3px rgba(249,115,22,.28), 0 0 14px var(--orange);
   z-index: 2;
+  animation: sa-blink 2.2s ease-in-out infinite;
+}
+.sa-marker.d1 { animation-delay: .3s; }
+.sa-marker.d2 { animation-delay: .6s; }
+.sa-marker.d3 { animation-delay: .9s; }
+.sa-marker.d4 { animation-delay: 1.2s; }
+.sa-marker.d5 { animation-delay: 1.5s; }
+.sa-marker.d6 { animation-delay: 1.8s; }
+@keyframes sa-blink {
+  0%, 100% { opacity: 1; }
+  50%      { opacity: .5; }
 }
 .sa-marker-label {
   position: absolute;
-  font-size: .7rem;
-  font-weight: 600;
-  color: var(--navy);
-  background: rgba(255,255,255,.96);
-  padding: 2px 7px;
+  font-family: 'Orbitron', sans-serif;
+  font-size: .62rem;
+  font-weight: 700;
+  color: rgba(255,255,255,.92);
+  background: rgba(13,13,26,.75);
+  padding: 3px 9px;
   border-radius: 4px;
   white-space: nowrap;
-  box-shadow: var(--shadow-sm);
+  border: 1px solid rgba(249,115,22,.4);
+  letter-spacing: .08em;
   z-index: 2;
+  -webkit-backdrop-filter: blur(6px);
+          backdrop-filter: blur(6px);
+  text-transform: uppercase;
 }
 
 @media (max-width: 900px) {
-  .sa-inner { grid-template-columns: 1fr; gap: 40px; }
-  .sa-visual { max-width: 340px; }
+  .sa-inner { grid-template-columns: 1fr; gap: 48px; }
+  .sa-visual { max-width: 360px; }
+  .service-area::after { display: none; }
 }
 
 /* ===================== IT PAGE — Industries Strip ===================== */
@@ -2245,6 +2389,18 @@ footer {
         <div class="sa-right">
           <div class="sa-visual">
             <div class="sa-radar"></div>
+            <div class="sa-crosshair"></div>
+            <div class="sa-sweep"></div>
+
+            <div class="sa-ping"></div>
+            <div class="sa-ping delay-1"></div>
+            <div class="sa-ping delay-2"></div>
+
+            <span class="sa-compass n">N</span>
+            <span class="sa-compass e">E</span>
+            <span class="sa-compass s">S</span>
+            <span class="sa-compass w">W</span>
+
             <div class="sa-radius-label">75 MILE RADIUS</div>
             <div class="sa-hub">HTX</div>
             <div class="sa-hub-sub" aria-hidden="true">Houston HQ</div>
@@ -2252,22 +2408,22 @@ footer {
             <div class="sa-marker" style="top:20%;left:50%;"></div>
             <div class="sa-marker-label" style="top:14%;left:52%;">Conroe</div>
 
-            <div class="sa-marker" style="top:32%;left:74%;"></div>
+            <div class="sa-marker d1" style="top:32%;left:74%;"></div>
             <div class="sa-marker-label" style="top:26%;left:76%;">Kingwood</div>
 
-            <div class="sa-marker" style="top:50%;left:86%;"></div>
+            <div class="sa-marker d2" style="top:50%;left:86%;"></div>
             <div class="sa-marker-label" style="top:50%;left:90%;">Baytown</div>
 
-            <div class="sa-marker" style="top:74%;left:66%;"></div>
+            <div class="sa-marker d3" style="top:74%;left:66%;"></div>
             <div class="sa-marker-label" style="top:78%;left:70%;">Galveston</div>
 
-            <div class="sa-marker" style="top:68%;left:28%;"></div>
-            <div class="sa-marker-label" style="top:72%;left:10%;">Sugar Land</div>
+            <div class="sa-marker d4" style="top:68%;left:28%;"></div>
+            <div class="sa-marker-label" style="top:72%;left:6%;">Sugar Land</div>
 
-            <div class="sa-marker" style="top:50%;left:10%;"></div>
+            <div class="sa-marker d5" style="top:50%;left:10%;"></div>
             <div class="sa-marker-label" style="top:44%;left:2%;">Katy</div>
 
-            <div class="sa-marker" style="top:26%;left:20%;"></div>
+            <div class="sa-marker d6" style="top:26%;left:20%;"></div>
             <div class="sa-marker-label" style="top:20%;left:4%;">Cypress</div>
           </div>
         </div>
