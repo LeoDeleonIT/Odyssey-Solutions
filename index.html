@@ -1678,6 +1678,146 @@ footer {
 @media (max-width: 900px) { .it-why-grid { grid-template-columns: repeat(2, 1fr); } }
 @media (max-width: 600px) { .it-why-grid { grid-template-columns: 1fr; } }
 
+/* ===================== HOME — Service Area ===================== */
+.service-area {
+  padding: 96px 0;
+  background: var(--gray-50);
+  position: relative;
+  overflow: hidden;
+}
+.sa-inner {
+  display: grid;
+  grid-template-columns: 1.1fr 1fr;
+  gap: 56px;
+  align-items: center;
+}
+.sa-left h2 { margin-bottom: 16px; }
+.sa-left .eyebrow { margin-bottom: 10px; display: inline-block; }
+.sa-lead {
+  color: var(--gray-500);
+  font-size: 1.05rem;
+  line-height: 1.65;
+  margin-bottom: 28px;
+  max-width: 540px;
+}
+.sa-cities {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin-bottom: 24px;
+}
+.sa-city {
+  background: var(--white);
+  color: var(--navy);
+  font-weight: 600;
+  padding: 8px 14px;
+  border-radius: 999px;
+  font-size: .82rem;
+  border: 1px solid var(--gray-200);
+  transition: var(--transition);
+}
+.sa-city.hub {
+  background: var(--orange);
+  color: var(--white);
+  border-color: var(--orange);
+  box-shadow: 0 0 0 3px rgba(249,115,22,.18);
+}
+.sa-city:hover { border-color: var(--orange); color: var(--orange); }
+.sa-city.hub:hover { color: var(--white); }
+.sa-note { color: var(--gray-500); font-size: .9rem; font-style: italic; }
+.sa-note a { color: var(--orange); cursor: pointer; font-weight: 600; font-style: normal; text-decoration: none; }
+.sa-note a:hover { text-decoration: underline; }
+
+.sa-visual {
+  position: relative;
+  width: 100%;
+  aspect-ratio: 1 / 1;
+  max-width: 440px;
+  margin: 0 auto;
+}
+.sa-radar {
+  position: absolute;
+  inset: 0;
+  border-radius: 50%;
+  background: radial-gradient(circle at center, rgba(249,115,22,.14) 0%, rgba(249,115,22,.05) 60%, transparent 100%);
+  border: 2px solid rgba(249,115,22,.4);
+}
+.sa-radar::before, .sa-radar::after {
+  content: '';
+  position: absolute;
+  border-radius: 50%;
+  border: 1px dashed rgba(249,115,22,.3);
+}
+.sa-radar::before { inset: 18%; }
+.sa-radar::after { inset: 36%; }
+.sa-hub {
+  position: absolute;
+  top: 50%; left: 50%;
+  transform: translate(-50%, -50%);
+  width: 72px; height: 72px;
+  border-radius: 50%;
+  background: var(--orange);
+  color: var(--white);
+  display: flex; align-items: center; justify-content: center;
+  font-family: 'Orbitron', sans-serif;
+  font-size: 1.3rem;
+  font-weight: 800;
+  letter-spacing: .02em;
+  box-shadow: 0 0 0 8px rgba(249,115,22,.2), 0 0 0 20px rgba(249,115,22,.08);
+  z-index: 3;
+}
+.sa-hub-sub {
+  position: absolute;
+  top: 50%; left: 50%;
+  transform: translate(-50%, 44px);
+  font-family: 'Exo 2', sans-serif;
+  font-size: .72rem;
+  font-weight: 600;
+  color: var(--navy);
+  letter-spacing: .12em;
+  text-transform: uppercase;
+  z-index: 3;
+}
+.sa-radius-label {
+  position: absolute;
+  top: 4%; left: 50%;
+  transform: translateX(-50%);
+  background: var(--navy);
+  color: var(--white);
+  padding: 6px 14px;
+  border-radius: 999px;
+  font-family: 'Orbitron', sans-serif;
+  font-size: .78rem;
+  font-weight: 700;
+  letter-spacing: .1em;
+  z-index: 3;
+}
+.sa-marker {
+  position: absolute;
+  width: 10px; height: 10px;
+  border-radius: 50%;
+  background: var(--navy);
+  box-shadow: 0 0 0 3px rgba(26,26,46,.15);
+  z-index: 2;
+}
+.sa-marker-label {
+  position: absolute;
+  font-size: .7rem;
+  font-weight: 600;
+  color: var(--navy);
+  background: rgba(255,255,255,.96);
+  padding: 2px 7px;
+  border-radius: 4px;
+  white-space: nowrap;
+  box-shadow: var(--shadow-sm);
+  z-index: 2;
+}
+
+@media (max-width: 900px) {
+  .sa-inner { grid-template-columns: 1fr; gap: 40px; }
+  .sa-visual { max-width: 340px; }
+}
+
 /* ===================== IT PAGE — Industries Strip ===================== */
 .it-industries {
   padding: 56px 0;
@@ -2054,6 +2194,83 @@ footer {
           </div>
         </div>
 
+      </div>
+    </div>
+  </section>
+
+  <!-- SERVICE AREA -->
+  <section class="service-area">
+    <div class="container">
+      <div class="sa-inner">
+        <div class="sa-left">
+          <span class="eyebrow">Service Area</span>
+          <h2>We Serve Greater Houston —<br>75 Miles in Every Direction</h2>
+          <p class="sa-lead">From Galveston to Huntsville, Katy to Baytown — if you're within 75 miles of downtown Houston, we're your Texas-based IT, HIPAA, and web partner. On-site visits, local phone support, and same-day rollouts across our entire service area.</p>
+          <div class="sa-cities">
+            <span class="sa-city hub">Houston</span>
+            <span class="sa-city">Sugar Land</span>
+            <span class="sa-city">Katy</span>
+            <span class="sa-city">Cypress</span>
+            <span class="sa-city">The Woodlands</span>
+            <span class="sa-city">Spring</span>
+            <span class="sa-city">Tomball</span>
+            <span class="sa-city">Humble</span>
+            <span class="sa-city">Kingwood</span>
+            <span class="sa-city">Conroe</span>
+            <span class="sa-city">Huntsville</span>
+            <span class="sa-city">Baytown</span>
+            <span class="sa-city">Pasadena</span>
+            <span class="sa-city">La Porte</span>
+            <span class="sa-city">Deer Park</span>
+            <span class="sa-city">Pearland</span>
+            <span class="sa-city">Friendswood</span>
+            <span class="sa-city">League City</span>
+            <span class="sa-city">Clear Lake</span>
+            <span class="sa-city">Galveston</span>
+            <span class="sa-city">Texas City</span>
+            <span class="sa-city">Dickinson</span>
+            <span class="sa-city">Alvin</span>
+            <span class="sa-city">Angleton</span>
+            <span class="sa-city">Lake Jackson</span>
+            <span class="sa-city">Freeport</span>
+            <span class="sa-city">Bay City</span>
+            <span class="sa-city">El Campo</span>
+            <span class="sa-city">Richmond</span>
+            <span class="sa-city">Rosenberg</span>
+            <span class="sa-city">Wharton</span>
+            <span class="sa-city">Brenham</span>
+          </div>
+          <p class="sa-note">Just outside our 75-mile radius? <a onclick="showPage('contact')">Get in touch</a> — we take on strategic engagements beyond our coverage zone too.</p>
+        </div>
+        <div class="sa-right">
+          <div class="sa-visual">
+            <div class="sa-radar"></div>
+            <div class="sa-radius-label">75 MILE RADIUS</div>
+            <div class="sa-hub">HTX</div>
+            <div class="sa-hub-sub" aria-hidden="true">Houston HQ</div>
+
+            <div class="sa-marker" style="top:20%;left:50%;"></div>
+            <div class="sa-marker-label" style="top:14%;left:52%;">Conroe</div>
+
+            <div class="sa-marker" style="top:32%;left:74%;"></div>
+            <div class="sa-marker-label" style="top:26%;left:76%;">Kingwood</div>
+
+            <div class="sa-marker" style="top:50%;left:86%;"></div>
+            <div class="sa-marker-label" style="top:50%;left:90%;">Baytown</div>
+
+            <div class="sa-marker" style="top:74%;left:66%;"></div>
+            <div class="sa-marker-label" style="top:78%;left:70%;">Galveston</div>
+
+            <div class="sa-marker" style="top:68%;left:28%;"></div>
+            <div class="sa-marker-label" style="top:72%;left:10%;">Sugar Land</div>
+
+            <div class="sa-marker" style="top:50%;left:10%;"></div>
+            <div class="sa-marker-label" style="top:44%;left:2%;">Katy</div>
+
+            <div class="sa-marker" style="top:26%;left:20%;"></div>
+            <div class="sa-marker-label" style="top:20%;left:4%;">Cypress</div>
+          </div>
+        </div>
       </div>
     </div>
   </section>
