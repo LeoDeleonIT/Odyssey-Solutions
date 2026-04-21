@@ -3631,19 +3631,21 @@ footer {
         <div class="contact-form-wrap">
           <h2>Let's Talk</h2>
           <p class="form-sub">Fill out the form and a member of our Texas team will reach out within 1 business day.</p>
-          <form onsubmit="handleForm(event)">
+          <form id="contactForm" action="https://formspree.io/f/mbdqzoqd" method="POST" onsubmit="handleForm(event)">
+            <input type="hidden" name="_subject" value="New Odyssey Solutions consultation request">
+            <input type="text" name="_gotcha" style="display:none" tabindex="-1" autocomplete="off">
             <div class="form-row">
-              <div class="form-group"><label>First Name</label><input type="text" placeholder="John" required></div>
-              <div class="form-group"><label>Last Name</label><input type="text" placeholder="Smith" required></div>
+              <div class="form-group"><label>First Name</label><input type="text" name="first_name" placeholder="John" required></div>
+              <div class="form-group"><label>Last Name</label><input type="text" name="last_name" placeholder="Smith" required></div>
             </div>
             <div class="form-row">
-              <div class="form-group"><label>Email Address</label><input type="email" placeholder="john@yourcompany.com" required></div>
-              <div class="form-group"><label>Phone Number</label><input type="tel" placeholder="(832) 805-8467"></div>
+              <div class="form-group"><label>Email Address</label><input type="email" name="email" placeholder="john@yourcompany.com" required></div>
+              <div class="form-group"><label>Phone Number</label><input type="tel" name="phone" placeholder="(832) 805-8467"></div>
             </div>
-            <div class="form-group"><label>Company / Practice Name</label><input type="text" placeholder="Your Business Name" required></div>
+            <div class="form-group"><label>Company / Practice Name</label><input type="text" name="company" placeholder="Your Business Name" required></div>
             <div class="form-group">
               <label>Service Interest</label>
-              <select required>
+              <select name="service_interest" required>
                 <option value="" disabled selected>Select a service...</option>
                 <option>Managed IT Services (HIPAA-Compliant)</option>
                 <option>The Odyssey HIPAA Program</option>
@@ -3652,8 +3654,9 @@ footer {
                 <option>Not Sure — Need Consultation</option>
               </select>
             </div>
-            <div class="form-group"><label>Tell Us About Your Needs</label><textarea placeholder="Describe your current challenges, business type, team size, or any specific questions..."></textarea></div>
+            <div class="form-group"><label>Tell Us About Your Needs</label><textarea name="message" placeholder="Describe your current challenges, business type, team size, or any specific questions..."></textarea></div>
             <button type="submit" class="btn btn-primary btn-lg form-submit">Send Message — It's Free →</button>
+            <p id="form-error" style="display:none;color:#dc2626;margin-top:12px;font-size:.9rem;"></p>
           </form>
         </div>
         <div class="contact-sidebar">
@@ -4160,24 +4163,47 @@ window.addEventListener('scroll', () => {
   }
 }, { passive: true });
 
-// ---- Contact Form ----
-function handleForm(e) {
+// ---- Contact Form (FormSpree AJAX submission) ----
+async function handleForm(e) {
   e.preventDefault();
-  const btn = e.target.querySelector('.form-submit');
+  const form = e.target;
+  const btn = form.querySelector('.form-submit');
+  const err = form.querySelector('#form-error');
   const orig = btn.innerHTML;
-  btn.innerHTML = '✓ Message Sent! We\'ll be in touch within 1 business day.';
-  btn.style.background = '#16a34a';
-  btn.style.borderColor = '#16a34a';
-  btn.style.boxShadow = '0 4px 14px rgba(22,163,74,.35)';
+
+  err.style.display = 'none';
+  err.textContent = '';
+  btn.innerHTML = 'Sending…';
   btn.disabled = true;
-  setTimeout(() => {
+
+  try {
+    const res = await fetch(form.action, {
+      method: 'POST',
+      body: new FormData(form),
+      headers: { 'Accept': 'application/json' }
+    });
+    if (!res.ok) {
+      const data = await res.json().catch(() => ({}));
+      throw new Error((data.errors && data.errors.map(x => x.message).join(', ')) || 'Submission failed.');
+    }
+    btn.innerHTML = '✓ Message Sent! We\'ll be in touch within 1 business day.';
+    btn.style.background = '#16a34a';
+    btn.style.borderColor = '#16a34a';
+    btn.style.boxShadow = '0 4px 14px rgba(22,163,74,.35)';
+    form.reset();
+    setTimeout(() => {
+      btn.innerHTML = orig;
+      btn.style.background = '';
+      btn.style.borderColor = '';
+      btn.style.boxShadow = '';
+      btn.disabled = false;
+    }, 6000);
+  } catch (error) {
     btn.innerHTML = orig;
-    btn.style.background = '';
-    btn.style.borderColor = '';
-    btn.style.boxShadow = '';
     btn.disabled = false;
-    e.target.reset();
-  }, 5000);
+    err.textContent = 'Couldn\'t send your message. Please email leo@odysseysolutions.co or call (832) 805-8467 directly.';
+    err.style.display = 'block';
+  }
 }
 </script>
 </body>
