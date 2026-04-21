@@ -1595,6 +1595,122 @@ footer {
 #intro-overlay.done {
   display: none;
 }
+
+/* ===================== IT PAGE — Promise Bar ===================== */
+.it-promise-bar {
+  background: var(--navy);
+  color: var(--white);
+  padding: 32px 0;
+  border-top: 3px solid var(--orange);
+}
+.it-promise-bar .container {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 28px;
+  align-items: flex-start;
+}
+.it-promise {
+  display: flex;
+  gap: 14px;
+  align-items: flex-start;
+}
+.it-promise-icon {
+  font-size: 28px;
+  line-height: 1;
+  flex-shrink: 0;
+  filter: drop-shadow(0 0 8px rgba(249,115,22,.35));
+}
+.it-promise-title {
+  font-family: 'Orbitron', sans-serif;
+  font-size: .95rem;
+  font-weight: 700;
+  color: var(--white);
+  line-height: 1.25;
+}
+.it-promise-sub {
+  font-size: .82rem;
+  color: var(--gray-400);
+  margin-top: 4px;
+  line-height: 1.4;
+}
+@media (max-width: 900px) { .it-promise-bar .container { grid-template-columns: repeat(2, 1fr); } }
+@media (max-width: 520px) { .it-promise-bar .container { grid-template-columns: 1fr; } }
+
+/* ===================== IT PAGE — Why Odyssey Grid ===================== */
+.it-why { padding: 88px 0; background: var(--gray-50); }
+.it-why-header { text-align: center; margin-bottom: 48px; }
+.it-why-header h2 { margin-bottom: 12px; }
+.it-why-header p { color: var(--gray-500); max-width: 640px; margin: 0 auto; }
+.it-why-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 24px;
+}
+.it-why-card {
+  background: var(--white);
+  border-radius: var(--radius-lg);
+  padding: 28px;
+  box-shadow: var(--shadow-sm);
+  border: 1px solid var(--gray-200);
+  transition: var(--transition);
+}
+.it-why-card:hover {
+  box-shadow: var(--shadow-lg);
+  transform: translateY(-3px);
+  border-color: var(--orange);
+}
+.it-why-icon {
+  width: 52px; height: 52px;
+  border-radius: 12px;
+  background: var(--orange-light);
+  color: var(--orange);
+  display: flex; align-items: center; justify-content: center;
+  font-size: 24px;
+  margin-bottom: 18px;
+}
+.it-why-title {
+  font-family: 'Orbitron', sans-serif;
+  font-size: 1.05rem;
+  font-weight: 700;
+  margin-bottom: 10px;
+  color: var(--navy);
+}
+.it-why-desc { color: var(--gray-500); font-size: .92rem; line-height: 1.6; }
+@media (max-width: 900px) { .it-why-grid { grid-template-columns: repeat(2, 1fr); } }
+@media (max-width: 600px) { .it-why-grid { grid-template-columns: 1fr; } }
+
+/* ===================== IT PAGE — Industries Strip ===================== */
+.it-industries {
+  padding: 56px 0;
+  background: var(--white);
+  border-top: 1px solid var(--gray-200);
+  border-bottom: 1px solid var(--gray-200);
+}
+.it-industries-header { text-align: center; margin-bottom: 28px; }
+.it-industries-header h3 {
+  font-family: 'Orbitron', sans-serif;
+  font-size: 1.4rem;
+  color: var(--navy);
+}
+.it-industries-header p { color: var(--gray-500); margin-top: 6px; }
+.it-industries-pills {
+  display: flex; flex-wrap: wrap; justify-content: center; gap: 10px;
+}
+.it-industry-pill {
+  background: var(--gray-50);
+  color: var(--navy);
+  font-weight: 600;
+  padding: 10px 18px;
+  border-radius: 999px;
+  font-size: .9rem;
+  border: 1px solid var(--gray-200);
+  transition: var(--transition);
+}
+.it-industry-pill:hover {
+  background: var(--orange);
+  color: var(--white);
+  border-color: var(--orange);
+}
 </style>
 </head>
 <body>
@@ -2025,7 +2141,7 @@ footer {
             <li><span class="fi">✓</span>Protects against ransomware, phishing, and data breaches</li>
             <li><span class="fi">✓</span>Ensures business continuity with automated backup</li>
           </ul>
-          <a class="btn btn-primary" onclick="showPage('contact')">Get Free IT Assessment →</a>
+          <a class="btn btn-primary" onclick="showPage('contact')">Schedule Free 15-Minute Discovery Call →</a>
         </div>
         <div class="pillar-right">
           <div class="pillar-cards">
@@ -2340,88 +2456,74 @@ footer {
     </div>
   </section>
 
-  <!-- Pricing -->
+  <!-- The Odyssey HIPAA Program -->
   <section class="hipaa-pricing">
     <div class="container">
       <div style="text-align:center;">
-        <span class="eyebrow">Pricing</span>
-        <h2>Simple, Transparent Pricing</h2>
-        <p style="max-width:500px;margin:0 auto;color:var(--gray-500);">HIPAA training is a one-time course — pay once, certify your whole team. Need deeper compliance work? We've got that too.</p>
+        <span class="eyebrow">The Odyssey HIPAA Program</span>
+        <h2>HIPAA Isn't Optional.<br>It's Federal Law.</h2>
+        <p style="max-width:640px;margin:0 auto;color:var(--gray-500);">We don't sell HIPAA training and compliance as separate upsells. If you touch patient data, you need both &mdash; trained staff <em>and</em> documented safeguards. One program, scoped to your practice on a free consultation.</p>
       </div>
 
-      <!-- ===== TRAINING PANEL ===== -->
+      <!-- ===== UNIFIED HIPAA PROGRAM ===== -->
       <div class="pricing-panel-training">
         <div class="pricing-grid">
 
-          <!-- Solo -->
+          <!-- Solo / Small -->
           <div class="pricing-card">
             <div class="ptier">Solo / Small</div>
             <div class="pname">Up to 10 Staff</div>
             <div class="pfor">Solo practices, small dental &amp; medical offices</div>
-            <div class="pprice">
-              <span class="pprice-amount">$299</span>
-            </div>
-            <div class="pprice-sub">One-time · entire office certified</div>
-            <div class="pprice-recert">↻ Annual recertification $149</div>
             <div class="pdivider"></div>
             <ul class="pfeats">
-              <li>Video training modules</li>
-              <li>Quiz + certificates for all staff</li>
-              <li>Completion tracking</li>
+              <li>Staff training + certificates for every employee</li>
+              <li>HIPAA Risk Assessment &amp; gap analysis</li>
+              <li>Custom policies &amp; procedures</li>
               <li>BAA &amp; NPP templates</li>
+              <li>Breach Response Plan</li>
+              <li>Audit-ready documentation package</li>
               <li>Email support</li>
             </ul>
-            <a class="btn btn-outline-dark" onclick="showPage('contact')" style="width:100%;justify-content:center;">Get Started</a>
+            <a class="btn btn-outline-dark" onclick="showPage('contact')" style="width:100%;justify-content:center;">Book Consultation</a>
           </div>
 
-          <!-- Group -->
+          <!-- Group Practice -->
           <div class="pricing-card featured">
             <span class="feat-badge">Most Popular</span>
             <div class="ptier">Group Practice</div>
             <div class="pname">Up to 25 Staff</div>
             <div class="pfor">Group practices, multi-provider clinics</div>
-            <div class="pprice">
-              <span class="pprice-amount">$499</span>
-            </div>
-            <div class="pprice-sub">One-time · entire office certified</div>
-            <div class="pprice-recert">↻ Annual recertification $249</div>
             <div class="pdivider"></div>
             <ul class="pfeats">
-              <li>Video training modules</li>
-              <li>Quiz + certificates for all staff</li>
+              <li>Everything in Solo / Small</li>
+              <li>IT Security Assessment</li>
+              <li>EHR Security Review</li>
+              <li>Business Associate Audit</li>
               <li>Completion tracking dashboard</li>
-              <li>Custom policy documentation</li>
-              <li>BAA &amp; NPP templates</li>
               <li>Priority phone &amp; email support</li>
             </ul>
-            <a class="btn btn-primary" onclick="showPage('contact')" style="width:100%;justify-content:center;">Start Training</a>
+            <a class="btn btn-primary" onclick="showPage('contact')" style="width:100%;justify-content:center;">Book Consultation</a>
           </div>
 
-          <!-- Large -->
+          <!-- Large Office -->
           <div class="pricing-card">
             <div class="ptier">Large Office</div>
             <div class="pname">Up to 50 Staff</div>
             <div class="pfor">Larger practices, specialty groups, DSOs</div>
-            <div class="pprice">
-              <span class="pprice-amount">$799</span>
-            </div>
-            <div class="pprice-sub">One-time · entire office certified</div>
-            <div class="pprice-recert">↻ Annual recertification $399</div>
             <div class="pdivider"></div>
             <ul class="pfeats">
-              <li>Video training modules</li>
-              <li>Quiz + certificates for all staff</li>
-              <li>Completion tracking dashboard</li>
-              <li>Custom policy documentation</li>
-              <li>BAA &amp; NPP templates</li>
-              <li>On-site training option available</li>
-              <li>Priority phone &amp; email support</li>
+              <li>Everything in Group Practice</li>
+              <li>On-site Physical Security Audit</li>
+              <li>Mock OCR Audit Preparation</li>
+              <li>On-site staff training included</li>
+              <li>Dedicated compliance contact</li>
             </ul>
-            <a class="btn btn-outline-dark" onclick="showPage('contact')" style="width:100%;justify-content:center;">Get Started</a>
+            <a class="btn btn-outline-dark" onclick="showPage('contact')" style="width:100%;justify-content:center;">Book Consultation</a>
           </div>
 
         </div>
-        <p style="text-align:center;color:var(--gray-500);font-size:.85rem;margin-top:24px;">Over 50 staff? <a onclick="showPage('contact')" style="color:var(--orange);cursor:pointer;font-weight:600;">Contact us</a> for a custom per-seat quote &mdash; volume discounts available.</p>
+        <p style="text-align:center;color:var(--gray-500);font-size:.85rem;margin-top:24px;">Over 50 staff or a DSO? <a onclick="showPage('contact')" style="color:var(--orange);cursor:pointer;font-weight:600;">Contact us</a> for a custom engagement.</p>
+        <p style="text-align:center;color:var(--gray-700);font-size:.95rem;margin-top:20px;max-width:640px;margin-left:auto;margin-right:auto;font-style:italic;">We won't service a practice that isn't taking patient data seriously. If you're not ready to do HIPAA right, we're not the right partner &mdash; and we'll tell you that on the free consultation.</p>
       </div>
 
     </div>
@@ -2461,6 +2563,40 @@ footer {
     </div>
   </div>
 
+  <!-- ===== Promise Bar ===== -->
+  <section class="it-promise-bar">
+    <div class="container">
+      <div class="it-promise">
+        <div class="it-promise-icon">⚡</div>
+        <div>
+          <div class="it-promise-title">15-Minute Response Guarantee</div>
+          <div class="it-promise-sub">A real Texas-based tech answers, not a ticket queue.</div>
+        </div>
+      </div>
+      <div class="it-promise">
+        <div class="it-promise-icon">🎓</div>
+        <div>
+          <div class="it-promise-title">Expert-Level Support</div>
+          <div class="it-promise-sub">Every ticket handled by a Systems Administrator or higher.</div>
+        </div>
+      </div>
+      <div class="it-promise">
+        <div class="it-promise-icon">🔍</div>
+        <div>
+          <div class="it-promise-title">Human-Verified Security</div>
+          <div class="it-promise-sub">Backups &amp; safeguards checked manually — not just by automation.</div>
+        </div>
+      </div>
+      <div class="it-promise">
+        <div class="it-promise-icon">🛰️</div>
+        <div>
+          <div class="it-promise-title">24/7 Proactive Monitoring</div>
+          <div class="it-promise-sub">We fix issues before they turn into downtime.</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
   <div class="pillar">
     <div class="container">
       <div class="pillar-inner">
@@ -2480,7 +2616,7 @@ footer {
             <li><span class="fi">✓</span>Microsoft 365 &amp; cloud infrastructure management</li>
             <li><span class="fi">✓</span>24/7 monitoring with real Texas-based support</li>
           </ul>
-          <a class="btn btn-primary" onclick="showPage('contact')">Get Free IT Assessment →</a>
+          <a class="btn btn-primary" onclick="showPage('contact')">Schedule Free 15-Minute Discovery Call →</a>
         </div>
         <div class="pillar-right">
           <div class="pillar-cards">
@@ -2496,11 +2632,76 @@ footer {
     </div>
   </div>
 
+  <!-- ===== Why Choose Odyssey ===== -->
+  <section class="it-why">
+    <div class="container">
+      <div class="it-why-header">
+        <span class="eyebrow">The Odyssey Difference</span>
+        <h2>IT Support That Actually Supports You</h2>
+        <p>The same promises the biggest Texas IT shops make — delivered by a team that treats your business like your neighbor's, because it is.</p>
+      </div>
+      <div class="it-why-grid">
+        <div class="it-why-card">
+          <div class="it-why-icon">⚡</div>
+          <div class="it-why-title">15-Minute Response Guarantee</div>
+          <div class="it-why-desc">When something breaks, you hear back from a real tech in 15 minutes or less — not a "we've received your ticket" auto-reply.</div>
+        </div>
+        <div class="it-why-card">
+          <div class="it-why-icon">🎓</div>
+          <div class="it-why-title">Expert-Level Support, Every Time</div>
+          <div class="it-why-desc">Every request is handled by a Systems Administrator or senior engineer. No tier-1 runaround, no script readers, no "let me escalate that."</div>
+        </div>
+        <div class="it-why-card">
+          <div class="it-why-icon">🔍</div>
+          <div class="it-why-title">Human-Verified Backups &amp; Security</div>
+          <div class="it-why-desc">Automation tells you a backup finished. A human confirms it actually restores. We verify the work — because OCR and ransomware don't care about green checkmarks.</div>
+        </div>
+        <div class="it-why-card">
+          <div class="it-why-icon">🤝</div>
+          <div class="it-why-title">White-Glove Onboarding &amp; Offboarding</div>
+          <div class="it-why-desc">New hire? Fully provisioned on day one. Departure? Access revoked, data secured, devices returned. We handle every step so nothing slips through.</div>
+        </div>
+        <div class="it-why-card">
+          <div class="it-why-icon">♻️</div>
+          <div class="it-why-title">IT Lifecycle Management</div>
+          <div class="it-why-desc">We track every workstation, switch, and firewall — and replace them before they fail. No surprise outages from aging hardware.</div>
+        </div>
+        <div class="it-why-card">
+          <div class="it-why-icon">🛡️</div>
+          <div class="it-why-title">Compliance-Ready by Design</div>
+          <div class="it-why-desc">Our stack is built to satisfy HIPAA, PCI, and FTC Safeguards Rule requirements out of the box — not bolted on after an audit letter arrives.</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== Industries Served ===== -->
+  <section class="it-industries">
+    <div class="container">
+      <div class="it-industries-header">
+        <h3>Industries We Know Cold</h3>
+        <p>Decades of combined experience across the Texas industries that can't afford to guess on IT.</p>
+      </div>
+      <div class="it-industries-pills">
+        <span class="it-industry-pill">Dental</span>
+        <span class="it-industry-pill">Medical &amp; Mental Health</span>
+        <span class="it-industry-pill">Law Firms</span>
+        <span class="it-industry-pill">Financial Services</span>
+        <span class="it-industry-pill">Architecture</span>
+        <span class="it-industry-pill">Construction</span>
+        <span class="it-industry-pill">Engineering</span>
+        <span class="it-industry-pill">Manufacturing</span>
+        <span class="it-industry-pill">Logistics</span>
+        <span class="it-industry-pill">Nonprofits</span>
+      </div>
+    </div>
+  </section>
+
   <section class="final-cta">
     <div class="container">
       <h2>Ready to Stop Fighting<br>Your Own Technology?</h2>
-      <p>Book a free 30-minute IT assessment. We'll review your current setup, identify vulnerabilities, and recommend the right managed IT plan — no pressure, no obligation.</p>
-      <a class="btn btn-white btn-lg" onclick="showPage('contact')">Book Free IT Assessment →</a>
+      <p>Schedule a free 15-minute discovery call. We'll review your current setup, identify vulnerabilities, and recommend the right managed IT plan — no pressure, no obligation.</p>
+      <a class="btn btn-white btn-lg" onclick="showPage('contact')">Schedule Free 15-Minute Discovery Call →</a>
     </div>
   </section>
 
@@ -2643,55 +2844,75 @@ footer {
   <section class="hipaa-pricing">
     <div class="container">
       <div style="text-align:center;">
-        <span class="eyebrow">Compliance Services</span>
-        <h2>What We Offer</h2>
-        <p style="max-width:500px;margin:0 auto;color:var(--gray-500);">Every practice is different. We scope each engagement to your organization's size, risk level, and existing compliance posture. First consultation is always free.</p>
+        <span class="eyebrow">The Odyssey HIPAA Program</span>
+        <h2>HIPAA Isn't Optional.<br>It's Federal Law.</h2>
+        <p style="max-width:640px;margin:0 auto;color:var(--gray-500);">We don't split HIPAA into training and compliance upsells. If you touch patient data, you need both &mdash; trained staff <em>and</em> documented safeguards. One program, scoped to your practice on a free consultation.</p>
       </div>
-      <div class="compliance-list" style="margin-top:40px;">
-        <div class="compliance-item">
-          <div class="ci-name">HIPAA Risk Assessment</div>
-          <div class="ci-desc">Full evaluation of administrative, physical &amp; technical safeguards with a written gap analysis and remediation plan.</div>
-          <div class="ci-price">Starting at <strong>$1,500</strong></div>
+
+      <!-- ===== UNIFIED HIPAA PROGRAM ===== -->
+      <div class="pricing-panel-training">
+        <div class="pricing-grid">
+
+          <!-- Solo / Small -->
+          <div class="pricing-card">
+            <div class="ptier">Solo / Small</div>
+            <div class="pname">Up to 10 Staff</div>
+            <div class="pfor">Solo practices, small dental &amp; medical offices</div>
+            <div class="pdivider"></div>
+            <ul class="pfeats">
+              <li>Staff training + certificates for every employee</li>
+              <li>HIPAA Risk Assessment &amp; gap analysis</li>
+              <li>Custom policies &amp; procedures</li>
+              <li>BAA &amp; NPP templates</li>
+              <li>Breach Response Plan</li>
+              <li>Audit-ready documentation package</li>
+              <li>Email support</li>
+            </ul>
+            <a class="btn btn-outline-dark" onclick="showPage('contact')" style="width:100%;justify-content:center;">Book Consultation</a>
+          </div>
+
+          <!-- Group Practice -->
+          <div class="pricing-card featured">
+            <span class="feat-badge">Most Popular</span>
+            <div class="ptier">Group Practice</div>
+            <div class="pname">Up to 25 Staff</div>
+            <div class="pfor">Group practices, multi-provider clinics</div>
+            <div class="pdivider"></div>
+            <ul class="pfeats">
+              <li>Everything in Solo / Small</li>
+              <li>IT Security Assessment</li>
+              <li>EHR Security Review</li>
+              <li>Business Associate Audit</li>
+              <li>Completion tracking dashboard</li>
+              <li>Priority phone &amp; email support</li>
+            </ul>
+            <a class="btn btn-primary" onclick="showPage('contact')" style="width:100%;justify-content:center;">Book Consultation</a>
+          </div>
+
+          <!-- Large Office -->
+          <div class="pricing-card">
+            <div class="ptier">Large Office</div>
+            <div class="pname">Up to 50 Staff</div>
+            <div class="pfor">Larger practices, specialty groups, DSOs</div>
+            <div class="pdivider"></div>
+            <ul class="pfeats">
+              <li>Everything in Group Practice</li>
+              <li>On-site Physical Security Audit</li>
+              <li>Mock OCR Audit Preparation</li>
+              <li>On-site staff training included</li>
+              <li>Dedicated compliance contact</li>
+            </ul>
+            <a class="btn btn-outline-dark" onclick="showPage('contact')" style="width:100%;justify-content:center;">Book Consultation</a>
+          </div>
+
         </div>
-        <div class="compliance-item">
-          <div class="ci-name">Policy &amp; Procedure Development</div>
-          <div class="ci-desc">Custom HIPAA policies written for your specific practice — not generic templates.</div>
-          <div class="ci-price">Starting at <strong>$1,500</strong></div>
-        </div>
-        <div class="compliance-item">
-          <div class="ci-name">IT Security Assessment</div>
-          <div class="ci-desc">Network vulnerability scan, firewall review, endpoint security evaluation, and written report.</div>
-          <div class="ci-price">Starting at <strong>$1,200</strong></div>
-        </div>
-        <div class="compliance-item">
-          <div class="ci-name">Business Associate Audit</div>
-          <div class="ci-desc">Review all vendor relationships, confirm BAA status, and close compliance gaps with third parties.</div>
-          <div class="ci-price">Starting at <strong>$800</strong></div>
-        </div>
-        <div class="compliance-item">
-          <div class="ci-name">Breach Response Planning</div>
-          <div class="ci-desc">Incident response plan, OCR notification procedures, and breach response templates.</div>
-          <div class="ci-price">Starting at <strong>$1,000</strong></div>
-        </div>
-        <div class="compliance-item">
-          <div class="ci-name">Physical Security Audit</div>
-          <div class="ci-desc">On-site review of access controls, facility security, workstation placement, and paper PHI handling.</div>
-          <div class="ci-price">Starting at <strong>$750</strong></div>
-        </div>
-        <div class="compliance-item">
-          <div class="ci-name">EHR Security Review</div>
-          <div class="ci-desc">Audit user access levels, audit logs, and security configuration of your EHR or practice management system.</div>
-          <div class="ci-price">Starting at <strong>$800</strong></div>
-        </div>
-        <div class="compliance-item">
-          <div class="ci-name">HIPAA Audit Preparation</div>
-          <div class="ci-desc">Mock OCR audit, documentation review, and readiness coaching so you're never caught off guard.</div>
-          <div class="ci-price">Starting at <strong>$1,500</strong></div>
-        </div>
+        <p style="text-align:center;color:var(--gray-500);font-size:.85rem;margin-top:24px;">Over 50 staff or a DSO? <a onclick="showPage('contact')" style="color:var(--orange);cursor:pointer;font-weight:600;">Contact us</a> for a custom engagement.</p>
+        <p style="text-align:center;color:var(--gray-700);font-size:.95rem;margin-top:20px;max-width:640px;margin-left:auto;margin-right:auto;font-style:italic;">We won't service a practice that isn't taking patient data seriously. If you're not ready to do HIPAA right, we're not the right partner &mdash; and we'll tell you that on the free consultation.</p>
       </div>
+
       <div class="compliance-cta-box">
-        <h3>Not Sure Where to Start?</h3>
-        <p>Most clients start with HIPAA Training to get their team certified, then we assess what compliance gaps exist and build a plan from there. First consultation is free.</p>
+        <h3>Book Your Free Consultation</h3>
+        <p>Every practice is different. We'll review your size, risk level, and existing compliance posture, then scope your engagement. No pricing games &mdash; just what it actually takes to get you compliant.</p>
         <a class="btn btn-primary btn-lg" onclick="showPage('contact')">Book a Free Consultation →</a>
       </div>
     </div>
