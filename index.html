@@ -2004,6 +2004,83 @@ footer {
   background: var(--gray-200);
 }
 
+/* ===================== CONTACT — Mini Radar Map ===================== */
+.map-mini {
+  padding: 22px 20px 20px;
+  background: radial-gradient(circle at 50% 40%, #16162a 0%, #0b0b14 100%);
+  border: 1px solid rgba(249,115,22,.28);
+  border-radius: var(--radius-lg);
+  box-shadow: 0 6px 24px rgba(0,0,0,.35);
+  text-align: center;
+  overflow: hidden;
+  position: relative;
+}
+.map-mini-visual {
+  position: relative;
+  width: 200px;
+  height: 200px;
+  margin: 6px auto 14px;
+}
+.map-mini-visual .sa-hub {
+  width: 40px;
+  height: 40px;
+  font-size: .68rem;
+  box-shadow:
+    0 0 0 3px rgba(249,115,22,.25),
+    0 0 0 8px rgba(249,115,22,.1),
+    0 0 26px rgba(249,115,22,.7);
+  animation: none;
+}
+.map-mini-visual .sa-ping {
+  width: 36px;
+  height: 36px;
+  margin: -18px 0 0 -18px;
+}
+.map-mini-visual .sa-compass { font-size: .5rem; }
+.map-mini-visual .sa-compass.n { top: -2px; }
+.map-mini-visual .sa-compass.s { bottom: -2px; }
+.map-mini-visual .sa-compass.e { right: -12px; }
+.map-mini-visual .sa-compass.w { left: -12px; }
+.map-mini-visual .sa-marker {
+  width: 6px;
+  height: 6px;
+  box-shadow: 0 0 0 2px rgba(249,115,22,.28), 0 0 8px var(--orange);
+}
+.map-mini-title {
+  font-family: 'Orbitron', sans-serif;
+  font-size: .78rem;
+  font-weight: 800;
+  letter-spacing: .14em;
+  color: var(--orange);
+  text-transform: uppercase;
+}
+.map-mini-sub {
+  font-size: .72rem;
+  color: rgba(255,255,255,.7);
+  margin-top: 6px;
+  line-height: 1.45;
+  letter-spacing: .02em;
+}
+.map-mini-cities {
+  margin-top: 10px;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+  justify-content: center;
+}
+.map-mini-cities span {
+  font-family: 'Orbitron', sans-serif;
+  font-size: .58rem;
+  font-weight: 700;
+  letter-spacing: .1em;
+  color: rgba(255,255,255,.85);
+  background: rgba(249,115,22,.12);
+  border: 1px solid rgba(249,115,22,.35);
+  padding: 3px 8px;
+  border-radius: 999px;
+  text-transform: uppercase;
+}
+
 /* ===================== IT PAGE — Industries Strip ===================== */
 .it-industries {
   padding: 56px 0;
@@ -3544,9 +3621,38 @@ footer {
             <div class="cinfo-item"><div class="ci-icon">📍</div><div><div class="ci-label">Location</div><div class="ci-value">Houston, Texas</div></div></div>
             <div class="cinfo-item"><div class="ci-icon">🕐</div><div><div class="ci-label">Business Hours</div><div class="ci-value">Mon–Fri: 8AM–6PM CT<br>IT Support: 24/7</div></div></div>
           </div>
-          <div class="map-ph">
-            <span>🗺️</span>
-            <span>Houston, Texas · Serving All of TX</span>
+          <div class="map-mini">
+            <div class="map-mini-visual">
+              <div class="sa-radar"></div>
+              <div class="sa-crosshair"></div>
+              <div class="sa-sweep"></div>
+              <div class="sa-ping"></div>
+              <div class="sa-ping delay-1"></div>
+              <div class="sa-ping delay-2"></div>
+              <span class="sa-compass n">N</span>
+              <span class="sa-compass e">E</span>
+              <span class="sa-compass s">S</span>
+              <span class="sa-compass w">W</span>
+              <div class="sa-hub">HTX</div>
+              <div class="sa-marker" style="top:20%;left:50%;"></div>
+              <div class="sa-marker d1" style="top:32%;left:74%;"></div>
+              <div class="sa-marker d2" style="top:50%;left:86%;"></div>
+              <div class="sa-marker d3" style="top:74%;left:66%;"></div>
+              <div class="sa-marker d4" style="top:68%;left:28%;"></div>
+              <div class="sa-marker d5" style="top:50%;left:10%;"></div>
+              <div class="sa-marker d6" style="top:26%;left:20%;"></div>
+            </div>
+            <div class="map-mini-title">75-Mile Service Radius</div>
+            <div class="map-mini-sub">Houston HQ + surrounding metro</div>
+            <div class="map-mini-cities">
+              <span>Conroe</span>
+              <span>Kingwood</span>
+              <span>Baytown</span>
+              <span>Galveston</span>
+              <span>Sugar Land</span>
+              <span>Katy</span>
+              <span>Cypress</span>
+            </div>
           </div>
           <div class="dark-card">
             <h4>Response Guarantee</h4>
