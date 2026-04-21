@@ -919,6 +919,9 @@ p { color: var(--gray-500); line-height: 1.75; }
   box-shadow: var(--shadow);
   transition: var(--transition);
   position: relative;
+  display: flex;
+  flex-direction: column;
+  height: 100%;
 }
 .pricing-card:hover { transform: translateY(-4px); box-shadow: var(--shadow-xl); }
 .pricing-card.featured { border-color: var(--orange); transform: scale(1.04); }
@@ -947,7 +950,7 @@ p { color: var(--gray-500); line-height: 1.75; }
 .pprice-sub strong { color: var(--orange); }
 .pprice-recert { display: inline-flex; align-items: center; gap: 6px; background: #f0fdf4; border: 1px solid #bbf7d0; color: #15803d; font-size: .75rem; font-weight: 600; padding: 3px 10px; border-radius: 100px; margin-bottom: 20px; }
 .pdivider { height: 1px; background: var(--gray-100); margin-bottom: 24px; }
-.pfeats { list-style: none; display: flex; flex-direction: column; gap: 10px; margin-bottom: 32px; }
+.pfeats { list-style: none; display: flex; flex-direction: column; gap: 10px; margin-bottom: 32px; flex: 1 0 auto; }
 .pfeats li { display: flex; align-items: center; gap: 10px; font-size: .875rem; color: var(--gray-700); }
 .pfeats li::before { content: '✓'; color: var(--orange); font-weight: 800; flex-shrink: 0; }
 /* Pricing section tabs */
