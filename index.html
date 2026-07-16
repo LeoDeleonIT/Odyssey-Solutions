@@ -23,6 +23,22 @@
 <meta name="twitter:image" content="https://odysseysolutions.co/og-image.png">
 
 <meta name="theme-color" content="#F97316">
+<link rel="canonical" href="https://odysseysolutions.co/">
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "ProfessionalService",
+  "name": "Odyssey Solutions",
+  "url": "https://odysseysolutions.co/",
+  "logo": "https://odysseysolutions.co/og-image.png",
+  "image": "https://odysseysolutions.co/og-image.png",
+  "telephone": "+1-832-805-8467",
+  "email": "leo@odysseysolutions.co",
+  "areaServed": {"@type": "State", "name": "Texas"},
+  "serviceType": ["Managed IT Services", "HIPAA Compliance", "Web Development"]
+}
+</script>
 
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -227,6 +243,41 @@ p { color: var(--gray-500); line-height: 1.75; }
   color: var(--navy);
   background: var(--gray-50);
 }
+.nav-resources { position: relative; }
+.nav-resources summary {
+  list-style: none;
+  color: var(--gray-700);
+  font-size: .83rem;
+  font-weight: 500;
+  padding: 6px 12px;
+  border-radius: 6px;
+  cursor: pointer;
+}
+.nav-resources summary::-webkit-details-marker { display: none; }
+.nav-resources summary::after { content: '⌄'; margin-left: 6px; color: var(--orange); }
+.nav-resources summary:focus-visible { outline: 2px solid var(--orange); outline-offset: 4px; }
+.nav-resources[open] summary,
+.nav-resources summary:hover { color: var(--navy); background: var(--gray-50); }
+.nav-resources-menu {
+  position: absolute;
+  top: calc(100% + 18px);
+  left: 0;
+  width: 260px;
+  padding: 9px;
+  border: 1px solid var(--gray-100);
+  border-radius: 10px;
+  background: #fff;
+  box-shadow: var(--shadow-xl);
+}
+.nav-resources-menu::before { content: ''; position: absolute; top: -18px; left: 0; right: 0; height: 18px; }
+.nav-resources-menu a {
+  display: block;
+  padding: 10px 12px;
+  border-radius: 7px;
+  color: var(--gray-700);
+  font-size: .8rem;
+}
+.nav-resources-menu a:hover { color: var(--orange-dark); background: var(--orange-light); }
 .nav-cta { margin-left: 10px; }
 .hamburger {
   display: none;
@@ -2308,6 +2359,17 @@ footer {
       <li><a id="nav-it" onclick="showPage('it')">IT Services</a></li>
       <li><a id="nav-webdev" onclick="showPage('webdev')">Web Development</a></li>
       <li><a id="nav-hipaa-training" onclick="showPage('hipaa-training')">HIPAA Training</a></li>
+      <li>
+        <details class="nav-resources">
+          <summary aria-haspopup="true" aria-controls="main-resources-menu" aria-expanded="false">Resources</summary>
+          <div class="nav-resources-menu" id="main-resources-menu">
+            <a href="resources/">Blog</a>
+            <a href="resources/hipaa-compliance/">HIPAA Compliance</a>
+            <a href="resources/cybersecurity/">Cybersecurity</a>
+            <a href="resources/managed-it/">Managed IT</a>
+          </div>
+        </details>
+      </li>
       <li><a id="nav-about" onclick="showPage('about')">About</a></li>
       <li><a id="nav-contact" onclick="showPage('contact')">Contact</a></li>
     </ul>
@@ -2323,6 +2385,7 @@ footer {
   <a onclick="showPage('it');closeMobile()">🖥️ &nbsp;IT Services</a>
   <a onclick="showPage('webdev');closeMobile()">🌐 &nbsp;Web Development</a>
   <a onclick="showPage('hipaa-training');closeMobile()">🎓 &nbsp;HIPAA Training</a>
+  <a href="resources/">📚 &nbsp;Resources</a>
   <div style="height:1px;background:rgba(255,255,255,.1);margin:12px 0;"></div>
   <a onclick="showPage('about');closeMobile()">About</a>
   <a onclick="showPage('contact');closeMobile()">Contact</a>
@@ -2713,11 +2776,43 @@ footer {
     </div>
   </section>
 
+  <!-- INSIGHTS PREVIEW -->
+  <section class="services-preview" aria-labelledby="insights-heading">
+    <div class="container">
+      <div class="section-header">
+        <span class="eyebrow">Odyssey Insights</span>
+        <h2 id="insights-heading">Practical IT &amp; HIPAA Guidance<br>for Texas Practices</h2>
+        <p>Clear, source-backed guidance your team can use to reduce risk, strengthen operations, and stay ready for what comes next.</p>
+      </div>
+      <div class="services-grid">
+        <article class="service-card reveal">
+          <div class="svc-icon">🛡️</div>
+          <h3>HIPAA Risk Analysis for Texas Dental Practices</h3>
+          <p>What a defensible assessment covers, what evidence to retain, and how to turn findings into a real remediation plan.</p>
+          <a class="learn-more" href="resources/hipaa-risk-analysis-texas-dental-practices.html">Read the Guide →</a>
+        </article>
+        <article class="service-card reveal">
+          <div class="svc-icon">🔐</div>
+          <h3>Ransomware Readiness for Healthcare</h3>
+          <p>Ten practical controls covering identity, patching, segmentation, isolated backups, recovery testing, and incident response.</p>
+          <a class="learn-more" href="resources/ransomware-readiness-healthcare.html">Build Your Checklist →</a>
+        </article>
+        <article class="service-card reveal">
+          <div class="svc-icon">👥</div>
+          <h3>Secure Employee Onboarding &amp; Offboarding</h3>
+          <p>A repeatable workflow for role-based access, managed devices, training, job changes, and timely access termination.</p>
+          <a class="learn-more" href="resources/secure-healthcare-employee-onboarding-offboarding.html">Use the Workflow →</a>
+        </article>
+      </div>
+      <div style="text-align:center;margin-top:36px;"><a class="btn btn-outline-dark" href="resources/">View All Insights →</a></div>
+    </div>
+  </section>
+
   <!-- FINAL CTA -->
   <section class="final-cta">
     <div class="container">
       <h2>Ready to Protect &amp; Grow<br>Your Business?</h2>
-      <p>Join 200+ Texas businesses who trust Odyssey Solutions for IT, compliance, and digital success.</p>
+      <p>Join Texas businesses that trust Odyssey Solutions for secure IT, practical compliance, and digital growth.</p>
       <a class="btn btn-white btn-lg" onclick="showPage('contact')">Start Today — It's Free →</a>
     </div>
   </section>
@@ -2743,6 +2838,7 @@ footer {
           <ul>
             <li><a onclick="showPage('about')">About Us</a></li>
             <li><a onclick="showPage('about')">Our Mission</a></li>
+            <li><a href="resources/">Resources</a></li>
             <li><a onclick="showPage('contact')">Contact</a></li>
           </ul>
         </div>
@@ -4224,6 +4320,26 @@ async function handleForm(e) {
     err.style.display = 'block';
   }
 }
+
+// ---- Accessible Resources Menu ----
+document.querySelectorAll('.nav-resources').forEach(function(menu) {
+  var trigger = menu.querySelector('summary');
+  menu.addEventListener('toggle', function() {
+    trigger.setAttribute('aria-expanded', String(menu.open));
+  });
+  trigger.addEventListener('keydown', function(event) {
+    if (event.key === 'Escape' && menu.open) {
+      menu.open = false;
+      trigger.focus();
+    }
+  });
+});
+
+document.addEventListener('click', function(event) {
+  document.querySelectorAll('.nav-resources[open]').forEach(function(menu) {
+    if (!menu.contains(event.target)) menu.open = false;
+  });
+});
 </script>
 </body>
 </html>
