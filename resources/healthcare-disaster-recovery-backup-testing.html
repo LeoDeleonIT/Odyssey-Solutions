@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Healthcare Disaster Recovery: Backup and Restore Checklist</title>
+  <meta name="description" content="Build a healthcare disaster recovery plan with complete backups, recovery priorities, downtime procedures, restore testing, and documented ownership.">
+  <link rel="canonical" href="https://odysseysolutions.co/resources/healthcare-disaster-recovery-backup-testing.html">
+  <meta property="og:type" content="article">
+  <meta property="og:title" content="Healthcare Disaster Recovery: Backup and Restore Checklist">
+  <meta property="og:description" content="A practical plan for recoverable backups, tested restoration, emergency operations, and accountable healthcare IT recovery.">
+  <meta property="og:url" content="https://odysseysolutions.co/resources/healthcare-disaster-recovery-backup-testing.html">
+  <meta property="og:image" content="https://odysseysolutions.co/resources/images/healthcare-disaster-recovery.webp">
+  <meta property="article:published_time" content="2026-07-17">
+  <meta property="article:section" content="Managed IT">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="theme-color" content="#F97316">
+  <link rel="icon" href="/favicon.svg" type="image/svg+xml">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@600;700;800&amp;family=Exo+2:wght@400;500;600;700&amp;display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="blog.css">
+  <script type="application/ld+json">
+  {"@context":"https://schema.org","@type":"BlogPosting","headline":"Healthcare Disaster Recovery: Backup and Restore Checklist","description":"A practical healthcare disaster-recovery guide covering system priorities, backup scope, protected recovery copies, restore testing, downtime operations, and documentation.","datePublished":"2026-07-17","dateModified":"2026-07-17","mainEntityOfPage":"https://odysseysolutions.co/resources/healthcare-disaster-recovery-backup-testing.html","author":{"@type":"Organization","name":"Odyssey Solutions"},"publisher":{"@type":"Organization","name":"Odyssey Solutions","logo":{"@type":"ImageObject","url":"https://odysseysolutions.co/og-image.png"}},"image":"https://odysseysolutions.co/resources/images/healthcare-disaster-recovery.webp"}
+  </script>
+  <script type="application/ld+json">
+  {"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Home","item":"https://odysseysolutions.co/"},{"@type":"ListItem","position":2,"name":"Resources","item":"https://odysseysolutions.co/resources/"},{"@type":"ListItem","position":3,"name":"Managed IT","item":"https://odysseysolutions.co/resources/managed-it/"},{"@type":"ListItem","position":4,"name":"Healthcare Disaster Recovery: Backup and Restore Checklist","item":"https://odysseysolutions.co/resources/healthcare-disaster-recovery-backup-testing.html"}]}
+  </script>
+</head>
+<body>
+  <header class="site-header"><div class="container nav"><a class="brand" href="../">Odyss<span>e</span>y Solutions</a><nav class="nav-links" aria-label="Primary navigation"><a href="../">Home</a><details class="resources-menu"><summary aria-haspopup="true" aria-controls="resources-panel" aria-expanded="false">Resources</summary><div class="resources-panel" id="resources-panel"><a href="./">Blog</a><a href="hipaa-compliance/">HIPAA Compliance</a><a href="cybersecurity/">Cybersecurity</a><a href="managed-it/">Managed IT</a></div></details><a class="button" href="mailto:leo@odysseysolutions.co?subject=Healthcare%20Disaster%20Recovery%20Consultation">Book Consultation</a></nav></div></header>
+
+  <main>
+    <section class="article-hero"><div class="container hero-inner"><span class="eyebrow">Managed IT &middot; Healthcare Resilience</span><h1>Healthcare Disaster Recovery: Backup and Restore Checklist</h1><p class="hero-deck">A successful backup job is not the same as a recoverable healthcare operation. Recovery requires complete data, protected copies, realistic priorities, tested procedures, and people who know how to keep care moving while systems return.</p><div class="meta"><span>Published July 17, 2026</span><span>9-minute read</span><span>Aligned with HHS and NIST contingency guidance</span><span class="byline"><strong>Written by the Odyssey Solutions Managed IT Team</strong> &middot; Healthcare backup, continuity, and recovery guidance for Texas practices.</span></div></div></section>
+
+    <img class="article-cover" src="images/healthcare-disaster-recovery.webp" width="1199" height="675" alt="Healthcare operations leader and managed IT engineer validating backup and disaster recovery systems" loading="lazy" decoding="async">
+
+    <div class="container article-wrap">
+      <article class="article">
+        <p>The HIPAA Security Rule's contingency standard requires regulated entities to prepare for emergencies or other events that damage systems containing ePHI. HHS identifies data backup, disaster recovery, and emergency-mode operation plans as required implementation specifications. Testing and revision procedures, plus applications and data criticality analysis, are addressable based on risk.</p>
+        <p>That framework is broader than purchasing backup software. It asks whether the organization can restore needed information, continue critical protection of ePHI, and make sound operational decisions during ransomware, equipment failure, vendor outage, fire, flood, or human error.</p>
+
+        <div class="callout"><strong>Restore proof matters:</strong> HHS advises reviewing backup logs and periodically conducting test restorations to verify data integrity and build confidence in recovery capability.</div>
+
+        <h2 id="criticality">1. Rank systems by operational criticality</h2>
+        <p>Inventory systems and data before choosing recovery order. Include EHR or practice-management platforms, imaging, e-prescribing, scheduling, claims, email, file storage, identity services, network infrastructure, cloud applications, connected devices, and local workstations that store essential information.</p>
+        <p>For each dependency, document:</p>
+        <ul>
+          <li>The business and patient-care process it supports.</li>
+          <li>The data it creates, receives, maintains, or transmits.</li>
+          <li>The longest tolerable outage and acceptable data-loss window.</li>
+          <li>Upstream identity, network, vendor, and hardware dependencies.</li>
+          <li>The person authorized to set recovery priority during an event.</li>
+        </ul>
+
+        <h2 id="objectives">2. Define recovery objectives in business language</h2>
+        <p>A recovery time objective describes the target time to restore a service. A recovery point objective describes how much recent data the organization can tolerate losing. These targets should come from patient-care and operational needs, not from a vendor's default settings.</p>
+        <p>If scheduling must return within four hours but the identity platform it depends on has no recovery procedure, the target is not credible. Map the full service chain and reconcile conflicts between expectations and actual capability.</p>
+
+        <h2 id="scope">3. Back up the complete recovery scope</h2>
+        <p>Backups should cover more than obvious database files. Depending on the environment, recovery may require system configuration, encryption keys, application installers, cloud exports, identity settings, device configurations, network diagrams, vendor contacts, licenses, and written procedures.</p>
+        <p>Document frequency, retention, location, encryption, key ownership, monitoring, and disposal. Confirm whether each cloud provider backs up data for your recovery needs or only maintains its own service availability.</p>
+
+        <h2 id="separation">4. Keep recovery copies outside the incident path</h2>
+        <p>HHS warns that threat actors target backup systems and backup data to prevent recovery. Maintain recovery copies with separation from ordinary production credentials and administration. Use access controls, MFA, restricted deletion, independent alerting, and offline or logically isolated copies where appropriate to the risk.</p>
+        <p>Protect encryption keys and recovery credentials separately from the data they unlock. A backup that an attacker can erase with the same compromised account is not a strong final recovery layer.</p>
+
+        <aside class="inline-cta" aria-label="Healthcare disaster recovery consultation"><h2>Know what can actually be restored</h2><p>Odyssey Solutions can map critical systems, review backup coverage, establish recovery priorities, and run documented restore tests around real healthcare workflows.</p><a class="button" href="mailto:leo@odysseysolutions.co?subject=Healthcare%20Disaster%20Recovery%20Consultation">Book Consultation</a></aside>
+
+        <h2 id="monitoring">5. Monitor backup health every day</h2>
+        <p>Assign ownership for failed jobs, missed systems, storage limits, expired credentials, agent failures, and unusual deletion. Alerts need a responder, an escalation time, and a record of resolution. A green dashboard is useful only when its scope is current and someone investigates exceptions.</p>
+
+        <h2 id="testing">6. Test restoration, not just backup completion</h2>
+        <p>Use a documented test schedule based on criticality and change. Restore representative files, application data, servers, and cloud information into a safe environment. Validate that data opens correctly, permissions behave as expected, applications start, integrations function, and the result meets the recovery objectives.</p>
+        <p>Record the test date, selected data, person performing the test, elapsed time, errors, security controls, outcome, and corrective actions. Include business owners so technical restoration is measured against an actual clinical or operational process.</p>
+
+        <h2 id="downtime">7. Prepare emergency-mode operations</h2>
+        <p>Define how the organization protects ePHI and supports critical work while systems are unavailable. Downtime procedures may cover patient identification, documentation, prescription workflows, referrals, appointment changes, urgent communications, access to essential contacts, and later reconciliation into the restored system.</p>
+        <p>Store current procedures where staff can reach them when normal systems, email, or the building itself are unavailable.</p>
+
+        <h2 id="vendors">8. Document vendor recovery responsibilities</h2>
+        <p>Identify who declares an incident, contacts each vendor, authorizes restoration, supplies replacement equipment, validates data, and communicates status. Review contracts and business associate agreements for backup, incident reporting, recovery support, data export, service termination, and access to recovery evidence.</p>
+
+        <h2 id="exercise">9. Exercise the complete plan</h2>
+        <p>Run a tabletop scenario that removes a realistic combination of systems, people, and vendors. Ask how the team detects the event, protects patients, switches to downtime work, obtains clean equipment, restores dependencies in order, verifies information, and returns to normal operations.</p>
+        <p>After the exercise, update procedures, contact lists, recovery priorities, technical controls, and the risk analysis. A plan that does not change after testing probably was not tested deeply enough.</p>
+
+        <h2 id="checklist">Backup and recovery checklist</h2>
+        <ul class="checklist">
+          <li>All critical systems, cloud data, configurations, and dependencies are inventoried.</li>
+          <li>Recovery time and data-loss targets reflect business and patient-care needs.</li>
+          <li>Recovery copies are protected from ordinary production compromise.</li>
+          <li>Backup failures have named responders and escalation times.</li>
+          <li>Restore tests verify usable data and working business processes.</li>
+          <li>Emergency-mode procedures are available outside normal systems.</li>
+          <li>Vendor responsibilities and contacts are current.</li>
+          <li>Exercises produce documented corrective actions and plan revisions.</li>
+        </ul>
+
+        <div class="source-box"><h2>Authoritative resources</h2><ul><li><a href="https://www.hhs.gov/hipaa/for-professionals/security/guidance/cybersecurity/ransomware-fact-sheet/index.html">HHS: Ransomware and HIPAA</a></li><li><a href="https://www.hhs.gov/hipaa/for-professionals/security/laws-regulations/index.html">HHS: Summary of the HIPAA Security Rule</a></li><li><a href="https://www.hhs.gov/hipaa/for-professionals/compliance-enforcement/audit/protocol/index.html">HHS OCR: HIPAA Audit Protocol</a></li><li><a href="https://csrc.nist.gov/pubs/sp/800/34/r1/upd1/final">NIST SP 800-34 Rev. 1: Contingency Planning Guide</a></li></ul><p class="disclaimer">This article is educational and does not constitute legal advice or guarantee recovery or compliance. Plans and technical controls should be tailored through risk analysis and validated for your environment.</p></div>
+
+        <section class="related-posts" aria-labelledby="related-heading"><h2 id="related-heading">Related resources</h2><div class="post-grid">
+          <article class="post-card"><a class="post-image" href="ransomware-readiness-healthcare.html"><img src="images/healthcare-ransomware-readiness.webp" width="1199" height="675" alt="Healthcare security team monitoring ransomware readiness controls" loading="lazy" decoding="async"></a><div class="post-card-body"><a class="tag" href="cybersecurity/">Cybersecurity</a><span class="post-date">10-minute read</span><h3>Ransomware Readiness for Healthcare</h3><a class="read-link" href="ransomware-readiness-healthcare.html">Learn More<span class="sr-only"> about ransomware readiness for healthcare</span></a></div></article>
+          <article class="post-card"><a class="post-image" href="hipaa-incident-response-plan-texas-dental-practices.html"><img src="images/dental-incident-response-plan.webp" width="1199" height="675" alt="Dental practice manager and IT consultant reviewing an incident response plan" loading="lazy" decoding="async"></a><div class="post-card-body"><a class="tag" href="hipaa-compliance/">HIPAA Compliance</a><span class="post-date">10-minute read</span><h3>HIPAA Incident Response for Dental Practices</h3><a class="read-link" href="hipaa-incident-response-plan-texas-dental-practices.html">Learn More<span class="sr-only"> about HIPAA incident response for dental practices</span></a></div></article>
+          <article class="post-card"><a class="post-image" href="secure-healthcare-employee-onboarding-offboarding.html"><img src="images/healthcare-employee-onboarding.webp" width="1199" height="675" alt="IT administrator securely onboarding a healthcare employee" loading="lazy" decoding="async"></a><div class="post-card-body"><a class="tag" href="managed-it/">Managed IT</a><span class="post-date">8-minute read</span><h3>Secure Healthcare Employee Onboarding</h3><a class="read-link" href="secure-healthcare-employee-onboarding-offboarding.html">Learn More<span class="sr-only"> about secure healthcare employee onboarding and offboarding</span></a></div></article>
+        </div></section>
+      </article>
+
+      <aside class="toc" aria-label="Article contents"><strong>In this guide</strong><ol><li><a href="#criticality">Rank critical systems</a></li><li><a href="#objectives">Set objectives</a></li><li><a href="#scope">Define backup scope</a></li><li><a href="#separation">Separate recovery copies</a></li><li><a href="#monitoring">Monitor backup health</a></li><li><a href="#testing">Test restoration</a></li><li><a href="#downtime">Plan downtime</a></li><li><a href="#vendors">Assign vendors</a></li><li><a href="#exercise">Exercise the plan</a></li><li><a href="#checklist">Recovery checklist</a></li></ol></aside>
+    </div>
+  </main>
+
+  <section class="cta"><div class="container"><h2>When did you last prove a full restore?</h2><p>Odyssey Solutions helps healthcare teams turn backup tools into tested, documented recovery capability.</p><a class="button" href="mailto:leo@odysseysolutions.co?subject=Healthcare%20Disaster%20Recovery%20Consultation">Book Consultation</a></div></section>
+  <footer class="site-footer"><div class="container footer-inner"><span>&copy; 2026 Odyssey Solutions &middot; Texas-based managed IT and healthcare resilience.</span><div class="footer-links"><a href="./">More Insights</a><a href="mailto:leo@odysseysolutions.co">Email</a><a href="tel:+18328058467">(832) 805-8467</a></div></div></footer>
+  <script src="resources-nav.js" defer></script>
+</body>
+</html>
