@@ -18,3 +18,17 @@ document.addEventListener('click', (event) => {
     if (!menu.contains(event.target)) menu.open = false;
   });
 });
+
+document.querySelectorAll('.read-link').forEach((link) => {
+  if (link.textContent.trim().toLowerCase() !== 'learn more') return;
+  const card = link.closest('article');
+  const heading = card && card.querySelector('h2, h3');
+  if (heading) {
+    const topic = heading.textContent.trim();
+    link.setAttribute('aria-label', `Learn more about ${topic}`);
+    const context = document.createElement('span');
+    context.className = 'sr-only';
+    context.textContent = ` about ${topic}`;
+    link.append(context);
+  }
+});

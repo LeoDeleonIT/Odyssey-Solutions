@@ -2,7 +2,7 @@
   --navy: #1a1a2e;
   --navy-mid: #16213e;
   --orange: #f97316;
-  --orange-dark: #ea6a0a;
+  --orange-dark: #c2410c;
   --orange-light: #fff7ed;
   --ink: #252638;
   --muted: #62657a;
@@ -24,7 +24,7 @@ body {
   line-height: 1.72;
 }
 a { color: var(--orange-dark); }
-a:hover { color: var(--orange); }
+a:hover { color: #9a3412; }
 img { max-width: 100%; }
 .sr-only {
   position: absolute;
