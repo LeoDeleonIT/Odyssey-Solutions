@@ -1,10 +1,6 @@
 document.querySelectorAll('.resources-menu').forEach((menu) => {
   const trigger = menu.querySelector('summary');
 
-  menu.addEventListener('toggle', () => {
-    trigger.setAttribute('aria-expanded', String(menu.open));
-  });
-
   trigger.addEventListener('keydown', (event) => {
     if (event.key === 'Escape' && menu.open) {
       menu.open = false;
