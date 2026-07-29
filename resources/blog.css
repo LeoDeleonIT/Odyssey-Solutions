@@ -215,6 +215,9 @@ h1 { margin: 0 0 20px; color: #fff; font-size: clamp(2.25rem, 5vw, 4rem); letter
   aspect-ratio: 16 / 7;
   box-shadow: var(--shadow);
 }
+.article-product-shot { margin: 34px 0; padding: 10px; border: 1px solid var(--line); border-radius: 15px; background: #fff; box-shadow: var(--shadow); }
+.article-product-shot img { display: block; width: 100%; border: 1px solid var(--line); border-radius: 9px; }
+.article-product-shot figcaption { padding: 10px 7px 3px; color: var(--muted); font-size: .78rem; }
 
 .article-wrap { display: grid; grid-template-columns: minmax(0, 760px) 260px; gap: 64px; align-items: start; padding: 64px 0 96px; }
 .article { min-width: 0; }
