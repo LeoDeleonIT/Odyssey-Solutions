@@ -2,6 +2,29 @@
   if (window.__odysseySiteReady) return;
   window.__odysseySiteReady = true;
 
+  window.dataLayer = window.dataLayer || [];
+  window.odysseyTrackConversion = function (conversionName, details) {
+    var payload = Object.assign({
+      event: 'odyssey_conversion',
+      conversion_name: conversionName,
+      page_path: window.location.pathname
+    }, details || {});
+
+    window.dataLayer.push(payload);
+    document.documentElement.setAttribute('data-odyssey-last-conversion', conversionName);
+    window.dispatchEvent(new CustomEvent('odyssey:conversion', { detail: payload }));
+  };
+
+  document.addEventListener('click', function (event) {
+    var link = event.target.closest('[data-conversion]');
+    if (!link) return;
+
+    window.odysseyTrackConversion(link.getAttribute('data-conversion'), {
+      conversion_label: link.getAttribute('data-conversion-label') || link.textContent.trim(),
+      destination: link.getAttribute('href') || ''
+    });
+  });
+
   var style = document.createElement('link');
   style.rel = 'stylesheet';
   style.href = '/site-header.css?v=20260729b';
@@ -146,6 +169,11 @@
         form.reset();
         button.textContent = 'Message sent';
         status.textContent = 'Thank you. The Odyssey team will respond within one business day.';
+        if (typeof window.odysseyTrackConversion === 'function') {
+          window.odysseyTrackConversion('lead_form_submit', {
+            form_name: form.getAttribute('data-form-name') || 'contact_form'
+          });
+        }
       } catch (error) {
         button.textContent = original;
         button.disabled = false;
