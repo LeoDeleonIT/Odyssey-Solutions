@@ -23,6 +23,14 @@
 .toolkit-intro p { margin: 0; color: var(--muted); }
 .toolkit-value-grid, .download-grid, .coverage-grid { display: grid; gap: 22px; }
 .toolkit-value-grid { grid-template-columns: repeat(3, 1fr); }
+.toolkit-preview-section { background: #fff; }
+.toolkit-preview-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 22px; }
+.toolkit-preview-card { overflow: hidden; margin: 0; border: 1px solid var(--line); border-radius: 16px; background: #fff; box-shadow: 0 12px 34px rgba(26,26,46,.07); }
+.toolkit-preview-media { height: 340px; padding: 20px 20px 0; overflow: hidden; background: linear-gradient(145deg, #eceef4, #f8f8fb); }
+.toolkit-preview-media img { display: block; width: 100%; height: 100%; object-fit: contain; object-position: top center; filter: drop-shadow(0 12px 18px rgba(18,22,45,.13)); }
+.toolkit-preview-card figcaption { display: grid; gap: 7px; padding: 22px 24px 25px; }
+.toolkit-preview-card figcaption strong { color: var(--navy); font-family: "Orbitron", sans-serif; font-size: .96rem; }
+.toolkit-preview-card figcaption span { color: var(--muted); font-size: .86rem; line-height: 1.55; }
 .value-card, .download-card, .coverage-card, .review-card, .review-form {
   border: 1px solid var(--line);
   border-radius: 16px;
@@ -45,6 +53,11 @@
 .value-card h3, .coverage-card h3 { margin: 0 0 10px; font-size: 1.05rem; }
 .value-card p, .coverage-card p { margin: 0; color: var(--muted); font-size: .94rem; }
 .download-grid { grid-template-columns: repeat(3, 1fr); }
+.toolkit-bundle { display: grid; grid-template-columns: 1fr auto; gap: 28px; align-items: center; margin: 0 0 24px; padding: 28px 30px; border-radius: 16px; background: linear-gradient(135deg, var(--navy), #272a4c); color: #fff; box-shadow: 0 16px 38px rgba(26,26,46,.14); }
+.toolkit-bundle .download-label { margin-bottom: 7px; }
+.toolkit-bundle h3 { margin: 0 0 7px; color: #fff; font-size: 1.25rem; }
+.toolkit-bundle p { max-width: 690px; margin: 0; color: rgba(255,255,255,.72); font-size: .91rem; }
+.toolkit-bundle .button { white-space: nowrap; }
 .download-card { display: flex; flex-direction: column; overflow: hidden; }
 .download-card-top { min-height: 154px; padding: 28px; background: linear-gradient(145deg, var(--navy), #272a4c); color: #fff; }
 .download-label { display: block; margin-bottom: 12px; color: #fdba74; font-size: .73rem; font-weight: 800; letter-spacing: .1em; text-transform: uppercase; }
@@ -104,8 +117,13 @@
 .toolkit-disclaimer { margin: 34px 0 0; color: var(--muted); font-size: .8rem; }
 
 @media (max-width: 900px) {
-  .toolkit-value-grid, .download-grid { grid-template-columns: 1fr; }
+  .toolkit-value-grid, .download-grid, .toolkit-preview-grid { grid-template-columns: 1fr; }
   .coverage-grid, .review-grid { grid-template-columns: 1fr; }
+  .toolkit-preview-card { display: grid; grid-template-columns: minmax(220px, .72fr) 1fr; }
+  .toolkit-preview-media { height: 280px; padding-top: 18px; }
+  .toolkit-preview-card figcaption { align-content: center; }
+  .toolkit-bundle { grid-template-columns: 1fr; }
+  .toolkit-bundle .button { justify-self: start; }
 }
 @media (max-width: 680px) {
   .toolkit-hero { padding: 64px 0 58px; }
@@ -113,4 +131,8 @@
   .toolkit-form-grid { grid-template-columns: 1fr; }
   .toolkit-field-full { grid-column: auto; }
   .review-card, .review-form { padding: 26px; }
+  .toolkit-preview-card { display: block; }
+  .toolkit-preview-media { height: 300px; }
+  .toolkit-bundle { padding: 24px; }
+  .toolkit-bundle .button { width: 100%; white-space: normal; text-align: center; }
 }
