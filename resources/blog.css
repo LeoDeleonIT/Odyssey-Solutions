@@ -224,6 +224,8 @@ h1 { margin: 0 0 20px; color: #fff; font-size: clamp(2.25rem, 5vw, 4rem); letter
 .article > p:first-of-type { font-size: 1.12rem; color: #404256; }
 .byline { width: 100%; color: rgba(255,255,255,.78); }
 .byline strong { color: #fff; }
+.byline a { color: #fdba74; text-underline-offset: .16em; }
+.byline a:hover { color: #fff; }
 .article h2 { margin: 2.4em 0 .65em; font-size: 1.65rem; letter-spacing: -.025em; }
 .article h3 { margin: 1.8em 0 .4em; font-size: 1.08rem; }
 .article p, .article li { color: #414357; }

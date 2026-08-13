@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>EHR Migration IT Checklist for Medical Practices</title>
+  <meta name="description" content="Plan an EHR migration across governance, data scope, interfaces, identity, devices, networks, security, validation, downtime, rollback, go-live, and post-conversion support.">
+  <link rel="canonical" href="https://odysseysolutions.co/resources/ehr-migration-it-checklist-medical-practices.html">
+  <meta property="og:type" content="article"><meta property="og:title" content="EHR Migration IT Checklist for Medical Practices"><meta property="og:description" content="A practical technology and operational plan for moving EHR systems without losing ownership of dependencies, testing, or recovery."><meta property="og:url" content="https://odysseysolutions.co/resources/ehr-migration-it-checklist-medical-practices.html"><meta property="og:image" content="https://odysseysolutions.co/resources/images/healthcare-employee-onboarding.webp"><meta property="article:published_time" content="2026-08-13"><meta property="article:section" content="Healthcare IT"><meta name="twitter:card" content="summary_large_image"><meta name="theme-color" content="#F97316"><link rel="icon" href="/favicon.svg" type="image/svg+xml">
+  <link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@600;700;800&amp;family=Exo+2:wght@400;500;600;700&amp;display=swap" rel="stylesheet"><link rel="stylesheet" href="blog.css?v=20260813a">
+  <script type="application/ld+json">{"@context":"https://schema.org","@type":"BlogPosting","headline":"EHR Migration IT Checklist for Medical Practices","description":"A practical checklist for EHR governance, data conversion, interfaces, infrastructure, identity, validation, downtime, rollback, and go-live support.","datePublished":"2026-08-13","dateModified":"2026-08-13","mainEntityOfPage":"https://odysseysolutions.co/resources/ehr-migration-it-checklist-medical-practices.html","author":{"@type":"Person","name":"Leo DeLeon","url":"https://odysseysolutions.co/authors/leo-deleon/"},"publisher":{"@type":"Organization","name":"Odyssey Solutions","logo":{"@type":"ImageObject","url":"https://odysseysolutions.co/og-image.png"}},"image":"https://odysseysolutions.co/resources/images/healthcare-employee-onboarding.webp","articleSection":"Healthcare IT"}</script>
+  <script type="application/ld+json">{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Home","item":"https://odysseysolutions.co/"},{"@type":"ListItem","position":2,"name":"Resources","item":"https://odysseysolutions.co/resources/"},{"@type":"ListItem","position":3,"name":"Healthcare IT","item":"https://odysseysolutions.co/resources/healthcare-it/"},{"@type":"ListItem","position":4,"name":"EHR Migration IT Checklist","item":"https://odysseysolutions.co/resources/ehr-migration-it-checklist-medical-practices.html"}]}</script>
+</head>
+<body>
+  <header class="site-header"><div class="container nav"><a class="brand" href="../">Odyss<span>e</span>y Solutions</a></div></header>
+  <main>
+    <section class="article-hero"><div class="container hero-inner"><span class="eyebrow">Healthcare IT &middot; EHR Planning</span><h1>EHR Migration IT Checklist for Medical Practices</h1><p class="hero-deck">An EHR conversion is a clinical, operational, data, vendor, and technology program. Treating it as a software installation leaves critical decisions about interfaces, access, validation, downtime, and recovery unresolved.</p><div class="meta"><span>Published August 13, 2026</span><span>11-minute read</span><span>For practice leaders and implementation teams</span><span class="byline"><strong><a href="../authors/leo-deleon/">Written by Leo DeLeon and the Odyssey Solutions Healthcare IT Team</a></strong></span></div></div></section>
+    <img class="article-cover" src="images/healthcare-employee-onboarding.webp" width="1199" height="675" alt="Healthcare team planning an EHR transition and validating workstations" loading="lazy" decoding="async">
+    <div class="container article-wrap">
+      <article class="article">
+        <p>The Office of the National Coordinator's 2025 SAFER Guides encourage healthcare organizations to evaluate organizational responsibility, system management, contingency planning, patient identification, order entry, test-result follow-up, and clinical communication around EHR safety. Those responsibilities cross clinical leadership, operations, IT, vendors, privacy, security, and end users.</p>
+        <p>The EHR vendor should lead its supported application conversion. The practice still needs someone to coordinate the surrounding environment: users, devices, connectivity, identity, interfaces, data exports, local systems, downtime, and evidence.</p>
+        <div class="callout"><strong>Define acceptance before conversion:</strong> A successful import is not merely a row count. The practice needs usable, accurate, correctly associated information that supports agreed clinical and business workflows.</div>
+
+        <h2 id="governance">1. Build a multidisciplinary governance team</h2>
+        <p>Name an executive sponsor, project manager, clinical lead, operations lead, privacy or compliance contact, IT lead, EHR vendor lead, data-conversion owner, interface owners, training owner, and go-live decision authority. Define how decisions, risks, changes, and defects are recorded.</p>
+        <p>Create one responsibility matrix that distinguishes the outgoing vendor, incoming vendor, practice, IT provider, interface vendors, billing partners, laboratories, pharmacies, imaging systems, and other dependent parties.</p>
+
+        <h2 id="scope">2. Define the conversion scope in writing</h2>
+        <p>List the data elements and time periods to migrate, what remains accessible in the legacy system, what will be archived, what must be scanned or abstracted, and what will not convert. Include demographics, insurance, appointments, clinical documentation, medications, allergies, problems, immunizations, orders, results, images or references, referrals, messages, documents, billing history, and audit information as applicable.</p>
+        <p>Agree on data ownership, export formats, encryption, transfer method, validation, rejected records, correction cycles, retention, legacy access, and secure disposal. Qualified clinical, legal, records-management, and privacy advisers should guide those decisions.</p>
+
+        <h2 id="inventory">3. Inventory every dependent workflow and interface</h2>
+        <p>Map scheduling, registration, patient identification, documentation, e-prescribing, orders, laboratory results, imaging, referrals, portal use, billing, claims, payment, fax or document exchange, reporting, analytics, and patient communication. Identify every inbound and outbound interface and the owner who will validate it.</p>
+        <p>An interface that technically sends messages can still fail operationally through wrong routing, duplicate data, missing identifiers, delayed results, or unsupported mapping. Test the complete workflow and exception handling.</p>
+
+        <h2 id="infrastructure">4. Validate infrastructure against vendor requirements</h2>
+        <p>Confirm supported operating systems, browsers, memory, storage, displays, scanners, printers, signature devices, label devices, network ports, bandwidth, latency, remote-support tools, and security software. Include every location and representative user role.</p>
+        <p>For cloud EHRs, validate primary and backup internet paths, firewall rules, DNS, browser configuration, identity dependencies, printing, scanning, and local integrations. For hosted or on-premises components, document servers, databases, backup, monitoring, patching, and vendor access.</p>
+
+        <h2 id="identity">5. Design identity and access before building users</h2>
+        <p>Define unique identities, role templates, least privilege, MFA where supported, privileged access, break-glass or emergency access, service accounts, provisioning, role changes, termination, audit review, and periodic access recertification. Map who approves each role and who can make high-impact configuration changes.</p>
+        <p>Avoid copying legacy permissions without review. Migration is a chance to remove stale access and align roles with current workflows.</p>
+
+        <aside class="inline-cta" aria-label="EHR migration IT planning"><h2>Own the technology around the EHR conversion</h2><p>Odyssey can coordinate infrastructure, identity, devices, interfaces, vendors, downtime, and go-live support while the EHR vendor leads its application.</p><a class="button" href="/contact/">Discuss an EHR Project</a></aside>
+
+        <h2 id="security">6. Protect data throughout the project</h2>
+        <p>Document where extracts, test data, credentials, screenshots, issue logs, and temporary files will be stored; who can access them; how they are encrypted; how activity is logged; and when they are returned or destroyed. Use the minimum necessary information for testing where practical and never move production data through uncontrolled personal storage.</p>
+        <p>Review business associate relationships and subcontractors based on actual functions and data access. HHS cloud guidance emphasizes that maintaining encrypted ePHI on behalf of a regulated entity can still create business associate responsibilities even when the provider lacks the key.</p>
+
+        <h2 id="testing">7. Use multiple conversion and validation cycles</h2>
+        <p>Plan an initial extract, trial conversion, correction cycle, final rehearsal, production conversion, and post-go-live reconciliation as appropriate to the project. Compare counts and completeness, but also perform representative clinical validation with authorized users.</p>
+        <ul><li>Confirm patient matching and duplicate handling.</li><li>Review representative charts across specialties and record types.</li><li>Validate medications, allergies, problems, results, and documents.</li><li>Test future and recurring appointments.</li><li>Reconcile balances, claims, and reports according to the agreed scope.</li><li>Record defects, severity, owner, correction, retest, and acceptance.</li></ul>
+
+        <h2 id="downtime">8. Prepare downtime and rollback decisions</h2>
+        <p>The ONC SAFER Contingency Planning Guide addresses planned and unplanned EHR unavailability. Build controlled procedures for patient identification, documentation, prescriptions, orders, results, scheduling, communication, and later reconciliation. Make them available outside the systems likely to be unavailable.</p>
+        <p>Define freeze windows, final synchronization, go/no-go criteria, rollback triggers, decision authority, vendor availability, communication, and how the practice will preserve work created during downtime. A rollback plan must account for data entered after cutover begins.</p>
+
+        <h2 id="training">9. Train by role and workflow</h2>
+        <p>Provide role-based training with realistic scenarios, not only feature tours. Include normal workflows, exceptions, patient matching, security responsibilities, downtime, help channels, and changes from the old system. Identify super users without making them the only support path.</p>
+
+        <h2 id="golive">10. Staff go-live and control changes</h2>
+        <p>Establish a command structure, one intake channel, severity definitions, vendor bridges, decision authority, shift coverage, status cadence, and issue log. Prioritize patient safety and operational continuity. Avoid uncontrolled fixes that cannot be documented or reversed.</p>
+        <p>Keep the outgoing system and support contacts available according to the approved transition plan. Confirm who can access legacy records, for how long, and how that access is monitored.</p>
+
+        <h2 id="stabilization">11. Reconcile and stabilize after conversion</h2>
+        <p>Review outstanding defects, interfaces, access, messages, test results, orders, appointments, claims, reports, and data corrections. Remove temporary accounts and files, close vendor access that is no longer required, update documentation, capture lessons, and assign long-term ownership.</p>
+        <p>Evaluate whether the new environment changes the organization's risk analysis, contingency plan, policies, training, backup design, vendor inventory, or incident procedures.</p>
+
+        <h2 id="checklist">EHR migration readiness checklist</h2>
+        <ul class="checklist"><li>Clinical, operational, technical, privacy, security, and vendor owners are named.</li><li>Data conversion, archival, retention, validation, and disposal scope is written.</li><li>Every interface and dependent workflow has an owner and acceptance test.</li><li>Devices, browsers, networks, identity, printing, and scanning meet supported requirements.</li><li>Role templates and administrative access have been reviewed rather than copied blindly.</li><li>Test data, extracts, credentials, and temporary files have controlled handling.</li><li>Conversion rehearsals include clinical and business validation.</li><li>Downtime, rollback, reconciliation, communication, and support procedures are ready.</li><li>Post-go-live work includes access cleanup, documentation, risk updates, and defect closure.</li></ul>
+
+        <div class="source-box"><h2>Authoritative resources</h2><ul><li><a href="https://healthit.gov/clinical-quality-and-safety/safer-guides/">ONC: 2025 SAFER Guides</a></li><li><a href="https://www.healthit.gov/sites/default/files/topiclanding/2025-01/7.%20System%20Management%20Final.pdf">ONC: SAFER System Management Guide</a></li><li><a href="https://healthit.gov/resources/2025-safer-guide-contingency-planning/">ONC: SAFER Contingency Planning Guide</a></li><li><a href="https://playbook.healthit.gov/playbook/electronic-health-records/">ONC: Health IT Playbook—Electronic Health Records</a></li><li><a href="https://www.hhs.gov/hipaa/for-professionals/special-topics/health-information-technology/cloud-computing/index.html">HHS: HIPAA and Cloud Computing</a></li></ul><p class="disclaimer">This guide is educational and does not replace vendor instructions or legal, clinical, privacy, records-management, or compliance advice. Conversion scope and acceptance must be approved by qualified organizational leaders.</p></div>
+      </article>
+      <aside class="toc" aria-label="Article contents"><strong>In this guide</strong><ol><li><a href="#governance">Governance</a></li><li><a href="#scope">Data scope</a></li><li><a href="#inventory">Interfaces</a></li><li><a href="#infrastructure">Infrastructure</a></li><li><a href="#identity">Access</a></li><li><a href="#security">Data protection</a></li><li><a href="#testing">Validation</a></li><li><a href="#downtime">Downtime</a></li><li><a href="#golive">Go-live</a></li><li><a href="#checklist">Checklist</a></li></ol></aside>
+    </div>
+  </main>
+  <section class="cta"><div class="container"><h2>Planning an EHR change?</h2><p>Odyssey Solutions helps medical practices coordinate the infrastructure and vendor dependencies surrounding the conversion.</p><a class="button" href="/contact/">Discuss the IT Workstream</a></div></section>
+  <footer class="site-footer"><div class="container footer-inner"><span>&copy; 2026 Odyssey Solutions &middot; Healthcare IT project guidance.</span><div class="footer-links"><a href="healthcare-it/">Healthcare IT Resources</a><a href="../editorial-policy/">Editorial Policy</a><a href="../contact/">Contact</a><a href="tel:+18328058467">(832) 805-8467</a></div></div></footer>
+  <script src="resources-nav.js?v=20260810c" defer></script>
+</body>
+</html>
