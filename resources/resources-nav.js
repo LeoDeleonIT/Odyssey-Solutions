@@ -1,7 +1,7 @@
 if (!window.__odysseySiteScriptLoading && !window.__odysseySiteReady) {
   window.__odysseySiteScriptLoading = true;
   const sharedSiteScript = document.createElement('script');
-  sharedSiteScript.src = '/site.js?v=20260810c';
+  sharedSiteScript.src = '/site.js?v=20260813a';
   document.head.appendChild(sharedSiteScript);
 }
 

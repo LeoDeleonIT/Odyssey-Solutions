@@ -16,14 +16,63 @@
   };
 
   document.addEventListener('click', function (event) {
-    var link = event.target.closest('[data-conversion]');
+    var link = event.target.closest('a[href], [data-conversion]');
     if (!link) return;
 
-    window.odysseyTrackConversion(link.getAttribute('data-conversion'), {
-      conversion_label: link.getAttribute('data-conversion-label') || link.textContent.trim(),
-      destination: link.getAttribute('href') || ''
+    var destination = link.getAttribute('href') || '';
+    var conversionName = link.getAttribute('data-conversion');
+    if (!conversionName) {
+      if (destination.indexOf('tel:') === 0) conversionName = 'click_to_call';
+      else if (destination.indexOf('mailto:') === 0) conversionName = 'email_click';
+      else if (destination.indexOf('calendly.com/') !== -1) conversionName = 'calendar_open';
+      else if (link.hasAttribute('download') || /\.(pdf|docx|xlsx|zip)(?:[?#]|$)/i.test(destination)) conversionName = 'file_download';
+    }
+    if (!conversionName) return;
+
+    var safeDestination = destination;
+    var conversionLabel = link.getAttribute('data-conversion-label') || link.textContent.trim();
+    if (destination.indexOf('tel:') === 0) safeDestination = 'phone';
+    if (destination.indexOf('mailto:') === 0) safeDestination = 'email';
+    if (destination.indexOf('tel:') === 0) conversionLabel = 'phone_link';
+    if (destination.indexOf('mailto:') === 0) conversionLabel = 'email_link';
+
+    window.odysseyTrackConversion(conversionName, {
+      conversion_label: conversionLabel,
+      destination: safeDestination
     });
   });
+
+  function safeReferrer(value) {
+    if (!value) return 'direct';
+    try {
+      var referrerUrl = new URL(value);
+      return referrerUrl.origin + referrerUrl.pathname;
+    } catch (error) {
+      return 'direct';
+    }
+  }
+
+  function readAttribution() {
+    var parameters = new URLSearchParams(window.location.search);
+    var current = {
+      landing_page: window.location.pathname,
+      initial_referrer: safeReferrer(document.referrer),
+      utm_source: parameters.get('utm_source') || '',
+      utm_medium: parameters.get('utm_medium') || '',
+      utm_campaign: parameters.get('utm_campaign') || ''
+    };
+
+    try {
+      var stored = window.sessionStorage.getItem('odyssey_attribution');
+      if (stored) return JSON.parse(stored);
+      window.sessionStorage.setItem('odyssey_attribution', JSON.stringify(current));
+    } catch (error) {
+      // Attribution still works for this page when storage is unavailable.
+    }
+    return current;
+  }
+
+  var attribution = readAttribution();
 
   var style = document.createElement('link');
   style.rel = 'stylesheet';
@@ -36,7 +85,8 @@
     '/dental-it-support-houston/', '/remote-dental-it-support/',
     '/dental-cybersecurity-houston/', '/people-compliance-platform/',
     '/hipaa-compliance-consulting-texas/', '/healthcare-it-support-houston/',
-    '/web-development-houston/', '/hipaa-training-texas/'
+    '/healthcare-it-readiness-review/', '/web-development-houston/',
+    '/hipaa-training-texas/'
   ];
 
   function isCurrent(path, prefix) {
@@ -74,6 +124,7 @@
                 serviceLink('/dental-it-support-houston/', 'Dental IT Support') +
                 serviceLink('/remote-dental-it-support/', 'Remote Dental IT') +
                 serviceLink('/healthcare-it-support-houston/', 'Healthcare IT') +
+                serviceLink('/healthcare-it-readiness-review/', 'Healthcare IT Readiness Review') +
               '</div>' +
               '<div class="global-service-group"><strong>Security &amp; Compliance</strong>' +
                 serviceLink('/dental-cybersecurity-houston/', 'Dental Cybersecurity') +
@@ -105,6 +156,7 @@
           serviceLink('/dental-it-support-houston/', 'Dental IT Support') +
           serviceLink('/remote-dental-it-support/', 'Remote Dental IT') +
           serviceLink('/healthcare-it-support-houston/', 'Healthcare IT') +
+          serviceLink('/healthcare-it-readiness-review/', 'Healthcare IT Readiness Review') +
         '</div>' +
         '<div class="global-mobile-group"><strong>Security &amp; Compliance</strong>' +
           serviceLink('/dental-cybersecurity-houston/', 'Dental Cybersecurity') +
@@ -155,6 +207,37 @@
 
   var form = document.querySelector('[data-contact-form]');
   if (form) {
+    var requestedService = new URLSearchParams(window.location.search).get('service');
+    var serviceOptions = {
+      'healthcare-it-readiness-review': 'Healthcare IT Readiness Review',
+      'healthcare-it-support': 'Healthcare IT support',
+      'dental-it-support': 'Dental IT support',
+      'managed-it-services': 'Managed IT services'
+    };
+    var serviceField = form.querySelector('[name="service"]');
+    if (serviceField && serviceOptions[requestedService]) {
+      serviceField.value = serviceOptions[requestedService];
+    }
+
+    var attributionFields = {
+      page_url: window.location.origin + window.location.pathname,
+      landing_page: attribution.landing_page,
+      initial_referrer: attribution.initial_referrer,
+      utm_source: attribution.utm_source,
+      utm_medium: attribution.utm_medium,
+      utm_campaign: attribution.utm_campaign
+    };
+    Object.keys(attributionFields).forEach(function (fieldName) {
+      var field = form.querySelector('[name="' + fieldName + '"]');
+      if (!field) {
+        field = document.createElement('input');
+        field.type = 'hidden';
+        field.name = fieldName;
+        form.appendChild(field);
+      }
+      field.value = attributionFields[fieldName] || '';
+    });
+
     form.addEventListener('submit', async function (event) {
       event.preventDefault();
       var button = form.querySelector('button[type="submit"]');

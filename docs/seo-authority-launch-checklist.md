@@ -5,9 +5,9 @@ The site now has the crawlable pages, metadata, structured data, internal links,
 ## First 48 hours
 
 1. In Google Search Console, verify the `odysseysolutions.co` domain property and submit `https://odysseysolutions.co/sitemap.xml`.
-2. Inspect and request indexing for the homepage plus the dental IT, managed IT, dental cybersecurity, HIPAA consulting, healthcare IT, web development, case-study hub, and author URLs.
+2. Inspect and request indexing for the homepage plus the Healthcare IT Readiness Review, dental IT, managed IT, dental cybersecurity, HIPAA consulting, healthcare IT, web development, case-study hub, and author URLs.
 3. Confirm the preferred HTTPS domain resolves consistently and no old homepage fragments or staging hosts are indexed.
-4. Connect Google Analytics 4 only with an approved consent/privacy configuration. Mark contact-form success and outbound Calendly selection as conversions.
+4. Connect Google Analytics 4 only with an approved consent/privacy configuration. Use the existing `odyssey_conversion` data-layer event and mark `lead_form_submit` and `calendar_open` as key events. Follow `docs/measurement-setup.md`.
 5. Test the public contact form. Never submit real patient information during testing.
 
 ## Google Business Profile
@@ -25,6 +25,7 @@ The site now has the crawlable pages, metadata, structured data, internal links,
 3. Encourage clients to describe the real service, location, and outcome in their own words.
 4. Respond to every review without confirming a patient relationship or exposing confidential information.
 5. Obtain written approval for every named testimonial, logo, metric, and case study. Retain that approval.
+6. For a new healthcare relationship, wait for a natural, measurable service milestone before making one review or case-study request. Delivery comes first.
 
 ## Local citations and links
 
@@ -38,9 +39,10 @@ The site now has the crawlable pages, metadata, structured data, internal links,
 
 1. Take a consistent, professional headshot for Leo’s author profile and update the Person schema image.
 2. Add only verified certifications, training, association memberships, years of experience, and official social profiles.
-3. Expand each case study with client-approved scope, dates, baseline, measurable result, and quote. Preserve confidentiality.
-4. Build a genuine `/team/` page when more public team members and bios are available.
-5. Add a physical mailing or office address only when it is accurate and appropriate to publish.
+3. After the official profiles are verified and consistent, add their exact URLs to Odyssey's organization schema with `sameAs`. Do not link unrelated businesses with the same name.
+4. Expand each case study with client-approved scope, dates, baseline, measurable result, and quote. Preserve confidentiality.
+5. Build a genuine `/team/` page when more public team members and bios are available.
+6. Add a physical mailing or office address only when it is accurate and appropriate to publish.
 
 ## Content cadence
 
@@ -59,5 +61,6 @@ The site now has the crawlable pages, metadata, structured data, internal links,
 - Indexed canonical pages and structured-data validity
 - Review count, review quality, and response rate
 - Referring domains from relevant local, dental, healthcare, and technology organizations
+- Self-reported lead source, especially ChatGPT/AI assistant, search, client referral, and association discovery
 
 Search ranking is competitive and cannot be guaranteed. The goal is to build the strongest truthful result for the searches Odyssey is qualified to serve.

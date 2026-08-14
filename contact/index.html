@@ -3,16 +3,16 @@
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width,initial-scale=1" />
-    <title>Contact Odyssey Solutions | Dental IT Consultation</title>
+    <title>Contact Odyssey Solutions | Houston Healthcare &amp; Dental IT</title>
     <meta
       name="description"
-      content="Talk with Odyssey Solutions about Greater Houston or remote dental IT, managed services, cybersecurity, HIPAA guidance, and office technology."
+      content="Talk with Odyssey Solutions about Greater Houston healthcare IT, dental IT, managed services, cybersecurity, HIPAA guidance, and office technology."
     />
     <link rel="canonical" href="https://odysseysolutions.co/contact/" />
     <meta property="og:title" content="Contact Odyssey Solutions" />
     <meta
       property="og:description"
-      content="Discuss Greater Houston or remote dental IT with Odyssey Solutions."
+      content="Discuss Greater Houston healthcare, dental, or managed IT with Odyssey Solutions."
     />
     <meta property="og:url" content="https://odysseysolutions.co/contact/" />
     <meta
@@ -26,7 +26,7 @@
       href="https://fonts.googleapis.com/css2?family=Exo+2:wght@400;600;700;800&amp;family=Orbitron:wght@600;700;800&amp;display=swap"
       rel="stylesheet"
     />
-    <link rel="stylesheet" href="/site.css?v=20260720c" />
+    <link rel="stylesheet" href="/site.css?v=20260813b" />
     <script type="application/ld+json">
       {
         "@context": "https://schema.org",
@@ -116,6 +116,7 @@
               action="https://formspree.io/f/mbdqzoqd"
               method="post"
               data-contact-form
+              data-form-name="contact"
             >
               <div class="form-grid">
                 <div class="field">
@@ -152,6 +153,9 @@
                 <div class="field full">
                   <label for="service">What can we help with?</label
                   ><select id="service" name="service">
+                    <option value="">Select a service</option>
+                    <option>Healthcare IT Readiness Review</option>
+                    <option>Healthcare IT support</option>
                     <option>Dental IT support</option>
                     <option>Remote IT support</option>
                     <option>Remote dental IT support</option>
@@ -161,6 +165,69 @@
                     <option>HR and HIPAA software demo</option>
                     <option>New office technology setup</option>
                     <option>Web development</option>
+                    <option>Other</option>
+                  </select>
+                </div>
+                <details class="field full intake-details">
+                  <summary>Add optional environment details</summary>
+                  <p>
+                    These help us prepare for the conversation. Do not include
+                    patient information, passwords, or confidential records.
+                  </p>
+                  <div class="form-grid">
+                    <div class="field">
+                      <label for="organization-type">Organization type</label
+                      ><select id="organization-type" name="organization_type">
+                        <option value="">Select if applicable</option>
+                        <option>Dental practice</option>
+                        <option>Medical practice or clinic</option>
+                        <option>Behavioral health organization</option>
+                        <option>Healthcare services organization</option>
+                        <option>Professional services business</option>
+                        <option>Other business</option>
+                      </select>
+                    </div>
+                    <div class="field">
+                      <label for="location-count">Number of locations</label
+                      ><input
+                        id="location-count"
+                        name="location_count"
+                        type="number"
+                        min="1"
+                        inputmode="numeric"
+                      />
+                    </div>
+                    <div class="field">
+                      <label for="user-range">Approximate number of users</label
+                      ><select id="user-range" name="user_range">
+                        <option value="">Select if known</option>
+                        <option>1–10</option>
+                        <option>11–25</option>
+                        <option>26–50</option>
+                        <option>51–100</option>
+                        <option>101+</option>
+                      </select>
+                    </div>
+                    <div class="field">
+                      <label for="primary-platform">Primary EHR, PMS, or platform</label
+                      ><input
+                        id="primary-platform"
+                        name="primary_platform"
+                        placeholder="Optional—system name only"
+                      />
+                    </div>
+                  </div>
+                </details>
+                <div class="field full">
+                  <label for="lead-source">How did you hear about Odyssey?</label
+                  ><select id="lead-source" name="lead_source">
+                    <option value="">Select if you remember</option>
+                    <option>ChatGPT or another AI assistant</option>
+                    <option>Google or another search engine</option>
+                    <option>Client or professional referral</option>
+                    <option>Healthcare or dental association</option>
+                    <option>Social media</option>
+                    <option>Existing relationship</option>
                     <option>Other</option>
                   </select>
                 </div>
@@ -175,7 +242,14 @@
                 class="sr-only"
                 tabindex="-1"
                 autocomplete="off"
-              /><button class="btn" type="submit">Send message</button>
+              />
+              <input type="hidden" name="page_url" value="" />
+              <input type="hidden" name="landing_page" value="" />
+              <input type="hidden" name="initial_referrer" value="" />
+              <input type="hidden" name="utm_source" value="" />
+              <input type="hidden" name="utm_medium" value="" />
+              <input type="hidden" name="utm_campaign" value="" />
+              <button class="btn" type="submit">Send message</button>
               <p aria-live="polite" data-form-status></p>
             </form>
           </div>
@@ -190,6 +264,8 @@
                 class="btn btn-light"
                 href="https://calendly.com/zain-odysseysolutions/30min"
                 rel="noopener"
+                data-conversion="calendar_open"
+                data-conversion-label="contact_page"
                 >Open consultation calendar</a
               >
             </div>
@@ -252,6 +328,6 @@
         </div>
       </div>
     </footer>
-    <script src="/site.js?v=20260729b" defer></script>
+    <script src="/site.js?v=20260813a" defer></script>
   </body>
 </html>

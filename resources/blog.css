@@ -156,6 +156,7 @@ h1, h2, h3 {
 h1 { margin: 0 0 20px; color: #fff; font-size: clamp(2.25rem, 5vw, 4rem); letter-spacing: -.045em; }
 .article-hero h1 { font-size: clamp(2rem, 4.5vw, 3.45rem); }
 .hero-deck { max-width: 740px; margin: 0; color: rgba(255,255,255,.76); font-size: 1.15rem; }
+.article-hero-actions { margin: 26px 0 0; }
 .meta { display: flex; flex-wrap: wrap; gap: 10px 20px; margin-top: 25px; color: rgba(255,255,255,.66); font-size: .84rem; }
 
 .blog-main { padding: 76px 0 96px; background: var(--wash); }
@@ -315,6 +316,7 @@ h1 { margin: 0 0 20px; color: #fff; font-size: clamp(2.25rem, 5vw, 4rem); letter
 }
 .cta h2 { margin: 0 0 12px; color: #fff; font-size: 1.8rem; }
 .cta p { max-width: 650px; margin: 0 auto 24px; color: rgba(255,255,255,.85); }
+.cta-actions { display: flex; flex-wrap: wrap; justify-content: center; gap: 12px; }
 .cta .button { background: #fff; color: var(--navy); box-shadow: none; }
 .cta .button:hover { color: var(--orange-dark); }
 

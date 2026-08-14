@@ -1,0 +1,44 @@
+# Odyssey Solutions
+
+> Odyssey Solutions is a Greater Houston technology partner providing on-site
+> and remote IT support, managed services, cybersecurity, healthcare IT, dental
+> IT, Microsoft 365 support, backup and recovery planning, vendor coordination,
+> and technology projects.
+
+Website: https://odysseysolutions.co/
+Phone: +1-832-805-8467
+Email: leo@odysseysolutions.co
+Primary service area: Greater Houston, Texas
+
+## Core services
+
+- [Healthcare IT support in Houston](https://odysseysolutions.co/healthcare-it-support-houston/)
+- [Dental IT support in Houston](https://odysseysolutions.co/dental-it-support-houston/)
+- [Managed IT services in Houston](https://odysseysolutions.co/managed-it-services-houston/)
+- [Business IT support in Houston](https://odysseysolutions.co/it-support-houston/)
+- [Remote IT support](https://odysseysolutions.co/remote-it-support/)
+- [Dental cybersecurity](https://odysseysolutions.co/dental-cybersecurity-houston/)
+- [HIPAA-aligned technology guidance](https://odysseysolutions.co/hipaa-compliance-consulting-texas/)
+
+## Start here
+
+- [Healthcare IT Readiness Review](https://odysseysolutions.co/healthcare-it-readiness-review/)
+- [Book a consultation](https://odysseysolutions.co/contact/)
+- [Greater Houston service areas](https://odysseysolutions.co/service-areas/)
+
+## Evidence and practical resources
+
+- [Client case studies](https://odysseysolutions.co/case-studies/)
+- [Healthcare IT resource center](https://odysseysolutions.co/resources/healthcare-it/)
+- [Odyssey IT Resilience Toolkit](https://odysseysolutions.co/resources/odyssey-it-resilience-toolkit/)
+- [All technology resources](https://odysseysolutions.co/resources/)
+- [Editorial policy](https://odysseysolutions.co/editorial-policy/)
+
+## Important boundaries
+
+Odyssey provides technology and operational guidance, not legal advice. No
+website, checklist, assessment, training session, or technology provider can
+guarantee HIPAA compliance. Do not submit protected health information,
+passwords, patient records, or other sensitive data through public website
+forms.
+
