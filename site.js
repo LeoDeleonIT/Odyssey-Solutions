@@ -133,7 +133,7 @@
               '</div>' +
               '<div class="global-service-group"><strong>Software &amp; Growth</strong>' +
                 serviceLink('/people-compliance-platform/', 'HR + HIPAA Software') +
-                serviceLink('/web-development-houston/', 'Web Development') +
+                serviceLink('/web-development-houston/', 'Websites, Tools & Apps') +
               '</div>' +
             '</div>' +
           '</details>' +
@@ -165,7 +165,7 @@
         '</div>' +
         '<div class="global-mobile-group"><strong>Software &amp; Growth</strong>' +
           serviceLink('/people-compliance-platform/', 'HR + HIPAA Software') +
-          serviceLink('/web-development-houston/', 'Web Development') +
+          serviceLink('/web-development-houston/', 'Websites, Tools & Apps') +
         '</div>' +
         '<a href="/case-studies/"' + currentAttribute('/case-studies/', true) + '>Results</a>' +
         '<a href="/service-areas/"' + currentAttribute('/service-areas/', true) + '>Service Areas</a>' +
@@ -212,7 +212,8 @@
       'healthcare-it-readiness-review': 'Healthcare IT Readiness Review',
       'healthcare-it-support': 'Healthcare IT support',
       'dental-it-support': 'Dental IT support',
-      'managed-it-services': 'Managed IT services'
+      'managed-it-services': 'Managed IT services',
+      'digital-solution': 'Website, tool, or app'
     };
     var serviceField = form.querySelector('[name="service"]');
     if (serviceField && serviceOptions[requestedService]) {
