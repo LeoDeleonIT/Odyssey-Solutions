@@ -141,7 +141,7 @@
           '<a href="/service-areas/"' + currentAttribute('/service-areas/', true) + '>Service Areas</a>' +
           '<a href="/resources/"' + currentAttribute('/resources/', true) + '>Resources</a>' +
           '<a href="/about/"' + currentAttribute('/about/', true) + '>About</a>' +
-          '<a class="global-book-button" href="/contact/">Book Consultation</a>' +
+          '<a class="global-book-button" href="https://calendly.com/zain-odysseysolutions/30min" data-conversion="calendar_open" data-conversion-label="global_header_desktop">Book Consultation</a>' +
         '</nav>' +
         '<button class="global-mobile-toggle" aria-controls="global-mobile-navigation" aria-expanded="false" aria-label="Open navigation">☰</button>' +
       '</div>' +
@@ -171,9 +171,51 @@
         '<a href="/service-areas/"' + currentAttribute('/service-areas/', true) + '>Service Areas</a>' +
         '<a href="/resources/"' + currentAttribute('/resources/', true) + '>Resources</a>' +
         '<a href="/about/"' + currentAttribute('/about/', true) + '>About</a>' +
-        '<a class="global-mobile-book" href="/contact/">Book Consultation</a>' +
+        '<a class="global-mobile-book" href="https://calendly.com/zain-odysseysolutions/30min" data-conversion="calendar_open" data-conversion-label="global_header_mobile">Book Consultation</a>' +
       '</nav>';
   }
+
+  function limitedCampaignValue(value) {
+    return String(value || '').trim().slice(0, 200);
+  }
+
+  function calendlyPlacement(link) {
+    if (link.hasAttribute('data-conversion-label')) return link.getAttribute('data-conversion-label');
+    if (link.closest('.site-header')) return 'header';
+    if (link.closest('.site-footer')) return 'footer';
+    if (link.closest('.cta-band')) return 'bottom_cta';
+    if (link.closest('.sidebar, .contact-card')) return 'sidebar';
+    if (link.closest('.inline-cta')) return 'inline_cta';
+    return 'page_cta';
+  }
+
+  document.querySelectorAll('a[href^="https://calendly.com/zain-odysseysolutions/30min"]').forEach(function (link) {
+    try {
+      var bookingUrl = new URL(link.href);
+      var placement = calendlyPlacement(link);
+      var landingPage = attribution.landing_page || currentPath;
+      var contentLabel = limitedCampaignValue(landingPage + '|' + currentPath + '|' + placement);
+
+      if (!bookingUrl.searchParams.get('utm_source')) {
+        bookingUrl.searchParams.set('utm_source', limitedCampaignValue(attribution.utm_source) || 'odyssey_website');
+      }
+      if (!bookingUrl.searchParams.get('utm_medium')) {
+        bookingUrl.searchParams.set('utm_medium', limitedCampaignValue(attribution.utm_medium) || 'website');
+      }
+      if (!bookingUrl.searchParams.get('utm_campaign')) {
+        bookingUrl.searchParams.set('utm_campaign', limitedCampaignValue(attribution.utm_campaign) || 'consultation');
+      }
+      if (!bookingUrl.searchParams.get('utm_content')) {
+        bookingUrl.searchParams.set('utm_content', contentLabel);
+      }
+
+      link.href = bookingUrl.toString();
+      link.setAttribute('data-conversion', 'calendar_open');
+      link.setAttribute('data-conversion-label', placement);
+    } catch (error) {
+      // The original scheduling link remains usable if URL parsing fails.
+    }
+  });
 
   var toggle = document.querySelector('.global-mobile-toggle');
   var mobile = document.querySelector('.global-mobile-nav');
