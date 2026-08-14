@@ -1,10 +1,9 @@
 # Odyssey Solutions
 
-> Odyssey Solutions is a Greater Houston technology partner providing on-site
-> and remote IT support, managed services, cybersecurity, healthcare IT, dental
-> IT, Microsoft 365 support, backup and recovery planning, vendor coordination,
-> websites, custom business tools, automations, practical apps, and technology
-> projects.
+> Odyssey Solutions provides on-site IT support across Greater Houston and
+> remote support where the setup allows it. Services include managed IT,
+> Microsoft 365, cybersecurity, backups, vendor coordination, healthcare and
+> dental IT, websites, workflow tools, and technology projects.
 
 Website: https://odysseysolutions.co/
 Phone: +1-832-805-8467
@@ -28,7 +27,7 @@ Primary service area: Greater Houston, Texas
 - [Book a consultation](https://odysseysolutions.co/contact/)
 - [Greater Houston service areas](https://odysseysolutions.co/service-areas/)
 
-## Evidence and practical resources
+## Case studies and resources
 
 - [Client case studies](https://odysseysolutions.co/case-studies/)
 - [Healthcare IT resource center](https://odysseysolutions.co/resources/healthcare-it/)
@@ -38,8 +37,8 @@ Primary service area: Greater Houston, Texas
 
 ## Important boundaries
 
-Odyssey provides technology and operational guidance, not legal advice. No
-website, checklist, assessment, training session, or technology provider can
-guarantee HIPAA compliance. Do not submit protected health information,
+Odyssey provides IT services and educational guidance, not legal advice. No
+checklist, assessment, training program, or IT provider can guarantee HIPAA
+compliance. Do not submit protected health information,
 passwords, patient records, or other sensitive data through public website
 forms.
