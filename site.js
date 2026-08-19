@@ -303,7 +303,7 @@
       } catch (error) {
         button.textContent = original;
         button.disabled = false;
-        status.textContent = 'The form could not be sent. Call (832) 805-8467 or email leo@odysseysolutions.co.';
+        status.textContent = 'The form could not be sent. Call (832) 713-8498 or email info@odysseysolutions.co.';
       }
     });
   }
