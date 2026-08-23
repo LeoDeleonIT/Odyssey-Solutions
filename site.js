@@ -42,21 +42,10 @@
     });
   });
 
-  function safeReferrer(value) {
-    if (!value) return 'direct';
-    try {
-      var referrerUrl = new URL(value);
-      return referrerUrl.origin + referrerUrl.pathname;
-    } catch (error) {
-      return 'direct';
-    }
-  }
-
   function readAttribution() {
     var parameters = new URLSearchParams(window.location.search);
     var current = {
       landing_page: window.location.pathname,
-      initial_referrer: safeReferrer(document.referrer),
       utm_source: parameters.get('utm_source') || '',
       utm_medium: parameters.get('utm_medium') || '',
       utm_campaign: parameters.get('utm_campaign') || ''
@@ -265,7 +254,6 @@
     var attributionFields = {
       page_url: window.location.origin + window.location.pathname,
       landing_page: attribution.landing_page,
-      initial_referrer: attribution.initial_referrer,
       utm_source: attribution.utm_source,
       utm_medium: attribution.utm_medium,
       utm_campaign: attribution.utm_campaign

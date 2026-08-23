@@ -41,7 +41,7 @@ Every event includes `conversion_name` and `page_path`. Links may also include
 - Verify both the HTTPS domain property and sitemap in Google Search Console.
 - Keep UTM naming consistent for campaigns: lowercase source and medium, with a
   descriptive campaign name.
-- Review Formspree's `lead_source`, `initial_referrer`, and UTM fields alongside
+- Review Formspree's lead-source and UTM fields alongside
   GA4. This preserves useful attribution when a prospect reports that ChatGPT or
   another assistant recommended Odyssey.
 - Test measurement after every navigation or form change. Do not publish fake
