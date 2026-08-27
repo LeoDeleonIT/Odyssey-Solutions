@@ -11,6 +11,16 @@
     }, details || {});
 
     window.dataLayer.push(payload);
+
+    // The dataLayer entry is useful for debugging and future tag-manager
+    // rules, but gtag must also receive the event for GA4 to record it when
+    // no separate Google Tag Manager container is installed.
+    if (typeof window.gtag === 'function' && conversionName) {
+      var eventParameters = Object.assign({}, payload);
+      delete eventParameters.event;
+      window.gtag('event', conversionName, eventParameters);
+    }
+
     document.documentElement.setAttribute('data-odyssey-last-conversion', conversionName);
     window.dispatchEvent(new CustomEvent('odyssey:conversion', { detail: payload }));
   };
@@ -25,7 +35,6 @@
       if (destination.indexOf('tel:') === 0) conversionName = 'click_to_call';
       else if (destination.indexOf('mailto:') === 0) conversionName = 'email_click';
       else if (destination.indexOf('calendly.com/') !== -1) conversionName = 'calendar_open';
-      else if (link.hasAttribute('download') || /\.(pdf|docx|xlsx|zip)(?:[?#]|$)/i.test(destination)) conversionName = 'file_download';
     }
     if (!conversionName) return;
 
@@ -244,7 +253,10 @@
       'healthcare-it-support': 'Healthcare IT support',
       'dental-it-support': 'Dental IT support',
       'managed-it-services': 'Managed IT services',
-      'digital-solution': 'Website, tool, or app'
+      'digital-solution': 'Website, tool, or app',
+      'urgent-it-support': 'Urgent IT support',
+      'technology-project': 'Technology project',
+      'ongoing-it-support': 'Ongoing IT support'
     };
     var serviceField = form.querySelector('[name="service"]');
     if (serviceField && serviceOptions[requestedService]) {
@@ -274,6 +286,7 @@
       var button = form.querySelector('button[type="submit"]');
       var status = form.querySelector('[data-form-status]');
       var original = button.textContent;
+      var selectedService = serviceField ? serviceField.value : '';
       button.disabled = true;
       button.textContent = 'Sending...';
       status.textContent = '';
@@ -284,9 +297,11 @@
         button.textContent = 'Message sent';
         status.textContent = 'Thank you. The Odyssey team will respond within one business day.';
         if (typeof window.odysseyTrackConversion === 'function') {
-          window.odysseyTrackConversion('lead_form_submit', {
+          var leadDetails = {
             form_name: form.getAttribute('data-form-name') || 'contact_form'
-          });
+          };
+          if (selectedService) leadDetails.service_category = selectedService;
+          window.odysseyTrackConversion('generate_lead', leadDetails);
         }
       } catch (error) {
         button.textContent = original;
@@ -294,5 +309,6 @@
         status.textContent = 'The form could not be sent. Call (832) 713-8498 or email info@odysseysolutions.co.';
       }
     });
+
   }
 })();
