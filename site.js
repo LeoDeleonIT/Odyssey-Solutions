@@ -255,8 +255,8 @@
       'managed-it-services': 'Managed IT services',
       'digital-solution': 'Website, tool, or app',
       'urgent-it-support': 'Urgent IT support',
-      'technology-project': 'Technology project',
-      'ongoing-it-support': 'Ongoing IT support'
+      'technology-project': 'One-time IT project',
+      'ongoing-it-support': 'Managed IT services'
     };
     var serviceField = form.querySelector('[name="service"]');
     if (serviceField && serviceOptions[requestedService]) {

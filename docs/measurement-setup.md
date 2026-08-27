@@ -14,7 +14,7 @@ sent to Analytics.
 - `click_to_call`
 - `email_click`
 - Named CTA events supplied through `data-conversion`, including toolkit and
-  healthcare consultation actions
+  healthcare consultation and resource-to-service actions
 
 Every custom event includes `conversion_name` and `page_path`. Links may also
 include `conversion_label` and `destination`. A successful contact request

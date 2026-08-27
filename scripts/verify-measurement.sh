@@ -16,6 +16,12 @@ rg -q "odysseyTrackConversion\('generate_lead'" site.js
 rg -q 'if \(!response\.ok\) throw new Error' site.js
 ! rg -q "odysseyTrackConversion\('lead_form_start'" site.js
 ! rg -q "conversionName = 'file_download'" site.js
+rg -q '<option>Urgent IT support</option>' contact/index.html
+rg -q "'technology-project': 'One-time IT project'" site.js
+rg -q "'ongoing-it-support': 'Managed IT services'" site.js
+rg -q 'open_dental_to_dental_it' resources/open-dental-conversion-it-checklist.html
+rg -q 'hipaa_checklist_to_guidance' resources/hipaa-compliance-checklist-dental-offices-2026.html
+rg -q 'cybersecurity_checklist_to_managed_it' resources/small-business-cybersecurity-checklist-2026.html
 rg -q "sharedSiteScript\.src = '/site\.js\?v=${script_version}'" resources/resources-nav.js
 
 while IFS= read -r page; do

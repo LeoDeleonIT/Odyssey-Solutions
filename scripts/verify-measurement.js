@@ -3,7 +3,7 @@ const vm = require('vm');
 
 const source = fs.readFileSync('site.js', 'utf8');
 
-function createFixture(fetchOk) {
+function createFixture(fetchOk, search = '') {
   const gtagCalls = [];
   const documentListeners = {};
   const formListeners = {};
@@ -72,7 +72,7 @@ function createFixture(fetchOk) {
       location: {
         origin: 'https://odysseysolutions.co',
         pathname: '/contact/',
-        search: ''
+        search
       },
       sessionStorage: {
         getItem() { return null; },
@@ -111,16 +111,17 @@ async function verifyFailedForm() {
   }
 }
 
-function createLink(href, label) {
+function createLink(href, label, attributes = {}) {
   return {
     textContent: label,
     closest(selector) {
       return selector === 'a[href], [data-conversion]' ? this : null;
     },
     getAttribute(name) {
-      return name === 'href' ? href : null;
+      if (name === 'href') return href;
+      return attributes[name] || null;
     },
-    hasAttribute() { return false; }
+    hasAttribute(name) { return Object.hasOwn(attributes, name); }
   };
 }
 
@@ -142,6 +143,32 @@ function verifyDownloadUsesEnhancedMeasurement() {
   }
 }
 
+function verifyResourceServiceClick() {
+  const fixture = createFixture(true);
+  const link = createLink('/managed-it-services-houston/', 'Explore managed IT services', {
+    'data-conversion': 'resource_service_cta',
+    'data-conversion-label': 'cybersecurity_checklist_to_managed_it'
+  });
+  fixture.documentListeners.click[0]({ target: link });
+  const events = fixture.gtagCalls.filter(([command, name]) => command === 'event' && name === 'resource_service_cta');
+  if (events.length !== 1 || events[0][2].conversion_label !== 'cybersecurity_checklist_to_managed_it') {
+    throw new Error('Resource service CTA must emit its named conversion exactly once');
+  }
+}
+
+function verifyServicePreselection() {
+  const cases = [
+    ['urgent-it-support', 'Urgent IT support'],
+    ['technology-project', 'One-time IT project'],
+    ['ongoing-it-support', 'Managed IT services']
+  ];
+  for (const [service, expected] of cases) {
+    const fixture = createFixture(true, `?service=${service}`);
+    const selected = fixture.context.document.querySelector('[data-contact-form]').querySelector('[name="service"]').value;
+    if (selected !== expected) throw new Error(`${service} must preselect ${expected}`);
+  }
+}
+
 Promise.resolve()
   .then(verifySuccessfulForm)
   .then(verifyFailedForm)
@@ -149,6 +176,8 @@ Promise.resolve()
   .then(() => verifyContactClick('mailto:info@odysseysolutions.co', 'email_click', 'email'))
   .then(() => verifyContactClick('https://calendly.com/zain-odysseysolutions/30min', 'calendar_open', 'https://calendly.com/zain-odysseysolutions/30min'))
   .then(verifyDownloadUsesEnhancedMeasurement)
+  .then(verifyResourceServiceClick)
+  .then(verifyServicePreselection)
   .then(() => console.log('Measurement behavior checks passed'))
   .catch((error) => {
     console.error(error.message);
