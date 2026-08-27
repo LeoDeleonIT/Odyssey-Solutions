@@ -26,6 +26,18 @@ body {
 a { color: var(--orange-dark); }
 a:hover { color: #9a3412; }
 img { max-width: 100%; }
+.skip-link {
+  position: fixed;
+  left: 16px;
+  top: -80px;
+  z-index: 1000;
+  padding: 10px 16px;
+  border-radius: 8px;
+  background: #fff;
+  color: var(--navy);
+  font-weight: 800;
+}
+.skip-link:focus { top: 12px; }
 .sr-only {
   position: absolute;
   width: 1px;
@@ -156,7 +168,9 @@ h1, h2, h3 {
 h1 { margin: 0 0 20px; color: #fff; font-size: clamp(2.25rem, 5vw, 4rem); letter-spacing: -.045em; }
 .article-hero h1 { font-size: clamp(2rem, 4.5vw, 3.45rem); }
 .hero-deck { max-width: 740px; margin: 0; color: rgba(255,255,255,.76); font-size: 1.15rem; }
-.article-hero-actions { margin: 26px 0 0; }
+.article-hero-actions { display: flex; flex-wrap: wrap; gap: 12px; margin: 26px 0 0; }
+.article-hero .button-outline { border: 1px solid rgba(255,255,255,.55); background: transparent; box-shadow: none; }
+.article-hero .button-outline:hover { border-color: #fff; background: rgba(255,255,255,.1); }
 .meta { display: flex; flex-wrap: wrap; gap: 10px 20px; margin-top: 25px; color: rgba(255,255,255,.66); font-size: .84rem; }
 
 .blog-main { padding: 76px 0 96px; background: var(--wash); }
@@ -257,6 +271,7 @@ h1 { margin: 0 0 20px; color: #fff; font-size: clamp(2.25rem, 5vw, 4rem); letter
 .inline-cta h2 { margin: 0 0 10px; font-size: 1.2rem; }
 .inline-cta p { margin: 0 0 18px; }
 .inline-cta .button { min-height: 42px; }
+.inline-cta-actions { display: flex; flex-wrap: wrap; gap: 12px; }
 .toolkit-feature {
   display: grid;
   grid-template-columns: minmax(0, 1fr) auto;

@@ -254,6 +254,11 @@
       'dental-it-support': 'Dental IT support',
       'managed-it-services': 'Managed IT services',
       'digital-solution': 'Website, tool, or app',
+      'business-it-support': 'Business IT support',
+      'cybersecurity': 'Cybersecurity',
+      'hipaa-guidance': 'HIPAA guidance or training',
+      'hipaa-training': 'HIPAA guidance or training',
+      'hr-hipaa-demo': 'HR and HIPAA software demo',
       'urgent-it-support': 'Urgent IT support',
       'technology-project': 'One-time IT project',
       'ongoing-it-support': 'Managed IT services'

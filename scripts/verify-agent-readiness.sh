@@ -19,7 +19,7 @@ if (!blocks.length) throw new Error('No JSON-LD found on homepage');
 const graph = blocks.map(([, body]) => JSON.parse(body));
 const identity = graph.find((item) => Array.isArray(item['@type']) && item['@type'].includes('Organization'));
 if (!identity) throw new Error('Homepage Organization JSON-LD missing');
-if (!identity.contactPoint?.telephone || !identity.contactPoint?.contactType) throw new Error('Organization contactPoint incomplete');
+if (!identity.contactPoint?.telephone || !identity.contactPoint?.email || !identity.contactPoint?.contactType) throw new Error('Organization contactPoint incomplete');
 console.log('Homepage Organization JSON-LD valid');
 NODE
 

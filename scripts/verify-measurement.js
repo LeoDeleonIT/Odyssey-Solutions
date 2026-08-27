@@ -158,6 +158,11 @@ function verifyResourceServiceClick() {
 
 function verifyServicePreselection() {
   const cases = [
+    ['business-it-support', 'Business IT support'],
+    ['cybersecurity', 'Cybersecurity'],
+    ['hipaa-guidance', 'HIPAA guidance or training'],
+    ['hipaa-training', 'HIPAA guidance or training'],
+    ['hr-hipaa-demo', 'HR and HIPAA software demo'],
     ['urgent-it-support', 'Urgent IT support'],
     ['technology-project', 'One-time IT project'],
     ['ongoing-it-support', 'Managed IT services']
