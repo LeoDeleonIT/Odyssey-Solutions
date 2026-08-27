@@ -3,6 +3,30 @@
   window.__odysseySiteReady = true;
 
   window.dataLayer = window.dataLayer || [];
+  var currentPath = window.location.pathname.replace(/\/index\.html$/, '/');
+  var resourceServiceCategories = {
+    '/it-support-houston/': 'business_it_support',
+    '/managed-it-services-houston/': 'managed_it_services',
+    '/remote-it-support/': 'remote_it_support',
+    '/dental-it-support-houston/': 'dental_it_support',
+    '/remote-dental-it-support/': 'dental_it_support',
+    '/dental-cybersecurity-houston/': 'cybersecurity',
+    '/dental-software-support/': 'dental_software_support',
+    '/healthcare-it-support-houston/': 'healthcare_it_support',
+    '/healthcare-it-readiness-review/': 'healthcare_it_readiness',
+    '/hipaa-compliance-consulting-texas/': 'hipaa_guidance',
+    '/hipaa-training-texas/': 'hipaa_training',
+    '/web-development-houston/': 'digital_solutions',
+    '/people-compliance-platform/': 'people_compliance_platform'
+  };
+
+  function destinationPath(destination) {
+    try {
+      return new URL(destination, window.location.origin).pathname.replace(/\/index\.html$/, '/');
+    } catch (error) {
+      return '';
+    }
+  }
   window.odysseyTrackConversion = function (conversionName, details) {
     var payload = Object.assign({
       event: 'odyssey_conversion',
@@ -31,15 +55,23 @@
 
     var destination = link.getAttribute('href') || '';
     var conversionName = link.getAttribute('data-conversion');
+    var inferredServiceCategory = '';
     if (!conversionName) {
       if (destination.indexOf('tel:') === 0) conversionName = 'click_to_call';
       else if (destination.indexOf('mailto:') === 0) conversionName = 'email_click';
       else if (destination.indexOf('calendly.com/') !== -1) conversionName = 'calendar_open';
+      else if (currentPath.indexOf('/resources/') === 0) {
+        inferredServiceCategory = resourceServiceCategories[destinationPath(destination)] || '';
+        if (inferredServiceCategory) conversionName = 'resource_service_cta';
+      }
     }
     if (!conversionName) return;
 
     var safeDestination = destination;
     var conversionLabel = link.getAttribute('data-conversion-label') || link.textContent.trim();
+    if (conversionName === 'resource_service_cta' && !link.getAttribute('data-conversion-label')) {
+      conversionLabel = 'resource_link_to_' + inferredServiceCategory;
+    }
     if (destination.indexOf('tel:') === 0) safeDestination = 'phone';
     if (destination.indexOf('mailto:') === 0) safeDestination = 'email';
     if (destination.indexOf('tel:') === 0) conversionLabel = 'phone_link';
@@ -49,7 +81,7 @@
       conversion_label: conversionLabel,
       destination: safeDestination
     };
-    var serviceCategory = link.getAttribute('data-service-category');
+    var serviceCategory = link.getAttribute('data-service-category') || inferredServiceCategory;
     if (serviceCategory) eventDetails.service_category = serviceCategory;
 
     window.odysseyTrackConversion(conversionName, eventDetails);
@@ -80,11 +112,10 @@
   if (!style) {
     style = document.createElement('link');
     style.rel = 'stylesheet';
-    style.href = '/site-header.css?v=20260827c';
+    style.href = '/site-header.css?v=20260827d';
     document.head.appendChild(style);
   }
 
-  var currentPath = window.location.pathname.replace(/\/index\.html$/, '/');
   var servicePaths = [
     '/it-support-houston/', '/remote-it-support/', '/managed-it-services-houston/',
     '/dental-it-support-houston/', '/remote-dental-it-support/',
@@ -176,6 +207,7 @@
         '<a href="/service-areas/"' + currentAttribute('/service-areas/', true) + '>Service Areas</a>' +
         '<a href="/resources/"' + currentAttribute('/resources/', true) + '>Resources</a>' +
         '<a href="/about/"' + currentAttribute('/about/', true) + '>About</a>' +
+        '<a href="/contact/"' + currentAttribute('/contact/', false) + '>Contact</a>' +
         '<a class="global-mobile-book" href="https://calendly.com/zain-odysseysolutions/30min" data-conversion="calendar_open" data-conversion-label="global_header_mobile">Book Consultation</a>' +
       '</nav>';
   }
@@ -241,6 +273,15 @@
       toggle.setAttribute('aria-expanded', String(open));
       toggle.setAttribute('aria-label', open ? 'Close navigation' : 'Open navigation');
     });
+    mobile.addEventListener('keydown', function (event) {
+      if (event.key === 'Escape' && !mobile.hidden) {
+        mobile.classList.remove('open');
+        mobile.hidden = true;
+        toggle.setAttribute('aria-expanded', 'false');
+        toggle.setAttribute('aria-label', 'Open navigation');
+        toggle.focus();
+      }
+    });
   }
 
   document.querySelectorAll('.global-services-menu').forEach(function (menu) {
@@ -281,9 +322,17 @@
       'ongoing-it-support': 'Managed IT services'
     };
     var serviceField = form.querySelector('[name="service"]');
+    var urgentSupportNote = form.querySelector('[data-urgent-support-note]');
+    function updateUrgentSupportNote() {
+      if (urgentSupportNote && serviceField) {
+        urgentSupportNote.hidden = serviceField.value !== 'Urgent IT support';
+      }
+    }
     if (serviceField && serviceOptions[requestedService]) {
       serviceField.value = serviceOptions[requestedService];
     }
+    updateUrgentSupportNote();
+    if (serviceField) serviceField.addEventListener('change', updateUrgentSupportNote);
 
     var attributionFields = {
       page_url: window.location.origin + window.location.pathname,

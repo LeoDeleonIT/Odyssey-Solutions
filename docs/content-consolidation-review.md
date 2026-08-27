@@ -33,3 +33,34 @@ Recommended decision after Search Console access:
 - Confirmation that the selected destination answers every material query from the retired page.
 - Updated internal links, sitemap entry, canonical, and structured data.
 - A post-deployment check that the old URL returns one permanent redirect to a 200 destination.
+
+## Additional intent clusters reviewed
+
+These groups use related language but currently answer different decisions. Keep them separate unless Search Console shows sustained query overlap.
+
+### Dental office launch planning
+
+- `new-dental-office-it-setup-houston.html` covers the complete technology buildout.
+- `dental-office-technology-opening-timeline.html` organizes work by project stage and opening date.
+- `dental-office-it-budget-houston.html` covers budget categories and scope questions.
+- `dental-office-network-setup-houston.html` focuses on cabling, wireless coverage, segmentation, and testing.
+
+### Healthcare IT provider planning
+
+- `healthcare-it-support-houston-choose-provider.html` is a provider-selection guide.
+- `healthcare-it-support-cost-houston.html` explains scope and cost drivers.
+- `healthcare-it-support-response-houston.html` defines support ownership and response expectations.
+- `healthcare-it-after-hours-escalation-houston.html` focuses on after-hours roles and escalation.
+
+### Recovery and backup planning
+
+- `business-backup-disaster-recovery-houston.html` covers company-wide continuity and recovery priorities.
+- `healthcare-disaster-recovery-backup-testing.html` focuses on healthcare restore testing and documentation.
+- `microsoft-365-backup-small-business.html` focuses only on Microsoft 365 retention, backup, and restore testing.
+
+### Dental software operations
+
+- `dental-software-stack-payments-analytics-scheduling.html` maps ownership across the complete software stack.
+- `eaglesoft-it-support-dental-practices.html` focuses on Eaglesoft dependencies and vendor coordination.
+- `open-dental-conversion-it-checklist.html` focuses on conversion readiness and validation.
+- `mydentalforce-dental-operations-open-dental.html` focuses on deployment readiness around Open Dental.

@@ -3,11 +3,18 @@ const vm = require('vm');
 
 const source = fs.readFileSync('site.js', 'utf8');
 
-function createFixture(fetchOk, search = '') {
+function createFixture(fetchOk, search = '', pathname = '/contact/') {
   const gtagCalls = [];
   const documentListeners = {};
   const formListeners = {};
-  const serviceField = { value: 'Business IT support' };
+  const serviceListeners = {};
+  const serviceField = {
+    value: 'Business IT support',
+    addEventListener(name, listener) {
+      serviceListeners[name] = listener;
+    }
+  };
+  const urgentSupportNote = { hidden: true };
   const button = { disabled: false, textContent: 'Send message' };
   const status = { textContent: '' };
   const form = {
@@ -22,6 +29,7 @@ function createFixture(fetchOk, search = '') {
     },
     querySelector(selector) {
       if (selector === '[name="service"]') return serviceField;
+      if (selector === '[data-urgent-support-note]') return urgentSupportNote;
       if (selector === 'button[type="submit"]') return button;
       if (selector === '[data-form-status]') return status;
       return null;
@@ -71,7 +79,7 @@ function createFixture(fetchOk, search = '') {
       },
       location: {
         origin: 'https://odysseysolutions.co',
-        pathname: '/contact/',
+        pathname,
         search
       },
       sessionStorage: {
@@ -83,7 +91,7 @@ function createFixture(fetchOk, search = '') {
 
   context.window.window = context.window;
   vm.runInNewContext(source, context, { filename: 'site.js' });
-  return { button, context, documentListeners, formListeners, gtagCalls, status };
+  return { button, context, documentListeners, formListeners, gtagCalls, serviceField, serviceListeners, status, urgentSupportNote };
 }
 
 async function verifySuccessfulForm() {
@@ -157,6 +165,16 @@ function verifyResourceServiceClick() {
   }
 }
 
+function verifyInferredResourceServiceClick() {
+  const fixture = createFixture(true, '', '/resources/example-guide.html');
+  const link = createLink('/managed-it-services-houston/', 'Explore managed IT services');
+  fixture.documentListeners.click[0]({ target: link });
+  const events = fixture.gtagCalls.filter(([command, name]) => command === 'event' && name === 'resource_service_cta');
+  if (events.length !== 1 || events[0][2].conversion_label !== 'resource_link_to_managed_it_services' || events[0][2].service_category !== 'managed_it_services') {
+    throw new Error('Unmarked resource service links must emit a privacy-safe service conversion');
+  }
+}
+
 function verifyServicePreselection() {
   const cases = [
     ['business-it-support', 'Business IT support'],
@@ -172,6 +190,9 @@ function verifyServicePreselection() {
     const fixture = createFixture(true, `?service=${service}`);
     const selected = fixture.context.document.querySelector('[data-contact-form]').querySelector('[name="service"]').value;
     if (selected !== expected) throw new Error(`${service} must preselect ${expected}`);
+    if (service === 'urgent-it-support' && fixture.urgentSupportNote.hidden) {
+      throw new Error('Urgent support preselection must reveal the urgent contact guidance');
+    }
   }
 }
 
@@ -183,6 +204,7 @@ Promise.resolve()
   .then(() => verifyContactClick('https://calendly.com/zain-odysseysolutions/30min', 'calendar_open', 'https://calendly.com/zain-odysseysolutions/30min'))
   .then(verifyDownloadUsesEnhancedMeasurement)
   .then(verifyResourceServiceClick)
+  .then(verifyInferredResourceServiceClick)
   .then(verifyServicePreselection)
   .then(() => console.log('Measurement behavior checks passed'))
   .catch((error) => {

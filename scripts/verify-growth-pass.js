@@ -51,7 +51,7 @@ for (const file of htmlFiles) {
   if (!excludedFromIndex && (!html.includes('class="skip-link"') || !/<main(?:\s[^>]*)?id="main"/.test(html))) {
     throw new Error(`Keyboard skip link or main target missing from ${relativePath}`);
   }
-  if (!excludedFromIndex && (html.match(/site-header\.css\?v=20260827c/g) || []).length !== 1) {
+  if (!excludedFromIndex && (html.match(/site-header\.css\?v=20260827d/g) || []).length !== 1) {
     throw new Error(`Early shared-header stylesheet missing or duplicated in ${relativePath}`);
   }
   if (!excludedFromIndex && relativePath !== 'index.html' && !html.includes('BreadcrumbList')) {
@@ -64,7 +64,11 @@ expect('index.html', /<h1>IT support and technology projects for your business<\
 expect('index.html', /homepage_business_it_explore/, 'Broad homepage closing action');
 expect('contact/index.html', /data-conversion-label="contact_hero"/, 'Contact-page hero consultation action');
 expect('contact/index.html', /<a class="btn btn-outline" href="tel:\+18327138498">Call \(832\) 713-8498<\/a>/, 'Contact-page hero phone action');
+expect('contact/index.html', /data-urgent-support-note hidden/, 'Conditional urgent-support guidance');
 expect('contact/index.html', /name="_gotcha"[\s\S]*?aria-hidden="true"/, 'Hidden contact-form spam field');
+expect('site.js', /resource_link_to_/, 'Automatic resource-to-service measurement');
+expect('site.js', />Contact<\/a>/, 'Direct contact path in mobile navigation');
+expect('site-header.css', /scroll-margin-top:\s*104px/, 'Sticky-header anchor offset');
 expect('dental-it-support-houston/index.html', /href="\/contact\/\?service=dental-it-support"[^>]*>Discuss dental IT support<\/a>/, 'Dental IT contact action');
 
 const urgent = read('resources/urgent-same-day-it-support-houston.html');

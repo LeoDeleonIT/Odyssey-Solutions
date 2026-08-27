@@ -1,6 +1,8 @@
 .global-site-header,
 .global-site-header * { box-sizing: border-box; }
 
+:where(main [id]) { scroll-margin-top: 104px; }
+
 .global-site-header {
   position: sticky;
   top: 0;
