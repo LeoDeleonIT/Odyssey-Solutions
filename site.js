@@ -45,10 +45,14 @@
     if (destination.indexOf('tel:') === 0) conversionLabel = 'phone_link';
     if (destination.indexOf('mailto:') === 0) conversionLabel = 'email_link';
 
-    window.odysseyTrackConversion(conversionName, {
+    var eventDetails = {
       conversion_label: conversionLabel,
       destination: safeDestination
-    });
+    };
+    var serviceCategory = link.getAttribute('data-service-category');
+    if (serviceCategory) eventDetails.service_category = serviceCategory;
+
+    window.odysseyTrackConversion(conversionName, eventDetails);
   });
 
   function readAttribution() {
@@ -72,10 +76,13 @@
 
   var attribution = readAttribution();
 
-  var style = document.createElement('link');
-  style.rel = 'stylesheet';
-  style.href = '/site-header.css?v=20260729b';
-  document.head.appendChild(style);
+  var style = document.querySelector('link[href^="/site-header.css"]');
+  if (!style) {
+    style = document.createElement('link');
+    style.rel = 'stylesheet';
+    style.href = '/site-header.css?v=20260827c';
+    document.head.appendChild(style);
+  }
 
   var currentPath = window.location.pathname.replace(/\/index\.html$/, '/');
   var servicePaths = [
@@ -175,6 +182,16 @@
 
   function limitedCampaignValue(value) {
     return String(value || '').trim().slice(0, 200);
+  }
+
+  function analyticsCategory(value) {
+    return String(value || '')
+      .trim()
+      .toLowerCase()
+      .replace(/&/g, ' and ')
+      .replace(/[^a-z0-9]+/g, '_')
+      .replace(/^_+|_+$/g, '')
+      .slice(0, 100);
   }
 
   function calendlyPlacement(link) {
@@ -305,7 +322,7 @@
           var leadDetails = {
             form_name: form.getAttribute('data-form-name') || 'contact_form'
           };
-          if (selectedService) leadDetails.service_category = selectedService;
+          if (selectedService) leadDetails.service_category = analyticsCategory(selectedService);
           window.odysseyTrackConversion('generate_lead', leadDetails);
         }
       } catch (error) {

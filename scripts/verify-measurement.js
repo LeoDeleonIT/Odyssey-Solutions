@@ -92,7 +92,7 @@ async function verifySuccessfulForm() {
   const leadCalls = fixture.gtagCalls.filter(([command, name]) => command === 'event' && name === 'generate_lead');
   if (leadCalls.length !== 1) throw new Error('Successful form submission must emit generate_lead exactly once');
   const parameters = leadCalls[0][2];
-  if (parameters.form_name !== 'contact' || parameters.service_category !== 'Business IT support') {
+  if (parameters.form_name !== 'contact' || parameters.service_category !== 'business_it_support') {
     throw new Error('Successful form submission must include only safe form context');
   }
   if (!fixture.button.disabled || fixture.button.textContent !== 'Message sent') {
@@ -147,11 +147,12 @@ function verifyResourceServiceClick() {
   const fixture = createFixture(true);
   const link = createLink('/managed-it-services-houston/', 'Explore managed IT services', {
     'data-conversion': 'resource_service_cta',
-    'data-conversion-label': 'cybersecurity_checklist_to_managed_it'
+    'data-conversion-label': 'cybersecurity_checklist_to_managed_it',
+    'data-service-category': 'cybersecurity'
   });
   fixture.documentListeners.click[0]({ target: link });
   const events = fixture.gtagCalls.filter(([command, name]) => command === 'event' && name === 'resource_service_cta');
-  if (events.length !== 1 || events[0][2].conversion_label !== 'cybersecurity_checklist_to_managed_it') {
+  if (events.length !== 1 || events[0][2].conversion_label !== 'cybersecurity_checklist_to_managed_it' || events[0][2].service_category !== 'cybersecurity') {
     throw new Error('Resource service CTA must emit its named conversion exactly once');
   }
 }

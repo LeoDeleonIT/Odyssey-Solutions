@@ -51,6 +51,12 @@ for (const file of htmlFiles) {
   if (!excludedFromIndex && (!html.includes('class="skip-link"') || !/<main(?:\s[^>]*)?id="main"/.test(html))) {
     throw new Error(`Keyboard skip link or main target missing from ${relativePath}`);
   }
+  if (!excludedFromIndex && (html.match(/site-header\.css\?v=20260827c/g) || []).length !== 1) {
+    throw new Error(`Early shared-header stylesheet missing or duplicated in ${relativePath}`);
+  }
+  if (!excludedFromIndex && relativePath !== 'index.html' && !html.includes('BreadcrumbList')) {
+    throw new Error(`BreadcrumbList schema missing from ${relativePath}`);
+  }
 }
 
 expect('site-header.css', /\.global-desktop-nav > a\.global-book-button\s*\{[^}]*color:\s*#fff/s, 'Accessible desktop consultation-button color');

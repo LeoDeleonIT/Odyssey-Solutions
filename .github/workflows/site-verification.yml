@@ -1,0 +1,33 @@
+name: Site verification
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  verify:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 20
+      - name: Verify JavaScript syntax
+        run: |
+          node --check site.js
+          node --check resources/resources-nav.js
+      - name: Verify measurement behavior and static markup
+        run: bash scripts/verify-measurement.sh
+      - name: Verify site quality
+        run: node scripts/verify-site-quality.js
+      - name: Verify internal links
+        run: node scripts/verify-links.js
+      - name: Verify agent readiness
+        run: bash scripts/verify-agent-readiness.sh
+      - name: Check whitespace errors
+        run: git diff --check
