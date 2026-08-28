@@ -44,3 +44,17 @@ The font migration was tested from the local production files with three mobile 
 - The local desktop homepage scored 100 for all four categories.
 
 Local tests use an uncompressed development server, so production transfer timings will differ. Run three production medians after deployment before treating the local score change as a final result.
+
+## Production verification for commit 53dae8c
+
+Three-run medians confirm that the deployed font migration materially improved the two weakest mobile pages:
+
+| Page | Performance | FCP | LCP | Speed Index | Original performance |
+| --- | ---: | ---: | ---: | ---: | ---: |
+| Contact mobile | 88 | 1.75 s | 1.84 s | 1.75 s | 79 |
+| Dental IT mobile | 96 | 1.95 s | 1.98 s | 1.95 s | 75 |
+| Homepage desktop | 94 | 0.96 s | 0.96 s | 2.02 s | 100 |
+
+Contact improved 9 performance points and Dental IT improved 21. Lighthouse found no remaining render-blocking savings on either mobile page. Both local WOFF2 files returned 200 in every production run, and no request reached a Google Fonts host. Accessibility and Best Practices remained 100.
+
+Contact Total Blocking Time varied widely across runs, so JavaScript timing remains a monitoring item. The desktop homepage median remains strong, but its first production run was a cold-network outlier. Continue using medians instead of a single run.
