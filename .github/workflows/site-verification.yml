@@ -23,8 +23,13 @@ jobs:
         run: |
           node --check site.js
           node --check resources/resources-nav.js
+          node --check scripts/standardize-source-navigation.js
+      - name: Verify standardized source navigation
+        run: node scripts/standardize-source-navigation.js --check
       - name: Verify measurement behavior and static markup
         run: bash scripts/verify-measurement.sh
+      - name: Test live verification behavior
+        run: bash scripts/test-verify-live-endpoints.sh
       - name: Verify site quality
         run: node scripts/verify-site-quality.js
       - name: Verify internal links

@@ -1,13 +1,13 @@
 # Content consolidation review
 
-Prepared August 27, 2026. No pages were redirected or consolidated because Search Console query evidence is unavailable.
+Prepared August 27, 2026. Search Console has usable early data beginning July 20, 2026, but the history is too short to support destructive consolidation. No content URL was redirected or removed.
 
 ## Microsoft 365 pair
 
 - `/resources/microsoft-365-support-small-business-houston.html` covers tenant ownership, licensing, collaboration, onboarding, support, and recovery for a broad small-business audience.
 - `/resources/microsoft-365-support-houston-identity-security.html` focuses on administrator ownership, MFA, email protection, devices, sharing, and account recovery.
 
-Recommended decision after Search Console access:
+Recommended decision after enough page-level Search Console history:
 
 1. Compare each page's queries, clicks, impressions, and average position for the last three months.
 2. Keep both pages if the broad support page wins general administration queries and the identity page wins security-specific queries.
@@ -19,20 +19,22 @@ Recommended decision after Search Console access:
 - `/resources/urgent-same-day-it-support-houston.html` helps a buyer decide what to do and how to contact Odyssey during an urgent problem.
 - `/resources/business-it-outage-same-day-recovery-guide.html` is an operational recovery guide for assigning roles, protecting evidence, restoring service, and reviewing the incident.
 
-Recommended decision after Search Console access:
+Recommended decision after enough page-level Search Console history:
 
 1. Compare page-level query overlap and average positions for the last three months.
 2. Keep both pages if one earns urgent-support or same-day-service queries and the other earns outage-recovery or incident-plan queries.
 3. If the pages compete, retain the urgent support page as the commercial destination and keep the best operational guidance in the recovery article.
 4. Consolidate only after documenting the winning URL and a tested 301 redirect.
 
-## Evidence required before any redirect
+## Evidence required before any content redirect
 
 - Query and page exports for the last 28 days and last three months.
 - Device comparison for mobile and desktop.
 - Confirmation that the selected destination answers every material query from the retired page.
 - Updated internal links, sitemap entry, canonical, and structured data.
 - A post-deployment check that the old URL returns one permanent redirect to a 200 destination.
+
+The four legacy `/blog/` redirects are technical migrations to matching resources, not content-consolidation decisions. They remain suitable for permanent edge redirects.
 
 ## Additional intent clusters reviewed
 

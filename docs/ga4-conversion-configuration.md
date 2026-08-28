@@ -4,6 +4,7 @@ Prepared August 27, 2026 for property `G-VPKTJC4QXJ`. No GA4 settings were chang
 
 ## Current evidence
 
+- The last 28 days show 75 views, 31 active users, 179 events, and 0 key events.
 - GA4 Realtime is receiving page views, sessions, first visits, engagement, and scroll events.
 - Recent events currently list `click`, `first_visit`, `page_view`, `scroll`, `session_start`, and `user_engagement`.
 - `generate_lead`, `calendar_open`, `click_to_call`, `email_click`, and `resource_service_cta` have not appeared in the Recent events table yet.

@@ -3,7 +3,7 @@ const path = require('path');
 
 const root = path.resolve(__dirname, '..');
 const measurementId = 'G-VPKTJC4QXJ';
-const assetVersion = '20260827d';
+const assetVersion = '20260827e';
 const businessId = 'https://odysseysolutions.co/#business';
 const servicePaths = [
   '/it-support-houston/',
@@ -46,6 +46,18 @@ const publicFiles = new Set(
 const sitemap = read('sitemap.xml');
 const sitemapEntries = [...sitemap.matchAll(/<url>\s*<loc>([^<]+)<\/loc>\s*<lastmod>([^<]+)<\/lastmod>/g)];
 const sitemapDates = new Map(sitemapEntries.map((match) => [match[1], match[2]]));
+const searchMetadata = {
+  title: new Map(),
+  description: new Map(),
+  canonical: new Map()
+};
+
+function recordUniqueMetadata(kind, value, relativePath) {
+  const normalized = value.replace(/&amp;/g, '&').replace(/\s+/g, ' ').trim();
+  const previousPath = searchMetadata[kind].get(normalized);
+  if (previousPath) fail(`Duplicate ${kind} found in ${previousPath} and ${relativePath}`);
+  searchMetadata[kind].set(normalized, relativePath);
+}
 
 if (sitemapDates.size !== sitemapEntries.length) fail('Duplicate URL found in sitemap.xml');
 
@@ -94,8 +106,13 @@ for (const absolutePath of htmlFiles) {
   if ((html.match(/<link[^>]+rel=["']canonical["']/gi) || []).length !== 1) fail(`Expected one canonical link in ${relativePath}`);
   const title = html.match(/<title>([\s\S]*?)<\/title>/i)?.[1].replace(/&amp;/g, '&').trim() || '';
   if (title.length < 30 || title.length > 70) fail(`Search title length is outside the reviewed range in ${relativePath}`);
+  const description = html.match(/<meta[^>]+name=["']description["'][^>]+content=["']([^"']+)["']/i)?.[1] || '';
+  if (!description) fail(`Meta description is missing from ${relativePath}`);
   const canonicalUrl = html.match(/<link[^>]+rel=["']canonical["'][^>]+href=["']([^"']+)/i)?.[1];
   if (!sitemapDates.has(canonicalUrl)) fail(`Canonical URL is missing from sitemap.xml in ${relativePath}`);
+  recordUniqueMetadata('title', title, relativePath);
+  recordUniqueMetadata('description', description, relativePath);
+  recordUniqueMetadata('canonical', canonicalUrl, relativePath);
   for (const [label, pattern] of [
     ['Open Graph type', /property=["']og:type["']/i],
     ['Open Graph title', /property=["']og:title["']/i],
@@ -107,7 +124,15 @@ for (const absolutePath of htmlFiles) {
     if (!pattern.test(html)) fail(`${label} metadata is missing from ${relativePath}`);
   }
   if ((html.match(new RegExp(`googletagmanager\\.com/gtag/js\\?id=${measurementId}`, 'g')) || []).length !== 1) fail(`Expected one GA4 loader in ${relativePath}`);
+  if (/fonts\.(?:googleapis|gstatic)\.com/.test(html)) fail(`External Google Fonts request remains in ${relativePath}`);
   if ((html.match(new RegExp(`/site-header\\.css\\?v=${assetVersion}`, 'g')) || []).length !== 1) fail(`Expected one early shared-header stylesheet in ${relativePath}`);
+  if (!html.includes('class="site-header source-site-header"')) fail(`Standard source header missing from ${relativePath}`);
+  for (const requiredPath of ['/', '/it-support-houston/', '/case-studies/', '/service-areas/', '/resources/', '/about/', '/contact/']) {
+    if (!html.includes(`href="${requiredPath}"`)) fail(`Source navigation is missing ${requiredPath} in ${relativePath}`);
+  }
+  if (!html.includes('class="source-mobile-menu"') || !html.includes('aria-label="Mobile navigation"')) {
+    fail(`No-JavaScript mobile navigation is missing from ${relativePath}`);
+  }
   if (!html.includes(`site.css?v=${assetVersion}`) && !html.includes(`blog.css?v=${assetVersion}`)) fail(`Shared CSS cache version is stale in ${relativePath}`);
   if (!html.includes('class="skip-link"') || !/<main(?:\s[^>]*)?id=["']main["']/.test(html)) fail(`Skip link or main target missing from ${relativePath}`);
   if (relativePath !== 'index.html' && !html.includes('BreadcrumbList')) fail(`BreadcrumbList schema missing from ${relativePath}`);
@@ -137,7 +162,7 @@ for (const absolutePath of htmlFiles) {
   }
 }
 
-for (const requiredFile of ['404.html', 'llms.txt', 'robots.txt', 'sitemap.xml', 'site.js', 'site-header.css']) {
+for (const requiredFile of ['404.html', 'llms.txt', 'robots.txt', 'sitemap.xml', 'site.js', 'site-header.css', 'fonts/exo-2-latin-v26.woff2', 'fonts/orbitron-latin-v35.woff2', 'fonts/OFL-Exo2.txt', 'fonts/OFL-Orbitron.txt']) {
   if (!publicFiles.has(requiredFile)) fail(`Required public file missing: ${requiredFile}`);
 }
 
@@ -152,5 +177,6 @@ if (!homepage.includes('https://calendly.com/zain-odysseysolutions/30min')) fail
 if (!/Page not found/i.test(read('404.html')) || !read('404.html').includes('sitemap.xml') || !read('404.html').includes('llms.txt')) fail('404 recovery links are incomplete');
 if (!/:focus-visible|\.skip-link:focus/.test(read('site.css') + read('site-header.css') + read('resources/blog.css'))) fail('Visible keyboard focus styles missing');
 if (!/scroll-margin-top:\s*104px/.test(read('site-header.css'))) fail('Sticky-header anchor offset is missing');
+if (!/fonts\/exo-2-latin-v26\.woff2/.test(read('site-header.css')) || !/fonts\/orbitron-latin-v35\.woff2/.test(read('site-header.css'))) fail('Self-hosted font declarations are incomplete');
 
 console.log(`Site-quality checks passed across ${htmlFiles.length} HTML files and ${sitemapDates.size} sitemap URLs`);

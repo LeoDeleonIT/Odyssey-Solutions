@@ -54,3 +54,22 @@ curl -sI -H "Accept: application/unsupported" https://odysseysolutions.co/
 The Markdown response must use `Content-Type: text/markdown; charset=utf-8`. `Vary` must include both `Accept` and the origin's existing `Accept-Encoding` dimension. HTML requests must continue to receive HTML. Unsupported media types should receive 406 when strict negotiation is configured.
 
 Do not attach a custom Worker to the production route until its 404 passthrough, cache behavior, q-value parsing, redirects, and HTML fallback have been tested on a preview hostname.
+
+## Optional change 4: Cache versioned first-party assets
+
+Production currently returns a four-hour cache lifetime for CSS, JavaScript, and images. Lighthouse identified repeat-visit savings from longer caching. Do not apply one broad immutable rule because many image filenames are not content-hashed.
+
+After the HTTPS and redirect work is stable, consider one Cache Rule limited to query-versioned CSS and JavaScript plus versioned font filenames:
+
+```text
+((ends_with(http.request.uri.path, ".css") or ends_with(http.request.uri.path, ".js")) and contains(http.request.uri.query, "v=")) or (starts_with(http.request.uri.path, "/fonts/") and ends_with(http.request.uri.path, ".woff2"))
+```
+
+Recommended starting values:
+
+- Cache eligibility: Eligible for cache
+- Edge cache TTL: 30 days
+- Browser cache TTL: 1 year
+- Preserve the default cache key, including the query string
+
+Test a new asset version before applying the rule, verify that the old and new query versions do not share a cached response, and keep a rollback rule ready. Leave HTML, unversioned images, downloads, forms, and redirects outside this rule.

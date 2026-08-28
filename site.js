@@ -112,7 +112,7 @@
   if (!style) {
     style = document.createElement('link');
     style.rel = 'stylesheet';
-    style.href = '/site-header.css?v=20260827d';
+    style.href = '/site-header.css?v=20260827e';
     document.head.appendChild(style);
   }
 

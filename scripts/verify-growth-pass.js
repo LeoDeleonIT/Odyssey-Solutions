@@ -51,7 +51,7 @@ for (const file of htmlFiles) {
   if (!excludedFromIndex && (!html.includes('class="skip-link"') || !/<main(?:\s[^>]*)?id="main"/.test(html))) {
     throw new Error(`Keyboard skip link or main target missing from ${relativePath}`);
   }
-  if (!excludedFromIndex && (html.match(/site-header\.css\?v=20260827d/g) || []).length !== 1) {
+  if (!excludedFromIndex && (html.match(/site-header\.css\?v=20260827e/g) || []).length !== 1) {
     throw new Error(`Early shared-header stylesheet missing or duplicated in ${relativePath}`);
   }
   if (!excludedFromIndex && relativePath !== 'index.html' && !html.includes('BreadcrumbList')) {
@@ -88,6 +88,24 @@ for (const [file, label] of resourceActions) {
 
 expect('resources/managed-it/index.html', /microsoft-365-support-small-business-houston\.html/, 'Microsoft 365 article on managed IT hub');
 expect('resources/cybersecurity/index.html', /small-business-cybersecurity-checklist-2026\.html/, 'Small-business checklist on cybersecurity hub');
+expect('resources/managed-it-services-cost-houston-2026.html', /<title>How Much Do Managed IT Services Cost in Houston\? \| Odyssey<\/title>/, 'Search Console informed managed IT pricing title');
+expect('resources/managed-it-services-cost-houston-2026.html', /roughly \$75 to \$250\+ per user/, 'Managed IT pricing search description');
+expect('resources/new-dental-office-it-setup-houston.html', /<title>New Dental Office Technology Setup in Houston \| Checklist<\/title>/, 'Search Console informed dental setup title');
+expect('resources/new-dental-office-it-setup-houston.html', /<h1>New Dental Office Technology Setup in Houston<\/h1>/, 'Search Console informed dental setup heading');
+const underlinkedResources = [
+  ['resources/business-it-outage-same-day-recovery-guide.html', 'resources/business-it/index.html', 'resources/urgent-same-day-it-support-houston.html', '/it-support-houston/'],
+  ['resources/dental-office-it-budget-houston.html', 'resources/dental-it/index.html', 'resources/new-dental-office-it-setup-houston.html', '/dental-it-support-houston/'],
+  ['resources/dental-office-technology-opening-timeline.html', 'resources/dental-it/index.html', 'resources/new-dental-office-it-setup-houston.html', '/dental-it-support-houston/'],
+  ['resources/employee-onboarding-hipaa-training-software.html', 'resources/healthcare-it/index.html', 'resources/secure-healthcare-employee-onboarding-offboarding.html', '/people-compliance-platform/'],
+  ['resources/healthcare-it-after-hours-escalation-houston.html', 'resources/healthcare-it/index.html', 'resources/healthcare-it-support-response-houston.html', '/healthcare-it-support-houston/'],
+  ['resources/small-business-it-support-houston-costs.html', 'resources/business-it/index.html', 'resources/managed-it-services-cost-houston-2026.html', '/it-support-houston/']
+];
+for (const [target, hub, relatedArticle, servicePath] of underlinkedResources) {
+  const filename = path.basename(target);
+  if (!read(hub).includes(`href="../${filename}"`)) throw new Error(`Category-hub path to ${target} missing from ${hub}`);
+  if (!read(relatedArticle).includes(`href="${filename}"`)) throw new Error(`Related-article path to ${target} missing from ${relatedArticle}`);
+  if (!read(target).includes(`href="${servicePath}"`)) throw new Error(`Service path ${servicePath} missing from ${target}`);
+}
 expect('resources/index.html', /href="cybersecurity\/">Cybersecurity<\/a><span class="post-date">Published July 21, 2026[^<]*<\/span><h2>Small Business Cybersecurity Checklist/, 'Cybersecurity resource taxonomy');
 expect('resources/small-business-cybersecurity-checklist-2026.html', /"name":"Cybersecurity","item":"https:\/\/odysseysolutions\.co\/resources\/cybersecurity\/"/, 'Cybersecurity breadcrumb taxonomy');
 expect('managed-it-services-houston/index.html', /<h3>Managed IT discovery<\/h3>/, 'Broad managed IT starting point');

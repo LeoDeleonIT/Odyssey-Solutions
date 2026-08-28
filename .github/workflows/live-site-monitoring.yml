@@ -1,0 +1,57 @@
+name: Live site monitoring
+
+on:
+  schedule:
+    - cron: '17 13 * * *'
+  workflow_dispatch:
+    inputs:
+      mode:
+        description: Report findings only or fail when a requirement is missing
+        required: true
+        default: audit
+        type: choice
+        options:
+          - audit
+          - strict
+
+permissions:
+  contents: read
+
+concurrency:
+  group: live-site-monitoring
+  cancel-in-progress: false
+
+jobs:
+  verify-production:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Verify live production behavior
+        env:
+          MANUAL_MODE: ${{ inputs.mode }}
+        run: |
+          if [[ "$GITHUB_EVENT_NAME" == 'schedule' ]]; then
+            live_mode='strict'
+          else
+            live_mode="${MANUAL_MODE:-audit}"
+          fi
+
+          report_file="$(mktemp)"
+          set +e
+          bash scripts/verify-live-endpoints.sh --mode "$live_mode" 2>&1 | tee "$report_file"
+          verifier_status="${PIPESTATUS[0]}"
+          set -e
+
+          {
+            echo '## Odyssey live production verification'
+            echo
+            echo "Mode: ${live_mode}"
+            echo
+            echo '```text'
+            sed -n '1,220p' "$report_file"
+            echo '```'
+          } >> "$GITHUB_STEP_SUMMARY"
+
+          exit "$verifier_status"
