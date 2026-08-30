@@ -1,6 +1,6 @@
 # Content Security Policy report-only plan
 
-Prepared August 27, 2026. This document is a rollout plan. It does not change the live response headers.
+Updated August 30, 2026. The initial report-only header below is active in Cloudflare. This document remains the rollout and review plan. The policy is not enforced.
 
 ## Purpose
 
@@ -37,7 +37,7 @@ For centralized reports, first choose a privacy-reviewed endpoint. Then add a `R
 
 ## Rollout sequence
 
-1. Add the initial policy as `Content-Security-Policy-Report-Only` only.
+1. Completed August 30, 2026: add the initial policy as `Content-Security-Policy-Report-Only` only.
 2. Visit representative mobile and desktop pages in a clean browser session:
    - Homepage
    - Contact page

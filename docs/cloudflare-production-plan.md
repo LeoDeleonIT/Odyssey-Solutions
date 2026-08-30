@@ -1,6 +1,6 @@
 # Odyssey Cloudflare production plan
 
-Prepared August 27, 2026. These settings were inspected but not changed.
+Updated August 30, 2026. This document records the live configuration and the remaining decisions.
 
 ## Current confirmed state
 
@@ -9,8 +9,8 @@ Prepared August 27, 2026. These settings were inspected but not changed.
 - The existing response-header rule adds HSTS, `X-Content-Type-Options`, `X-Frame-Options`, `Referrer-Policy`, and a restricted `Permissions-Policy`.
 - Always Use HTTPS is active. Requests to `http://odysseysolutions.co/` return a permanent redirect to HTTPS.
 - The four legacy `/blog/` paths return permanent redirects to their matching resource URLs.
-- Versioned CSS and JavaScript still return a four-hour browser cache lifetime. The narrow cache rule below has not been applied.
-- No `Content-Security-Policy-Report-Only` header is currently served.
+- The active `Cache versioned site assets` rule matches versioned CSS and JavaScript plus WOFF2 files under `/fonts/`. It uses a 30-day edge TTL and a one-year browser TTL. HTML, forms, downloads, unversioned images, and redirects remain outside the rule.
+- The active `CSP report-only monitoring` rule serves the documented `Content-Security-Policy-Report-Only` header. It does not enforce or block content.
 - Markdown for Agents is unavailable on the current Free plan. Cloudflare documents this feature for Pro, Business, and Enterprise plans.
 - The Cloudflare-managed `robots.txt` allows search and reference use, rejects AI training, and blocks several extended or training crawlers.
 
@@ -57,21 +57,21 @@ The Markdown response must use `Content-Type: text/markdown; charset=utf-8`. `Va
 
 Do not attach a custom Worker to the production route until its 404 passthrough, cache behavior, q-value parsing, redirects, and HTML fallback have been tested on a preview hostname.
 
-## Optional change 4: Cache versioned first-party assets
+## Change 4: Cache versioned first-party assets
 
-Production currently returns a four-hour cache lifetime for CSS, JavaScript, and images. Lighthouse identified repeat-visit savings from longer caching. Do not apply one broad immutable rule because many image filenames are not content-hashed.
+Completed August 30, 2026. The rule uses a 30-day edge TTL and a one-year browser TTL for the narrow asset set below. A live CSS request returned `Cache-Control: max-age=31536000` and produced a Cloudflare cache HIT on a repeat request.
 
 After the HTTPS and redirect work is stable, consider one Cache Rule limited to query-versioned CSS and JavaScript plus versioned font filenames:
 
 ```text
-((ends_with(http.request.uri.path, ".css") or ends_with(http.request.uri.path, ".js")) and contains(http.request.uri.query, "v=")) or (starts_with(http.request.uri.path, "/fonts/") and ends_with(http.request.uri.path, ".woff2"))
+((http.request.uri.path.extension in {"css" "js"}) and (http.request.uri.query contains "v=")) or (starts_with(http.request.uri.path, "/fonts/") and http.request.uri.path.extension eq "woff2")
 ```
 
-Recommended starting values:
+Applied values:
 
 - Cache eligibility: Eligible for cache
 - Edge cache TTL: 30 days
 - Browser cache TTL: 1 year
 - Preserve the default cache key, including the query string
 
-Test a new asset version before applying the rule, verify that the old and new query versions do not share a cached response, and keep a rollback rule ready. Leave HTML, unversioned images, downloads, forms, and redirects outside this rule.
+Keep the query string in the default cache key. Test a new asset version before changing this rule, verify that the old and new query versions do not share a cached response, and keep a rollback rule ready. Leave HTML, unversioned images, downloads, forms, and redirects outside this rule.
