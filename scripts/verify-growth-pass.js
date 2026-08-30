@@ -117,12 +117,20 @@ expect('resources/managed-it/index.html', /microsoft-365-support-small-business-
 expect('resources/cybersecurity/index.html', /small-business-cybersecurity-checklist-2026\.html/, 'Small-business checklist on cybersecurity hub');
 expect('resources/managed-it-services-cost-houston-2026.html', /<title>How Much Do Managed IT Services Cost in Houston\? \| Odyssey<\/title>/, 'Search Console informed managed IT pricing title');
 expect('resources/managed-it-services-cost-houston-2026.html', /roughly \$75 to \$250\+ per user/, 'Managed IT pricing search description');
-expect('resources/new-dental-office-it-setup-houston.html', /<title>New Dental Office Technology Setup \| Houston Checklist<\/title>/, 'Search Console informed dental setup title');
-expect('resources/new-dental-office-it-setup-houston.html', /<h1>New Dental Office Technology Setup in Houston<\/h1>/, 'Search Console informed dental setup heading');
-expect('healthcare-it-support-houston/index.html', /<title>Healthcare IT Support Houston for Medical Practices \| Odyssey<\/title>/, 'Search Console informed healthcare IT title');
-expect('healthcare-it-support-houston/index.html', /<h1>Healthcare IT Support in Houston for Medical Practices<\/h1>/, 'Search Console informed healthcare IT heading');
+expect('resources/new-dental-office-it-setup-houston.html', /<title>New Dental Office IT Setup in Houston \| Odyssey<\/title>/, 'Search Console informed dental setup title');
+expect('resources/new-dental-office-it-setup-houston.html', /<h1>New Dental Office IT Setup in Houston<\/h1>/, 'Search Console informed dental setup heading');
+expect('resources/new-dental-office-it-setup-houston.html', /dental-office-network-setup-houston\.html/, 'Dental setup link to network checklist');
+expect('resources/dental-office-network-setup-houston.html', /<title>Dental Office Network Setup in Houston \| New Office Checklist<\/title>/, 'Search Console informed dental network title');
+expect('resources/dental-office-network-setup-houston.html', /dental_network_to_dental_it/, 'Dental network service action');
+expect('healthcare-it-support-houston/index.html', /<title>Healthcare IT Support Houston \| Medical Practice IT \| Odyssey<\/title>/, 'Search Console informed healthcare IT title');
+expect('healthcare-it-support-houston/index.html', /<h1>Healthcare IT Support for Houston Medical Practices<\/h1>/, 'Search Console informed healthcare IT heading');
 expect('healthcare-it-support-houston/index.html', /href="tel:\+18327138498">Call \(832\) 713-8498<\/a>/, 'Healthcare IT hero phone action');
 expect('dental-it-support-houston/index.html', /<title>Dental IT Support Houston \| Software, Imaging and Office Setup<\/title>/, 'Search Console informed dental IT title');
+expect('dental-it-support-houston/index.html', /dental-office-network-setup-houston\.html/, 'Dental IT path to network checklist');
+expect('case-studies/trinity-dental-multi-location-it/index.html', /dental-office-network-setup-houston\.html/, 'Case-study path to network checklist');
+expect('it-support-houston/index.html', /<h3 id="after-hours-emergency-it-support">After-hours emergency IT support<\/h3>/, 'After-hours emergency support section');
+expect('it-support-houston/index.html', /Call for after-hours support and pricing\./, 'After-hours support pricing action');
+expect('resources/urgent-same-day-it-support-houston.html', /\/it-support-houston\/#after-hours-emergency-it-support/, 'Urgent guide after-hours support path');
 
 const responsiveImageChecks = [
   ['product-images/people-operations-demo-640.webp', 'index.html', /people-operations-demo-640\.webp/, 'Homepage Odyssey HR responsive image'],
@@ -168,6 +176,6 @@ for (const file of [
 expect('llms.txt', /## When to use Odyssey/, 'Agent when-to-use guidance');
 expect('llms.txt', /https:\/\/calendly\.com\/zain-odysseysolutions\/30min/, 'Direct consultation URL for agents');
 reject('docs/seo-authority-launch-checklist.md', /lead_form_submit/, 'Retired lead event name');
-expect('sitemap.xml', /<loc>https:\/\/odysseysolutions\.co\/resources\/urgent-same-day-it-support-houston\.html<\/loc><lastmod>2026-08-27<\/lastmod>/, 'Updated urgent-support sitemap date');
+expect('sitemap.xml', /<loc>https:\/\/odysseysolutions\.co\/resources\/urgent-same-day-it-support-houston\.html<\/loc><lastmod>2026-08-30<\/lastmod>/, 'Updated urgent-support sitemap date');
 
 console.log(`Growth-pass checks passed across ${htmlFiles.length} HTML files`);
