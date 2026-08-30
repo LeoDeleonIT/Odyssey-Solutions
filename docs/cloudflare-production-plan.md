@@ -7,14 +7,16 @@ Prepared August 27, 2026. These settings were inspected but not changed.
 - The zone is active on Cloudflare's Free plan.
 - Universal SSL and TLS 1.3 are active.
 - The existing response-header rule adds HSTS, `X-Content-Type-Options`, `X-Frame-Options`, `Referrer-Policy`, and a restricted `Permissions-Policy`.
-- Always Use HTTPS is off. Requests to `http://odysseysolutions.co/` return 200 instead of redirecting.
-- No Redirect Rules are configured.
+- Always Use HTTPS is active. Requests to `http://odysseysolutions.co/` return a permanent redirect to HTTPS.
+- The four legacy `/blog/` paths return permanent redirects to their matching resource URLs.
+- Versioned CSS and JavaScript still return a four-hour browser cache lifetime. The narrow cache rule below has not been applied.
+- No `Content-Security-Policy-Report-Only` header is currently served.
 - Markdown for Agents is unavailable on the current Free plan. Cloudflare documents this feature for Pro, Business, and Enterprise plans.
 - The Cloudflare-managed `robots.txt` allows search and reference use, rejects AI training, and blocks several extended or training crawlers.
 
 ## Change 1: Require HTTPS
 
-Action after approval:
+Completed August 30, 2026. Keep this setting enabled and verify the redirect after any DNS, proxy, or hosting change.
 
 1. Open SSL/TLS, then Edge Certificates.
 2. Turn on Always Use HTTPS.
@@ -23,7 +25,7 @@ Action after approval:
 
 ## Change 2: Replace legacy page redirects
 
-Create permanent Redirect Rules that preserve query strings:
+Completed August 30, 2026. Keep the following permanent redirects, including query strings:
 
 | Source path | Destination |
 | --- | --- |

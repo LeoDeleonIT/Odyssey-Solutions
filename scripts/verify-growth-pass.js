@@ -90,8 +90,27 @@ expect('resources/managed-it/index.html', /microsoft-365-support-small-business-
 expect('resources/cybersecurity/index.html', /small-business-cybersecurity-checklist-2026\.html/, 'Small-business checklist on cybersecurity hub');
 expect('resources/managed-it-services-cost-houston-2026.html', /<title>How Much Do Managed IT Services Cost in Houston\? \| Odyssey<\/title>/, 'Search Console informed managed IT pricing title');
 expect('resources/managed-it-services-cost-houston-2026.html', /roughly \$75 to \$250\+ per user/, 'Managed IT pricing search description');
-expect('resources/new-dental-office-it-setup-houston.html', /<title>New Dental Office Technology Setup in Houston \| Checklist<\/title>/, 'Search Console informed dental setup title');
+expect('resources/new-dental-office-it-setup-houston.html', /<title>New Dental Office Technology Setup \| Houston Checklist<\/title>/, 'Search Console informed dental setup title');
 expect('resources/new-dental-office-it-setup-houston.html', /<h1>New Dental Office Technology Setup in Houston<\/h1>/, 'Search Console informed dental setup heading');
+expect('healthcare-it-support-houston/index.html', /<title>Healthcare IT Support Houston for Medical Practices \| Odyssey<\/title>/, 'Search Console informed healthcare IT title');
+expect('healthcare-it-support-houston/index.html', /<h1>Healthcare IT Support in Houston for Medical Practices<\/h1>/, 'Search Console informed healthcare IT heading');
+expect('healthcare-it-support-houston/index.html', /href="tel:\+18327138498">Call \(832\) 713-8498<\/a>/, 'Healthcare IT hero phone action');
+expect('dental-it-support-houston/index.html', /<title>Dental IT Support Houston \| Software, Imaging and Office Setup<\/title>/, 'Search Console informed dental IT title');
+
+const responsiveImageChecks = [
+  ['product-images/people-operations-demo-640.webp', 'index.html', /people-operations-demo-640\.webp/, 'Homepage Odyssey HR responsive image'],
+  ['product-images/hipaa-training-demo-640.webp', 'index.html', /hipaa-training-demo-640\.webp/, 'Homepage HIPAA Training responsive image'],
+  ['resources/images/odyssey-dental-ai-policy-preview-360.webp', 'index.html', /odyssey-dental-ai-policy-preview-360\.webp/, 'Homepage policy preview responsive image'],
+  ['resources/images/odyssey-dental-downtime-plan-preview-360.webp', 'index.html', /odyssey-dental-downtime-plan-preview-360\.webp/, 'Homepage downtime preview responsive image'],
+  ['resources/images/dental-office-it-buildout-640.webp', 'dental-it-support-houston/index.html', /dental-office-it-buildout-640\.webp/, 'Dental IT mobile cover image'],
+  ['resources/images/dental-office-it-buildout-640.webp', 'resources/new-dental-office-it-setup-houston.html', /dental-office-it-buildout-640\.webp/, 'Dental office checklist mobile cover image'],
+  ['product-images/people-operations-demo-640.webp', 'people-compliance-platform/index.html', /people-operations-demo-640\.webp/, 'People platform Odyssey HR responsive image'],
+  ['product-images/hipaa-training-demo-640.webp', 'people-compliance-platform/index.html', /hipaa-training-demo-640\.webp/, 'People platform HIPAA Training responsive image']
+];
+for (const [imagePath, pagePath, imagePattern, description] of responsiveImageChecks) {
+  if (!fs.existsSync(path.join(root, imagePath))) throw new Error(`${description} file is missing`);
+  expect(pagePath, imagePattern, description);
+}
 const underlinkedResources = [
   ['resources/business-it-outage-same-day-recovery-guide.html', 'resources/business-it/index.html', 'resources/urgent-same-day-it-support-houston.html', '/it-support-houston/'],
   ['resources/dental-office-it-budget-houston.html', 'resources/dental-it/index.html', 'resources/new-dental-office-it-setup-houston.html', '/dental-it-support-houston/'],
