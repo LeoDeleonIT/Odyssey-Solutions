@@ -14,7 +14,7 @@ The site now has the crawlable pages, metadata, structured data, internal links,
 
 1. Claim or verify the exact Odyssey Solutions business profile.
 2. Use the same public business name, phone, website URL, primary category, hours, and service area shown on the site. Do not display a home address unless it is a staffed customer-facing location.
-3. Add genuine photos of Leo, the team, office-buildout work, networking equipment, and approved client work. Remove stock or AI imagery from the profile.
+3. Add genuine photos of Leo, the team, office-buildout work, networking equipment, and approved client work. Remove stock or synthetic imagery from the profile.
 4. Add individual services with natural descriptions and the matching website service-page URL.
 5. Publish useful updates that link to major resources or case studies; do not repeat keyword-heavy promotional posts.
 
@@ -61,6 +61,6 @@ The site now has the crawlable pages, metadata, structured data, internal links,
 - Indexed canonical pages and structured-data validity
 - Review count, review quality, and response rate
 - Referring domains from relevant local, dental, healthcare, and technology organizations
-- Self-reported lead source, especially ChatGPT/AI assistant, search, client referral, and association discovery
+- Self-reported lead source, especially online recommendation, search, client referral, and association discovery
 
 Search ranking is competitive and cannot be guaranteed. The goal is to build the strongest truthful result for the searches Odyssey is qualified to serve.

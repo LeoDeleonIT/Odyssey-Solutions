@@ -56,8 +56,8 @@ dimension for `page_path`.
 - Keep UTM naming consistent for campaigns: lowercase source and medium, with a
   descriptive campaign name.
 - Review Formspree's lead-source and UTM fields alongside
-  GA4. This preserves useful attribution when a prospect reports that ChatGPT or
-  another assistant recommended Odyssey.
+  GA4. This preserves useful attribution when a prospect reports an online
+  recommendation.
 - Test measurement after every navigation or form change. Confirm that
   `generate_lead` appears only after Formspree accepts the request. Do not
   publish fake response, satisfaction, review, or conversion statistics.

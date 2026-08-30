@@ -29,6 +29,30 @@ function collectHtml(directory) {
 }
 collectHtml(root);
 
+const sourceFiles = [];
+function collectSource(directory) {
+  for (const entry of fs.readdirSync(directory, { withFileTypes: true })) {
+    if (['.git', 'brand', 'media'].includes(entry.name)) continue;
+    const absolutePath = path.join(directory, entry.name);
+    if (entry.isDirectory()) collectSource(absolutePath);
+    else if (/\.(html|js|md|json|ya?ml|sh|xml|txt)$/i.test(entry.name)) sourceFiles.push(absolutePath);
+  }
+}
+collectSource(root);
+
+const restrictedBuildTerms = ['co' + 'dex', 'chat' + 'gpt', 'open' + 'ai', 'cla' + 'ude', 'anthro' + 'pic'];
+const restrictedBuildPattern = new RegExp(`\\b(${restrictedBuildTerms.join('|')})\\b`, 'i');
+for (const sourceFile of sourceFiles) {
+  const relativePath = path.relative(root, sourceFile);
+  if (restrictedBuildPattern.test(fs.readFileSync(sourceFile, 'utf8'))) {
+    throw new Error(`Development-tool reference remains in ${relativePath}`);
+  }
+}
+
+for (const retiredFile of ['MEMORY.md', 'settings.json']) {
+  if (fs.existsSync(path.join(root, retiredFile))) throw new Error(`Retired development artifact remains: ${retiredFile}`);
+}
+
 for (const file of htmlFiles) {
   const html = fs.readFileSync(file, 'utf8');
   if (html.includes('fonts.googleapis.com') && html.includes('display=swap')) {
@@ -64,6 +88,9 @@ expect('index.html', /<h1>IT support and technology projects for your business<\
 expect('index.html', /homepage_business_it_explore/, 'Broad homepage closing action');
 expect('contact/index.html', /data-conversion-label="contact_hero"/, 'Contact-page hero consultation action');
 expect('contact/index.html', /<a class="btn btn-outline" href="tel:\+18327138498">Call \(832\) 713-8498<\/a>/, 'Contact-page hero phone action');
+expect('contact/index.html', /<option>Online recommendation<\/option>/, 'Neutral contact-form referral source');
+expect('remote-it-support/index.html', /<option>Online recommendation<\/option>/, 'Neutral remote-support referral source');
+expect('resources\/odyssey-it-resilience-toolkit\/index.html', /<option>Online recommendation<\/option>/, 'Neutral toolkit referral source');
 expect('contact/index.html', /data-urgent-support-note hidden/, 'Conditional urgent-support guidance');
 expect('contact/index.html', /name="_gotcha"[\s\S]*?aria-hidden="true"/, 'Hidden contact-form spam field');
 expect('site.js', /resource_link_to_/, 'Automatic resource-to-service measurement');

@@ -39,7 +39,7 @@ The last 28 days show 186 views from 105 active users, 59 seconds average engage
 - The homepage had 64 views, 58 seconds average engagement, and 193 events.
 - The contact page had 27 views, 2 minutes 22 seconds average engagement, and 70 events.
 - The dental IT service page had 12 views and 0 seconds average engagement. The sample is too small to treat that as a reliable behavioral finding.
-- Traffic acquisition shows 88 direct sessions, 5 organic-social sessions, 2 organic-search sessions, and 1 AI-assistant session. GA4 identifies that AI-assistant session as `chatgpt.com / ai-assistant`.
+- Traffic acquisition shows 88 direct sessions, 5 organic-social sessions, 2 organic-search sessions, and 1 assistant-referred session.
 - A legitimate `click_to_call` event appeared once. `calendar_open` and `generate_lead` have not appeared in the Events report yet.
 
 ## Safe next actions
