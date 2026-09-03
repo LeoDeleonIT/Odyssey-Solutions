@@ -177,5 +177,17 @@ expect('llms.txt', /## When to use Odyssey/, 'Agent when-to-use guidance');
 expect('llms.txt', /https:\/\/calendly\.com\/zain-odysseysolutions\/30min/, 'Direct consultation URL for agents');
 reject('docs/seo-authority-launch-checklist.md', /lead_form_submit/, 'Retired lead event name');
 expect('sitemap.xml', /<loc>https:\/\/odysseysolutions\.co\/resources\/urgent-same-day-it-support-houston\.html<\/loc><lastmod>2026-08-30<\/lastmod>/, 'Updated urgent-support sitemap date');
+expect('resources/dental-practice-remote-access-workflow.html', /<h1>Dental Practice Remote Access: A Workflow Checklist<\/h1>/, 'Dental remote-access guide heading');
+expect('resources/dental-practice-remote-access-workflow.html', /dental_remote_access_to_remote_dental_it/, 'Dental remote-access service action');
+expect('resources/dental-practice-remote-access-workflow.html', /multi-location-dental-it-standardization\.html/, 'Dental remote-access related guide');
+expect('resources/multi-location-dental-it-standardization.html', /<h1>Multi-Location Dental IT: Standardize Every Office<\/h1>/, 'Multi-location dental IT guide heading');
+expect('resources/multi-location-dental-it-standardization.html', /multi_location_dental_it_to_service/, 'Multi-location dental IT service action');
+expect('resources/multi-location-dental-it-standardization.html', /case-studies\/trinity-dental-multi-location-it/, 'Multi-location dental IT case-study path');
+expect('resources/dental-it/index.html', /dental-practice-remote-access-workflow\.html/, 'Dental hub remote-access guide path');
+expect('resources/dental-it/index.html', /multi-location-dental-it-standardization\.html/, 'Dental hub multi-location guide path');
+expect('resources/index.html', /dental-practice-remote-access-workflow\.html/, 'Resource hub remote-access guide path');
+expect('resources/index.html', /multi-location-dental-it-standardization\.html/, 'Resource hub multi-location guide path');
+expect('sitemap.xml', /<loc>https:\/\/odysseysolutions\.co\/resources\/dental-practice-remote-access-workflow\.html<\/loc><lastmod>2026-09-03<\/lastmod>/, 'Dental remote-access sitemap entry');
+expect('sitemap.xml', /<loc>https:\/\/odysseysolutions\.co\/resources\/multi-location-dental-it-standardization\.html<\/loc><lastmod>2026-09-03<\/lastmod>/, 'Multi-location dental IT sitemap entry');
 
 console.log(`Growth-pass checks passed across ${htmlFiles.length} HTML files`);
