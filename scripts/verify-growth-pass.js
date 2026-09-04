@@ -122,10 +122,10 @@ expect('resources/new-dental-office-it-setup-houston.html', /<h1>New Dental Offi
 expect('resources/new-dental-office-it-setup-houston.html', /dental-office-network-setup-houston\.html/, 'Dental setup link to network checklist');
 expect('resources/dental-office-network-setup-houston.html', /<title>Dental Office Network Setup in Houston \| New Office Checklist<\/title>/, 'Search Console informed dental network title');
 expect('resources/dental-office-network-setup-houston.html', /dental_network_to_dental_it/, 'Dental network service action');
-expect('healthcare-it-support-houston/index.html', /<title>Healthcare IT Support Houston \| Medical Practice IT \| Odyssey<\/title>/, 'Search Console informed healthcare IT title');
+expect('healthcare-it-support-houston/index.html', /<title>Healthcare IT Support in Houston \| Medical Practices<\/title>/, 'Search Console informed healthcare IT title');
 expect('healthcare-it-support-houston/index.html', /<h1>Healthcare IT Support for Houston Medical Practices<\/h1>/, 'Search Console informed healthcare IT heading');
 expect('healthcare-it-support-houston/index.html', /href="tel:\+18327138498">Call \(832\) 713-8498<\/a>/, 'Healthcare IT hero phone action');
-expect('dental-it-support-houston/index.html', /<title>Dental IT Support Houston \| Software, Imaging and Office Setup<\/title>/, 'Search Console informed dental IT title');
+expect('dental-it-support-houston/index.html', /<title>Dental IT &amp; Software Support in Houston \| Odyssey<\/title>/, 'Search Console informed dental IT title');
 expect('dental-it-support-houston/index.html', /dental-office-network-setup-houston\.html/, 'Dental IT path to network checklist');
 expect('case-studies/trinity-dental-multi-location-it/index.html', /dental-office-network-setup-houston\.html/, 'Case-study path to network checklist');
 expect('it-support-houston/index.html', /<h3 id="after-hours-emergency-it-support">After-hours emergency IT support<\/h3>/, 'After-hours emergency support section');
@@ -177,7 +177,7 @@ expect('llms.txt', /## When to use Odyssey/, 'Agent when-to-use guidance');
 expect('llms.txt', /https:\/\/calendly\.com\/zain-odysseysolutions\/30min/, 'Direct consultation URL for agents');
 reject('docs/seo-authority-launch-checklist.md', /lead_form_submit/, 'Retired lead event name');
 expect('sitemap.xml', /<loc>https:\/\/odysseysolutions\.co\/resources\/urgent-same-day-it-support-houston\.html<\/loc><lastmod>2026-08-30<\/lastmod>/, 'Updated urgent-support sitemap date');
-expect('resources/dental-practice-remote-access-workflow.html', /<h1>Dental Practice Remote Access: A Workflow Checklist<\/h1>/, 'Dental remote-access guide heading');
+expect('resources/dental-practice-remote-access-workflow.html', /<h1>Remote IT Support for Dental Practices<\/h1>/, 'Dental remote-support guide heading');
 expect('resources/dental-practice-remote-access-workflow.html', /dental_remote_access_to_remote_dental_it/, 'Dental remote-access service action');
 expect('resources/dental-practice-remote-access-workflow.html', /multi-location-dental-it-standardization\.html/, 'Dental remote-access related guide');
 expect('resources/multi-location-dental-it-standardization.html', /<h1>Multi-Location Dental IT: Standardize Every Office<\/h1>/, 'Multi-location dental IT guide heading');
@@ -187,7 +187,12 @@ expect('resources/dental-it/index.html', /dental-practice-remote-access-workflow
 expect('resources/dental-it/index.html', /multi-location-dental-it-standardization\.html/, 'Dental hub multi-location guide path');
 expect('resources/index.html', /dental-practice-remote-access-workflow\.html/, 'Resource hub remote-access guide path');
 expect('resources/index.html', /multi-location-dental-it-standardization\.html/, 'Resource hub multi-location guide path');
-expect('sitemap.xml', /<loc>https:\/\/odysseysolutions\.co\/resources\/dental-practice-remote-access-workflow\.html<\/loc><lastmod>2026-09-03<\/lastmod>/, 'Dental remote-access sitemap entry');
+expect('resources/ehr-it-support-houston-medical-practices.html', /<h1>EHR IT Support in Houston for Medical Practices<\/h1>/, 'EHR IT support guide heading');
+expect('resources/ehr-it-support-houston-medical-practices.html', /ehr_support_to_healthcare_it/, 'EHR IT support service action');
+expect('resources/healthcare-it/index.html', /ehr-it-support-houston-medical-practices\.html/, 'Healthcare hub EHR IT support guide path');
+expect('resources/index.html', /ehr-it-support-houston-medical-practices\.html/, 'Resource hub EHR IT support guide path');
+expect('sitemap.xml', /<loc>https:\/\/odysseysolutions\.co\/resources\/dental-practice-remote-access-workflow\.html<\/loc><lastmod>2026-09-04<\/lastmod>/, 'Dental remote-support sitemap entry');
 expect('sitemap.xml', /<loc>https:\/\/odysseysolutions\.co\/resources\/multi-location-dental-it-standardization\.html<\/loc><lastmod>2026-09-03<\/lastmod>/, 'Multi-location dental IT sitemap entry');
+expect('sitemap.xml', /<loc>https:\/\/odysseysolutions\.co\/resources\/ehr-it-support-houston-medical-practices\.html<\/loc><lastmod>2026-09-04<\/lastmod>/, 'EHR IT support sitemap entry');
 
 console.log(`Growth-pass checks passed across ${htmlFiles.length} HTML files`);
