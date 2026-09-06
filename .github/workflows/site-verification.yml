@@ -28,6 +28,10 @@ jobs:
         run: node scripts/standardize-source-navigation.js --check
       - name: Verify measurement behavior and static markup
         run: bash scripts/verify-measurement.sh
+      - name: Verify toolkit email form and delivery service
+        run: |
+          node scripts/verify-toolkit-email.js
+          node scripts/verify-toolkit-mailer.js
       - name: Test live verification behavior
         run: bash scripts/test-verify-live-endpoints.sh
       - name: Verify site quality
