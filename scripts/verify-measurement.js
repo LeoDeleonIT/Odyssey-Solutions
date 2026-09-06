@@ -3,11 +3,12 @@ const vm = require('vm');
 
 const source = fs.readFileSync('site.js', 'utf8');
 
-function createFixture(fetchOk, search = '', pathname = '/contact/') {
+function createFixture(fetchOk, search = '', pathname = '/contact/', options = {}) {
   const gtagCalls = [];
   const documentListeners = {};
   const formListeners = {};
   const serviceListeners = {};
+  const formFields = new Map();
   const serviceField = {
     value: 'Business IT support',
     addEventListener(name, listener) {
@@ -23,7 +24,7 @@ function createFixture(fetchOk, search = '', pathname = '/contact/') {
     addEventListener(name, listener) {
       formListeners[name] = listener;
     },
-    appendChild() {},
+    appendChild(field) { formFields.set(field.name, field); },
     getAttribute(name) {
       return name === 'data-form-name' ? 'contact' : null;
     },
@@ -32,6 +33,8 @@ function createFixture(fetchOk, search = '', pathname = '/contact/') {
       if (selector === '[data-urgent-support-note]') return urgentSupportNote;
       if (selector === 'button[type="submit"]') return button;
       if (selector === '[data-form-status]') return status;
+      const fieldName = /^\[name="([^"]+)"\]$/.exec(selector)?.[1];
+      if (fieldName) return formFields.get(fieldName) || null;
       return null;
     },
     reset() {
@@ -52,7 +55,7 @@ function createFixture(fetchOk, search = '', pathname = '/contact/') {
         this.detail = options.detail;
       }
     },
-    fetch: async () => ({ ok: fetchOk }),
+    fetch: options.fetch || (async () => ({ ok: fetchOk })),
     document: {
       documentElement: { setAttribute() {} },
       head: { appendChild() {} },
@@ -67,7 +70,10 @@ function createFixture(fetchOk, search = '', pathname = '/contact/') {
         if (selector === '[data-contact-form]') return form;
         return null;
       },
-      querySelectorAll() {
+      querySelectorAll(selector) {
+        if (selector === 'a[href^="https://calendly.com/zain-odysseysolutions/30min"]') {
+          return options.calendlyLinks || [];
+        }
         return [];
       }
     },
@@ -82,7 +88,7 @@ function createFixture(fetchOk, search = '', pathname = '/contact/') {
         pathname,
         search
       },
-      sessionStorage: {
+      sessionStorage: options.sessionStorage || {
         getItem() { return null; },
         setItem() {}
       }
@@ -91,7 +97,7 @@ function createFixture(fetchOk, search = '', pathname = '/contact/') {
 
   context.window.window = context.window;
   vm.runInNewContext(source, context, { filename: 'site.js' });
-  return { button, context, documentListeners, formListeners, gtagCalls, serviceField, serviceListeners, status, urgentSupportNote };
+  return { button, context, documentListeners, formFields, formListeners, gtagCalls, serviceField, serviceListeners, status, urgentSupportNote };
 }
 
 async function verifySuccessfulForm() {
@@ -119,18 +125,112 @@ async function verifyFailedForm() {
   }
 }
 
+async function verifyNetworkFailureAndRetry() {
+  let attempts = 0;
+  const fixture = createFixture(true, '', '/contact/', {
+    fetch: async () => {
+      attempts += 1;
+      if (attempts === 1) throw new TypeError('Network request failed');
+      return { ok: true };
+    }
+  });
+  await fixture.formListeners.submit({ preventDefault() {} });
+  if (fixture.gtagCalls.some(([command, name]) => command === 'event' && name === 'generate_lead')) {
+    throw new Error('Network failure must not emit generate_lead');
+  }
+  if (fixture.button.disabled || fixture.button.textContent !== 'Send message' || fixture.serviceField.value !== 'Business IT support') {
+    throw new Error('Network failure must preserve the form and restore its submit button for retry');
+  }
+  if (!fixture.status.textContent.includes('(832) 713-8498') || !fixture.status.textContent.includes('info@odysseysolutions.co')) {
+    throw new Error('Network failure must provide phone and email recovery options');
+  }
+  await fixture.formListeners.submit({ preventDefault() {} });
+  const leadCalls = fixture.gtagCalls.filter(([command, name]) => command === 'event' && name === 'generate_lead');
+  if (attempts !== 2 || leadCalls.length !== 1 || !fixture.button.disabled || fixture.button.textContent !== 'Message sent') {
+    throw new Error('A successful retry must emit one lead and prevent another accidental request');
+  }
+}
+
 function createLink(href, label, attributes = {}) {
   return {
+    href,
     textContent: label,
     closest(selector) {
       return selector === 'a[href], [data-conversion]' ? this : null;
     },
     getAttribute(name) {
-      if (name === 'href') return href;
+      if (name === 'href') return this.href;
       return attributes[name] || null;
+    },
+    setAttribute(name, value) {
+      if (name === 'href') this.href = value;
+      else attributes[name] = value;
     },
     hasAttribute(name) { return Object.hasOwn(attributes, name); }
   };
+}
+
+function verifyDecoratedCalendlyLink() {
+  const bookingBase = 'https://calendly.com/zain-odysseysolutions/30min';
+  const link = createLink(bookingBase, 'Book a consultation', { 'data-conversion-label': 'contact_hero' });
+  const fixture = createFixture(true, '?utm_source=search&utm_medium=organic&utm_campaign=dental_it&email=private%40example.test&name=Private', '/contact/', {
+    calendlyLinks: [link]
+  });
+  const expectedUrl = new URL(bookingBase);
+  expectedUrl.searchParams.set('utm_source', 'search');
+  expectedUrl.searchParams.set('utm_medium', 'organic');
+  expectedUrl.searchParams.set('utm_campaign', 'dental_it');
+  expectedUrl.searchParams.set('utm_content', '/contact/|/contact/|contact_hero');
+  if (link.href !== expectedUrl.toString()) {
+    throw new Error('Calendly decoration must preserve the booking destination and add only expected attribution');
+  }
+  for (const listener of fixture.documentListeners.click) listener({ target: link });
+  const events = fixture.gtagCalls.filter(([command, name]) => command === 'event' && name === 'calendar_open');
+  const expectedParameters = {
+    conversion_name: 'calendar_open',
+    page_path: '/contact/',
+    conversion_label: 'contact_hero',
+    destination: expectedUrl.toString()
+  };
+  const parameters = events[0]?.[2] || {};
+  if (events.length !== 1 || Object.keys(parameters).length !== Object.keys(expectedParameters).length ||
+      Object.entries(expectedParameters).some(([name, value]) => parameters[name] !== value)) {
+    throw new Error('A decorated Calendly click must emit one event containing only approved interaction context');
+  }
+}
+
+function verifyBlockedAttributionStorage() {
+  for (const blockedMethod of ['getItem', 'setItem']) {
+    const link = createLink('https://calendly.com/zain-odysseysolutions/30min', 'Book a consultation');
+    const sessionStorage = {
+      getItem() { return null; },
+      setItem() {}
+    };
+    sessionStorage[blockedMethod] = () => { throw new Error('Storage unavailable'); };
+    const fixture = createFixture(true, '?utm_source=referral&utm_medium=website&utm_campaign=healthcare', '/contact/', {
+      calendlyLinks: [link],
+      sessionStorage
+    });
+    const bookingUrl = new URL(link.href);
+    const expectedAttribution = {
+      landing_page: '/contact/',
+      utm_source: 'referral',
+      utm_medium: 'website',
+      utm_campaign: 'healthcare'
+    };
+    for (const [name, value] of Object.entries(expectedAttribution)) {
+      if (fixture.formFields.get(name)?.value !== value) {
+        throw new Error(`Blocked ${blockedMethod} must preserve current-page ${name} for the contact form`);
+      }
+      if (name.startsWith('utm_') && bookingUrl.searchParams.get(name) !== value) {
+        throw new Error(`Blocked ${blockedMethod} must preserve current-page ${name} for Calendly`);
+      }
+    }
+    for (const listener of fixture.documentListeners.click) listener({ target: link });
+    if (fixture.gtagCalls.filter(([command, name]) => command === 'event' && name === 'calendar_open').length !== 1) {
+      throw new Error(`Blocked ${blockedMethod} must not prevent Calendly click measurement`);
+    }
+  }
 }
 
 function verifyContactClick(href, eventName, expectedDestination) {
@@ -199,9 +299,12 @@ function verifyServicePreselection() {
 Promise.resolve()
   .then(verifySuccessfulForm)
   .then(verifyFailedForm)
+  .then(verifyNetworkFailureAndRetry)
   .then(() => verifyContactClick('tel:+18327138498', 'click_to_call', 'phone'))
   .then(() => verifyContactClick('mailto:info@odysseysolutions.co', 'email_click', 'email'))
   .then(() => verifyContactClick('https://calendly.com/zain-odysseysolutions/30min', 'calendar_open', 'https://calendly.com/zain-odysseysolutions/30min'))
+  .then(verifyDecoratedCalendlyLink)
+  .then(verifyBlockedAttributionStorage)
   .then(verifyDownloadUsesEnhancedMeasurement)
   .then(verifyResourceServiceClick)
   .then(verifyInferredResourceServiceClick)
