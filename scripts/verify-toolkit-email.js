@@ -168,6 +168,17 @@ check('Search metadata and public page identity stay stable', () => {
   assert.ok(html.includes('https://calendly.com/zain-odysseysolutions/30min'));
 });
 
+check('The toolkit offers a broader business path without relabeling dental templates', () => {
+  assert.match(html, /href="#email-copy">Email Me a Copy<\/a>/,
+    'The optional email form should be reachable from the hero');
+  assert.match(html, /professional offices, service businesses, nonprofits, and growing teams organize backup tests, vendor records, office moves, and follow-up actions\./);
+  assert.match(html, /The AI-use policy and downtime plan are written specifically for dental practices\./,
+    'Dental-specific resources must remain clearly labeled');
+  assert.match(html, /<h2>Discuss one IT priority with Odyssey<\/h2>/);
+  assert.match(html, /You can start a conversation before completing the files\./);
+  assert.doesNotMatch(html, /Review the completed files with Odyssey/);
+});
+
 check('Privacy notice explains toolkit delivery and limited request data', () => {
   const notice = privacy.match(/<p>The optional toolkit email form[\s\S]*?<\/p>/)?.[0];
   assert.ok(notice, 'The privacy policy must describe the optional toolkit email service');
