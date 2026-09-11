@@ -167,6 +167,7 @@ for (const requiredFile of ['404.html', 'llms.txt', 'robots.txt', 'sitemap.xml',
 }
 
 const homepage = read('index.html');
+const healthcareItPage = read('healthcare-it-support-houston/index.html');
 const homepageSchemas = [...homepage.matchAll(/<script type="application\/ld\+json">([\s\S]*?)<\/script>/g)].map((match) => JSON.parse(match[1]));
 const organization = homepageSchemas.find((item) => Array.isArray(item['@type']) && item['@type'].includes('Organization'));
 const website = homepageSchemas.find((item) => item['@type'] === 'WebSite');
@@ -174,6 +175,7 @@ if (!organization || !organization.contactPoint?.telephone || !organization.cont
 if (!website || website.publisher?.['@id'] !== businessId) fail('Homepage WebSite identity is incomplete');
 if (!homepage.includes('(832) 713-8498') || !homepage.includes('info@odysseysolutions.co')) fail('Primary phone or email changed on homepage');
 if (!homepage.includes('https://calendly.com/zain-odysseysolutions/30min')) fail('Primary Calendly URL changed on homepage');
+if (!healthcareItPage.includes('href="/resources/ehr-migration-it-checklist-medical-practices.html"')) fail('Healthcare IT page is missing the contextual EHR checklist link');
 if (!/Page not found/i.test(read('404.html')) || !read('404.html').includes('sitemap.xml') || !read('404.html').includes('llms.txt')) fail('404 recovery links are incomplete');
 if (!/:focus-visible|\.skip-link:focus/.test(read('site.css') + read('site-header.css') + read('resources/blog.css'))) fail('Visible keyboard focus styles missing');
 if (!/scroll-margin-top:\s*104px/.test(read('site-header.css'))) fail('Sticky-header anchor offset is missing');
