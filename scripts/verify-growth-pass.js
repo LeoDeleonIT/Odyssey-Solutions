@@ -98,6 +98,21 @@ expect('site.js', />Contact<\/a>/, 'Direct contact path in mobile navigation');
 expect('site-header.css', /scroll-margin-top:\s*104px/, 'Sticky-header anchor offset');
 expect('dental-it-support-houston/index.html', /href="\/contact\/\?service=dental-it-support"[^>]*>Discuss dental IT support<\/a>/, 'Dental IT contact action');
 
+const officeMove = read('resources/houston-office-move-it-checklist.html');
+if ((officeMove.match(/href="\/contact\/\?service=technology-project"/g) || []).length !== 2) {
+  throw new Error('Office-move guide must offer a preselected project-inquiry path in both calls to action');
+}
+for (const label of [
+  'office_move_inline_booking',
+  'office_move_inline_to_project_inquiry',
+  'office_move_closing_booking',
+  'office_move_closing_to_project_inquiry'
+]) {
+  if (!officeMove.includes(`data-conversion-label="${label}"`)) {
+    throw new Error(`Office-move conversion label is missing: ${label}`);
+  }
+}
+
 const urgent = read('resources/urgent-same-day-it-support-houston.html');
 if ((urgent.match(/data-conversion="urgent_it_contact"/g) || []).length !== 2) {
   throw new Error('Urgent support must offer a tracked details action in both hero and closing CTA');

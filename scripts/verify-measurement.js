@@ -284,6 +284,25 @@ function verifyEhrProjectClick() {
   }
 }
 
+function verifyOfficeMoveProjectClick() {
+  const fixture = createFixture(true, '?utm_source=google&utm_medium=organic&utm_campaign=office_move_resource&utm_content=gbp_update', '/resources/houston-office-move-it-checklist.html');
+  const link = createLink('/contact/?service=technology-project', 'Send Project Details', {
+    'data-conversion': 'resource_service_cta',
+    'data-conversion-label': 'office_move_inline_to_project_inquiry',
+    'data-service-category': 'technology_project'
+  });
+  fixture.documentListeners.click[0]({ target: link });
+  const events = fixture.gtagCalls.filter(([command, name]) => command === 'event' && name === 'resource_service_cta');
+  const parameters = events[0]?.[2] || {};
+  if (events.length !== 1 || parameters.conversion_label !== 'office_move_inline_to_project_inquiry' ||
+      parameters.service_category !== 'technology_project' || parameters.destination !== '/contact/?service=technology-project') {
+    throw new Error('Office-move project CTA must emit one privacy-safe project inquiry event');
+  }
+  if (fixture.gtagCalls.some(([command, name]) => command === 'event' && name === 'generate_lead')) {
+    throw new Error('An office-move project CTA click must not be counted as a completed lead');
+  }
+}
+
 function verifyInferredResourceServiceClick() {
   const fixture = createFixture(true, '', '/resources/example-guide.html');
   const link = createLink('/managed-it-services-houston/', 'Explore managed IT services');
@@ -327,6 +346,7 @@ Promise.resolve()
   .then(verifyDownloadUsesEnhancedMeasurement)
   .then(verifyResourceServiceClick)
   .then(verifyEhrProjectClick)
+  .then(verifyOfficeMoveProjectClick)
   .then(verifyInferredResourceServiceClick)
   .then(verifyServicePreselection)
   .then(() => console.log('Measurement behavior checks passed'))
