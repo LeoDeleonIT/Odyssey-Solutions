@@ -5,6 +5,7 @@ const root = path.resolve(__dirname, '..');
 const measurementId = 'G-VPKTJC4QXJ';
 const assetVersion = '20260827e';
 const businessId = 'https://odysseysolutions.co/#business';
+const googleBusinessProfileUrl = 'https://www.google.com/maps?cid=17016266045838888357';
 const servicePaths = [
   '/it-support-houston/',
   '/managed-it-services-houston/',
@@ -172,6 +173,7 @@ const homepageSchemas = [...homepage.matchAll(/<script type="application\/ld\+js
 const organization = homepageSchemas.find((item) => Array.isArray(item['@type']) && item['@type'].includes('Organization'));
 const website = homepageSchemas.find((item) => item['@type'] === 'WebSite');
 if (!organization || !organization.contactPoint?.telephone || !organization.contactPoint?.email) fail('Homepage Organization contact data is incomplete');
+if (!Array.isArray(organization.sameAs) || !organization.sameAs.includes(googleBusinessProfileUrl)) fail('Homepage Organization is missing the verified Google Business Profile identity');
 if (!website || website.publisher?.['@id'] !== businessId) fail('Homepage WebSite identity is incomplete');
 if (!homepage.includes('(832) 713-8498') || !homepage.includes('info@odysseysolutions.co')) fail('Primary phone or email changed on homepage');
 if (!homepage.includes('https://calendly.com/zain-odysseysolutions/30min')) fail('Primary Calendly URL changed on homepage');
