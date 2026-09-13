@@ -189,6 +189,8 @@ expect('resources/index.html', /dental-practice-remote-access-workflow\.html/, '
 expect('resources/index.html', /multi-location-dental-it-standardization\.html/, 'Resource hub multi-location guide path');
 expect('resources/ehr-it-support-houston-medical-practices.html', /<h1>EHR IT Support in Houston for Medical Practices<\/h1>/, 'EHR IT support guide heading');
 expect('resources/ehr-it-support-houston-medical-practices.html', /ehr_support_to_healthcare_it/, 'EHR IT support service action');
+expect('resources/ehr-migration-it-checklist-medical-practices.html', /href="\/contact\/\?service=technology-project"[^>]*data-conversion="resource_service_cta"[^>]*data-conversion-label="ehr_migration_to_project_inquiry"[^>]*data-service-category="technology_project"/, 'EHR migration project inquiry path');
+expect('resources/ehr-migration-it-checklist-medical-practices.html', /href="\/contact\/\?service=technology-project"[^>]*data-conversion="resource_service_cta"[^>]*data-conversion-label="ehr_migration_closing_to_project_inquiry"[^>]*data-service-category="technology_project"/, 'EHR migration closing project inquiry path');
 expect('resources/healthcare-it/index.html', /ehr-it-support-houston-medical-practices\.html/, 'Healthcare hub EHR IT support guide path');
 expect('resources/index.html', /ehr-it-support-houston-medical-practices\.html/, 'Resource hub EHR IT support guide path');
 expect('sitemap.xml', /<loc>https:\/\/odysseysolutions\.co\/resources\/dental-practice-remote-access-workflow\.html<\/loc><lastmod>2026-09-04<\/lastmod>/, 'Dental remote-support sitemap entry');

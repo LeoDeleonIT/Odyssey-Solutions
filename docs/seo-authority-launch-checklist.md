@@ -7,7 +7,7 @@ The site now has the crawlable pages, metadata, structured data, internal links,
 1. In Google Search Console, verify the `odysseysolutions.co` domain property and submit `https://odysseysolutions.co/sitemap.xml`.
 2. Inspect and request indexing for the homepage plus the Healthcare IT Readiness Review, dental IT, managed IT, dental cybersecurity, HIPAA consulting, healthcare IT, web development, case-study hub, and author URLs.
 3. Confirm the preferred HTTPS domain resolves consistently and no old homepage fragments or staging hosts are indexed.
-4. Connect Google Analytics 4 only with an approved consent/privacy configuration. Mark `generate_lead`, `calendar_open`, and `click_to_call` as key events after each event appears in GA4. Follow `docs/measurement-setup.md`.
+4. Connect Google Analytics 4 only with an approved consent/privacy configuration. Verify events against real business outcomes before changing key-event settings. Follow `docs/measurement-setup.md`.
 5. Test the public contact form. Never submit real patient information during testing.
 
 ## Google Business Profile

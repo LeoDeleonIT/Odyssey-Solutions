@@ -28,15 +28,24 @@ measurement enabled for standard `page_view`, `scroll`, outbound `click`,
 `file_download`, and form-interaction events. Do not recreate those standard
 events in site code.
 
-Mark these events as GA4 key events after confirming they appear in the Events
-report:
+Do not change GA4 key-event settings merely because an event appears in the
+Events report. First confirm that the event is collected as defined, reconcile
+it with a real business outcome or source record, and decide whether it
+represents a result the business wants to optimize. The main candidates are:
 
 - `generate_lead` for completed contact requests
-- `calendar_open` for consultation intent
-- `click_to_call` for phone contact intent
+- `calendar_open` for consultation intent, if Odyssey chooses to treat an
+  outbound booking click as a key outcome
+- `click_to_call` for phone contact intent, if Odyssey chooses to treat a phone
+  link click as a key outcome
 
 `email_click` is useful for diagnostics but should only be a key event if email
 clicks are treated as qualified leads.
+
+GA4's enhanced-measurement `form_submit` event describes form interaction. It
+does not establish that Odyssey accepted a contact request. Use the custom
+`generate_lead` event for that distinction because it fires only after Formspree
+accepts the request.
 
 ## Custom dimensions
 

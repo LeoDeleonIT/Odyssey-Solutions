@@ -265,6 +265,25 @@ function verifyResourceServiceClick() {
   }
 }
 
+function verifyEhrProjectClick() {
+  const fixture = createFixture(true, '', '/resources/ehr-migration-it-checklist-medical-practices.html');
+  const link = createLink('/contact/?service=technology-project', 'Discuss an EHR Project', {
+    'data-conversion': 'resource_service_cta',
+    'data-conversion-label': 'ehr_migration_to_project_inquiry',
+    'data-service-category': 'technology_project'
+  });
+  fixture.documentListeners.click[0]({ target: link });
+  const events = fixture.gtagCalls.filter(([command, name]) => command === 'event' && name === 'resource_service_cta');
+  const parameters = events[0]?.[2] || {};
+  if (events.length !== 1 || parameters.conversion_label !== 'ehr_migration_to_project_inquiry' ||
+      parameters.service_category !== 'technology_project' || parameters.destination !== '/contact/?service=technology-project') {
+    throw new Error('EHR migration project CTA must emit one privacy-safe project inquiry event');
+  }
+  if (fixture.gtagCalls.some(([command, name]) => command === 'event' && name === 'generate_lead')) {
+    throw new Error('An EHR migration CTA click must not be counted as a completed lead');
+  }
+}
+
 function verifyInferredResourceServiceClick() {
   const fixture = createFixture(true, '', '/resources/example-guide.html');
   const link = createLink('/managed-it-services-houston/', 'Explore managed IT services');
@@ -307,6 +326,7 @@ Promise.resolve()
   .then(verifyBlockedAttributionStorage)
   .then(verifyDownloadUsesEnhancedMeasurement)
   .then(verifyResourceServiceClick)
+  .then(verifyEhrProjectClick)
   .then(verifyInferredResourceServiceClick)
   .then(verifyServicePreselection)
   .then(() => console.log('Measurement behavior checks passed'))
