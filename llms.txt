@@ -56,6 +56,7 @@ the issue, location, access, and current schedule.
 
 ## Case studies and resources
 
+- [eAssist ransomware claim response guide for dental practices](https://odysseysolutions.co/resources/eassist-ransomware-attack-dental-practices.html)
 - [Client case studies](https://odysseysolutions.co/case-studies/)
 - [Urgent same-day IT support guide](https://odysseysolutions.co/resources/urgent-same-day-it-support-houston.html)
 - [Dental office network setup guide](https://odysseysolutions.co/resources/dental-office-network-setup-houston.html)
