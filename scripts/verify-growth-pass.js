@@ -32,7 +32,7 @@ collectHtml(root);
 const sourceFiles = [];
 function collectSource(directory) {
   for (const entry of fs.readdirSync(directory, { withFileTypes: true })) {
-    if (['.git', 'brand', 'media'].includes(entry.name)) continue;
+    if (['.git', 'brand', 'media', 'outreach'].includes(entry.name)) continue;
     const absolutePath = path.join(directory, entry.name);
     if (entry.isDirectory()) collectSource(absolutePath);
     else if (/\.(html|js|md|json|ya?ml|sh|xml|txt)$/i.test(entry.name)) sourceFiles.push(absolutePath);
