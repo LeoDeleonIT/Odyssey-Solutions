@@ -217,4 +217,50 @@ expect('sitemap.xml', /<loc>https:\/\/odysseysolutions\.co\/resources\/dental-pr
 expect('sitemap.xml', /<loc>https:\/\/odysseysolutions\.co\/resources\/multi-location-dental-it-standardization\.html<\/loc><lastmod>2026-09-03<\/lastmod>/, 'Multi-location dental IT sitemap entry');
 expect('sitemap.xml', /<loc>https:\/\/odysseysolutions\.co\/resources\/ehr-it-support-houston-medical-practices\.html<\/loc><lastmod>2026-09-04<\/lastmod>/, 'EHR IT support sitemap entry');
 
+// These paths must exist in article content: a header link alone cannot take a
+// reader from the established guide to the next task or preselected inquiry.
+const guideJourneys = [
+  ['microsoft-365-support-houston-identity-security.html', 'business-email-hacked-what-to-do.html', 'cybersecurity'],
+  ['cyber-insurance-readiness-houston-small-business.html', 'invoice-scam-email-business.html', 'cybersecurity'],
+  ['small-business-it-onboarding-offboarding-checklist.html', 'employee-left-remove-access.html', 'business-it-support'],
+  ['business-wifi-network-setup-houston.html', 'office-wifi-security-checklist.html', 'technology-project'],
+  ['hipaa-vendor-management-baa-checklist-dental.html', 'vendor-remote-access-security.html', 'technology-project']
+];
+const journeyLabels = new Set();
+function articleContent(filename) {
+  const article = read(`resources/${filename}`).match(/<article class="article">([\s\S]*?)<\/article>/)?.[1];
+  if (!article) throw new Error(`Article content missing from ${filename}`);
+  return article;
+}
+for (const [source, target, service] of guideJourneys) {
+  if (!articleContent(source).includes(`href="${target}"`)) {
+    throw new Error(`Contextual link from ${source} to ${target} is missing`);
+  }
+  const body = articleContent(target);
+  const actions = [...body.matchAll(/<a\b[^>]*>/g)].map(([tag]) => tag);
+  const inquiry = actions.find((tag) => tag.includes(`href="/contact/?service=${service}"`));
+  if (!inquiry || !inquiry.includes('data-conversion="resource_service_cta"')) {
+    throw new Error(`Tracked, preselected ${service} inquiry missing from ${target}`);
+  }
+  const label = inquiry.match(/data-conversion-label="([^"]+)"/)?.[1];
+  if (!label || journeyLabels.has(label)) throw new Error(`Missing or duplicate inquiry label in ${target}`);
+  journeyLabels.add(label);
+  if (!read('site.js').includes(`'${service}':`)) throw new Error(`Unsupported inquiry service: ${service}`);
+  const readTime = read(`resources/${target}`).match(/<span>(\d+-minute read)<\/span>/)?.[1];
+  for (const hub of ['index.html', 'business-it/index.html', 'cybersecurity/index.html']) {
+    const card = [...read(`resources/${hub}`).matchAll(/<article class="post-card">([\s\S]*?)<\/article>/g)]
+      .map(([, markup]) => markup)
+      .find((markup) => markup.includes(`href="${hub === 'index.html' ? '' : '../'}${target}"`));
+    if (!readTime || !card?.includes(readTime)) throw new Error(`Guide reading time or card inconsistent for ${target} in ${hub}`);
+  }
+}
+expect('resources/employee-left-remove-access.html', /href="small-business-it-onboarding-offboarding-checklist\.html"/, 'Full lifecycle alternative to the short departure guide');
+expect('resources/office-wifi-security-checklist.html', /href="business-wifi-network-setup-houston\.html"/, 'Network design alternative to the existing-network checklist');
+expect('resources/business-email-hacked-what-to-do.html', /end active sessions/, 'Account response session-revocation step');
+expect('resources/employee-left-remove-access.html', /Before deleting an account, removing its license, or wiping a device/, 'Preservation checkpoint before destructive offboarding steps');
+expect('resources/office-wifi-security-checklist.html', /verify both guest internet access and blocked access to internal business systems/, 'Guest network isolation verification');
+expect('resources/invoice-scam-email-business.html', /contact the sending bank immediately/, 'Prompt escalation for a suspected fraudulent transfer');
+reject('resources/business-email-hacked-what-to-do.html', /articles\/what-do-if-you-think-your-account-has-been-hacked/, 'Unverified account-recovery citation');
+reject('resources/office-wifi-security-checklist.html', /cisa\.gov\/resources-tools\/resources\/securing-your-home-wi-fi-network/, 'Unverified Wi-Fi citation');
+
 console.log(`Growth-pass checks passed across ${htmlFiles.length} HTML files`);
