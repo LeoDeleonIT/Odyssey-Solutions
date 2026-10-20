@@ -358,3 +358,46 @@ h1 { margin: 0 0 20px; color: #fff; font-size: clamp(2.25rem, 5vw, 4rem); letter
   .footer-inner { flex-direction: column; align-items: flex-start; }
   .article-cover { width: calc(100% - 28px); margin-top: 24px; aspect-ratio: 16 / 9; }
 }
+
+/* Full-width article heroes: the cover runs edge to edge instead of floating as an inset card. */
+main > picture { display: block; }
+main > .article-cover,
+main > picture > .article-cover {
+  width: 100%;
+  max-height: 560px;
+  margin: 0;
+  border-radius: 0;
+  box-shadow: none;
+  aspect-ratio: 16 / 9 !important;
+  height: auto !important;
+  object-fit: cover !important;
+}
+@media (min-width: 1200px) {
+  main:has(> .article-hero + .article-cover),
+  main:has(> .article-hero + picture) {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+  }
+  main:has(> .article-hero + .article-cover) > *,
+  main:has(> .article-hero + picture) > * { grid-column: 1 / -1; }
+  main:has(> .article-hero + .article-cover) > .article-hero,
+  main:has(> .article-hero + picture) > .article-hero { grid-column: 1; grid-row: 1; display: flex; align-items: center; }
+  main:has(> .article-hero + .article-cover) > .article-cover,
+  main:has(> .article-hero + picture) > picture { grid-column: 2; grid-row: 1; min-height: 100%; }
+  main > .article-hero + .article-cover,
+  main > .article-hero + picture > .article-cover {
+    height: 100% !important;
+    max-height: none;
+    aspect-ratio: auto !important;
+  }
+  main:has(> .article-hero + .article-cover) > .article-hero > .container,
+  main:has(> .article-hero + picture) > .article-hero > .container {
+    width: auto;
+    margin: 0;
+    padding: 0 56px 0 max(20px, calc((100vw - 1120px) / 2));
+  }
+  main:has(> .article-hero + .article-cover) > .article-hero h1,
+  main:has(> .article-hero + picture) > .article-hero h1 { font-size: clamp(2rem, 2.9vw, 3.1rem); }
+  main:has(> .article-hero + .article-cover) > .article-hero::after,
+  main:has(> .article-hero + picture) > .article-hero::after { display: none; }
+}
