@@ -3,7 +3,7 @@ const path = require('path');
 
 const root = path.resolve(__dirname, '..');
 const measurementId = 'G-VPKTJC4QXJ';
-const assetVersion = '20260827e';
+const assetVersion = '20261020a';
 const businessId = 'https://odysseysolutions.co/#business';
 const googleBusinessProfileUrl = 'https://www.google.com/maps?cid=17016266045838888357';
 const servicePaths = [
