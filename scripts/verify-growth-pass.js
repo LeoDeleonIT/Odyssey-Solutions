@@ -75,7 +75,7 @@ for (const file of htmlFiles) {
   if (!excludedFromIndex && (!html.includes('class="skip-link"') || !/<main(?:\s[^>]*)?id="main"/.test(html))) {
     throw new Error(`Keyboard skip link or main target missing from ${relativePath}`);
   }
-  if (!excludedFromIndex && (html.match(/site-header\.css\?v=20261020a/g) || []).length !== 1) {
+  if (!excludedFromIndex && (html.match(/site-header\.css\?v=20261020b/g) || []).length !== 1) {
     throw new Error(`Early shared-header stylesheet missing or duplicated in ${relativePath}`);
   }
   if (!excludedFromIndex && relativePath !== 'index.html' && !html.includes('BreadcrumbList')) {

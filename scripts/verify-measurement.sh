@@ -5,7 +5,7 @@ repo_root="$(CDPATH= cd -- "$(dirname -- "$0")/.." && pwd)"
 cd "$repo_root"
 
 measurement_id='G-VPKTJC4QXJ'
-script_version='20261020a'
+script_version='20261020b'
 
 node --check site.js
 node scripts/verify-measurement.js
