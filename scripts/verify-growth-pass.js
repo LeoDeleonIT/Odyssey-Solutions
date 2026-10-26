@@ -145,7 +145,7 @@ expect('resources/new-medical-office-it-setup-houston.html', /href="ehr-it-suppo
 expect('resources/ehr-migration-it-checklist-medical-practices.html', /href="ehr-it-support-houston-medical-practices\.html">EHR support responsibilities<\/a>/, 'EHR migration guide contextual path to EHR support guide');
 expect('resources/healthcare-it-support-cost-houston.html', /href="\/healthcare-it-support-houston\/">healthcare IT support in Houston<\/a>/, 'Healthcare cost guide contextual path to service');
 expect('resources/healthcare-it-support-houston-choose-provider.html', /href="\/healthcare-it-support-houston\/">healthcare IT support<\/a>/, 'Healthcare provider guide contextual path to service');
-expect('dental-it-support-houston/index.html', /<title>Dental IT &amp; Software Support in Houston \| Odyssey<\/title>/, 'Search Console informed dental IT title');
+expect('dental-it-support-houston/index.html', /<title>Dental IT Support in Houston \| Managed IT for Dentists<\/title>/, 'Search Console informed dental IT title');
 expect('dental-it-support-houston/index.html', /dental-office-network-setup-houston\.html/, 'Dental IT path to network checklist');
 expect('case-studies/trinity-dental-multi-location-it/index.html', /dental-office-network-setup-houston\.html/, 'Case-study path to network checklist');
 expect('it-support-houston/index.html', /<h3 id="after-hours-emergency-it-support">After-hours emergency IT support<\/h3>/, 'After-hours emergency support section');
