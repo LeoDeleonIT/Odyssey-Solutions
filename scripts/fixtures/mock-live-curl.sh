@@ -4,6 +4,9 @@ set -uo pipefail
 
 mock_output='/dev/null'
 mock_url=''
+mock_write_out=''
+mock_retries='0'
+mock_retry_all_errors='0'
 
 while (($# > 0)); do
   case "$1" in
@@ -11,8 +14,20 @@ while (($# > 0)); do
       mock_output="$2"
       shift 2
       ;;
-    -w|--retry|--connect-timeout|--max-time)
+    -w)
+      mock_write_out="$2"
       shift 2
+      ;;
+    --retry)
+      mock_retries="$2"
+      shift 2
+      ;;
+    --retry-delay|--retry-max-time|--connect-timeout|--max-time)
+      shift 2
+      ;;
+    --retry-all-errors)
+      mock_retry_all_errors='1'
+      shift
       ;;
     -sS)
       shift
@@ -90,9 +105,35 @@ case "$mock_url" in
     ;;
 esac
 
+print_write_out() {
+  if [[ "$mock_write_out" == '%{http_code}' ]]; then
+    printf '%s' "$1"
+  else
+    printf '%s|%s|%s|%s' "$1" "$2" "$3" "$4"
+  fi
+}
+
+# Emulate a connection reset with no HTTP response. Real curl only retries it
+# when --retry-all-errors is set, so a transient reset succeeds on the retry and
+# a persistent reset fails every attempt with exit code 56.
+mock_reset='0'
+if [[ -n "${MOCK_PERSISTENT_RESET_URL:-}" && "$mock_url" == "$MOCK_PERSISTENT_RESET_URL" ]]; then
+  mock_reset='1'
+elif [[ -n "${MOCK_TRANSIENT_RESET_URL:-}" && "$mock_url" == "$MOCK_TRANSIENT_RESET_URL" ]]; then
+  if [[ "$mock_retry_all_errors" != '1' || "$mock_retries" == '0' ]]; then
+    mock_reset='1'
+  fi
+fi
+
+if [[ "$mock_reset" == '1' ]]; then
+  echo 'curl: (56) Recv failure: Connection reset by peer' >&2
+  print_write_out '000' '' '' '0'
+  exit 56
+fi
+
 if [[ "$mock_output" != '/dev/null' ]]; then
   printf '%s' "$mock_body" > "$mock_output"
   mock_size="${#mock_body}"
 fi
 
-printf '%s|%s|%s|%s' "$mock_status" "$mock_redirect" "$mock_content_type" "$mock_size"
+print_write_out "$mock_status" "$mock_redirect" "$mock_content_type" "$mock_size"
