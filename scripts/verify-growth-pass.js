@@ -130,7 +130,7 @@ for (const [file, label] of resourceActions) {
 
 expect('resources/managed-it/index.html', /microsoft-365-support-small-business-houston\.html/, 'Microsoft 365 article on managed IT hub');
 expect('resources/cybersecurity/index.html', /small-business-cybersecurity-checklist-2026\.html/, 'Small-business checklist on cybersecurity hub');
-expect('resources/managed-it-services-cost-houston-2026.html', /<title>How Much Do Managed IT Services Cost in Houston\? \| Odyssey<\/title>/, 'Search Console informed managed IT pricing title');
+expect('resources/managed-it-services-cost-houston-2026.html', /<title>How Much Do Managed IT Services Cost in Houston\? \$75–\$250\+ a User<\/title>/, 'Search Console informed managed IT pricing title');
 expect('resources/managed-it-services-cost-houston-2026.html', /roughly \$75 to \$250\+ per user/, 'Managed IT pricing search description');
 expect('resources/new-dental-office-it-setup-houston.html', /<title>New Dental Office IT Setup in Houston \| Odyssey<\/title>/, 'Search Console informed dental setup title');
 expect('resources/new-dental-office-it-setup-houston.html', /<h1>New Dental Office IT Setup in Houston<\/h1>/, 'Search Console informed dental setup heading');
