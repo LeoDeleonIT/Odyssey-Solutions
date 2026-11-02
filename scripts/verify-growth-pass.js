@@ -137,14 +137,14 @@ expect('resources/new-dental-office-it-setup-houston.html', /<h1>New Dental Offi
 expect('resources/new-dental-office-it-setup-houston.html', /dental-office-network-setup-houston\.html/, 'Dental setup link to network checklist');
 expect('resources/dental-office-network-setup-houston.html', /<title>Dental Office Network Setup in Houston \| New Office Checklist<\/title>/, 'Search Console informed dental network title');
 expect('resources/dental-office-network-setup-houston.html', /dental_network_to_dental_it/, 'Dental network service action');
-expect('healthcare-it-support-houston/index.html', /<title>Healthcare IT Support Houston \| Medical Practice IT<\/title>/, 'Search Console informed healthcare IT title');
-expect('healthcare-it-support-houston/index.html', /<meta name="description" content="Houston medical practice IT support for EHR coordination, Microsoft 365, networks, backups, cybersecurity, and day-to-day staff support\.">/, 'Search Console informed healthcare IT description');
-expect('healthcare-it-support-houston/index.html', /<h1>Healthcare IT Support for Houston Medical Practices<\/h1>/, 'Search Console informed healthcare IT heading');
+expect('healthcare-it-support-houston/index.html', /<title>Medical Practice and Healthcare IT Support in Houston<\/title>/, 'Search Console informed healthcare IT title');
+expect('healthcare-it-support-houston/index.html', /<meta name="description" content="IT support for Houston medical practices: help desk, Microsoft 365, networks, backups, cybersecurity, and EHR vendor coordination, on-site or remote\.">/, 'Search Console informed healthcare IT description');
+expect('healthcare-it-support-houston/index.html', /<h1>Medical Practice and Healthcare IT Support in Houston<\/h1>/, 'Search Console informed healthcare IT heading');
 expect('healthcare-it-support-houston/index.html', /href="tel:\+18327138498">Call \(832\) 713-8498<\/a>/, 'Healthcare IT hero phone action');
 expect('resources/new-medical-office-it-setup-houston.html', /href="ehr-it-support-houston-medical-practices\.html">EHR IT support for the medical practice<\/a>/, 'Medical office guide contextual path to EHR support guide');
 expect('resources/ehr-migration-it-checklist-medical-practices.html', /href="ehr-it-support-houston-medical-practices\.html">EHR support responsibilities<\/a>/, 'EHR migration guide contextual path to EHR support guide');
 expect('resources/healthcare-it-support-cost-houston.html', /href="\/healthcare-it-support-houston\/">healthcare IT support in Houston<\/a>/, 'Healthcare cost guide contextual path to service');
-expect('resources/healthcare-it-support-houston-choose-provider.html', /href="\/healthcare-it-support-houston\/">healthcare IT support<\/a>/, 'Healthcare provider guide contextual path to service');
+expect('resources/healthcare-it-support-houston-choose-provider.html', /href="\/healthcare-it-support-houston\/">medical practice IT support<\/a>/, 'Healthcare provider guide contextual path to service');
 expect('dental-it-support-houston/index.html', /<title>Dental IT Support in Houston \| Managed IT for Dentists<\/title>/, 'Search Console informed dental IT title');
 expect('dental-it-support-houston/index.html', /dental-office-network-setup-houston\.html/, 'Dental IT path to network checklist');
 expect('case-studies/trinity-dental-multi-location-it/index.html', /dental-office-network-setup-houston\.html/, 'Case-study path to network checklist');
