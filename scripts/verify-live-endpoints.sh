@@ -6,6 +6,13 @@ odyssey_live_mode='audit'
 odyssey_base_url='https://odysseysolutions.co'
 odyssey_measurement_id='G-VPKTJC4QXJ'
 odyssey_curl_bin="${ODYSSEY_CURL_BIN:-curl}"
+# Plain --retry only repeats timeouts and HTTP 408, 429 and 5xx answers. A
+# connection reset, DNS miss, TLS or HTTP/2 stream error ends the request on
+# the first attempt, so one network blip on the runner failed the whole strict
+# run. --retry-all-errors repeats those too. HTTP 4xx answers are still final
+# because --fail is not used, so a real 404 is never retried away.
+odyssey_curl_retry_args=(--retry 2 --retry-delay 2 --retry-max-time 40 --retry-all-errors)
+ODYSSEY_CURL_EXIT=0
 
 usage() {
   cat <<'USAGE'
@@ -78,7 +85,7 @@ fetch_metrics() {
 
   "$odyssey_curl_bin" \
     -sS \
-    --retry 1 \
+    "${odyssey_curl_retry_args[@]}" \
     --connect-timeout 10 \
     --max-time 20 \
     -o "$odyssey_output" \
@@ -91,7 +98,9 @@ read_metrics() {
   local odyssey_output="$2"
   local odyssey_metrics
 
-  if ! odyssey_metrics="$(fetch_metrics "$odyssey_url" "$odyssey_output")"; then
+  odyssey_metrics="$(fetch_metrics "$odyssey_url" "$odyssey_output")"
+  ODYSSEY_CURL_EXIT=$?
+  if ((ODYSSEY_CURL_EXIT != 0)); then
     return 1
   fi
 
@@ -105,7 +114,7 @@ verify_200() {
   local odyssey_url="${odyssey_base_url}${odyssey_path}"
 
   if ! read_metrics "$odyssey_url" /dev/null; then
-    fail_check "${odyssey_label}: request failed for ${odyssey_url}"
+    fail_check "${odyssey_label}: request failed for ${odyssey_url} (curl exit ${ODYSSEY_CURL_EXIT})"
     return
   fi
 
@@ -122,7 +131,7 @@ verify_permanent_redirect() {
   local odyssey_label="$3"
 
   if ! read_metrics "$odyssey_source" /dev/null; then
-    fail_check "${odyssey_label}: request failed for ${odyssey_source}"
+    fail_check "${odyssey_label}: request failed for ${odyssey_source} (curl exit ${ODYSSEY_CURL_EXIT})"
     return
   fi
 
@@ -137,7 +146,7 @@ verify_permanent_redirect() {
   fi
 
   if ! read_metrics "$odyssey_destination" /dev/null; then
-    fail_check "${odyssey_label}: destination request failed for ${odyssey_destination}"
+    fail_check "${odyssey_label}: destination request failed for ${odyssey_destination} (curl exit ${ODYSSEY_CURL_EXIT})"
     return
   fi
 
@@ -159,7 +168,7 @@ verify_download() {
   local odyssey_allowed_types
 
   if ! read_metrics "${odyssey_base_url}${odyssey_path}" /dev/null; then
-    fail_check "${odyssey_label}: request failed"
+    fail_check "${odyssey_label}: request failed (curl exit ${ODYSSEY_CURL_EXIT})"
     return
   fi
 
@@ -260,7 +269,7 @@ if read_metrics "${odyssey_base_url}/" "$odyssey_homepage_file"; then
     fail_check "GA4 loader: found ${odyssey_tag_count:-0} loaders on a homepage response with status ${ODYSSEY_STATUS}"
   fi
 else
-  fail_check 'GA4 loader: homepage request failed'
+  fail_check "GA4 loader: homepage request failed (curl exit ${ODYSSEY_CURL_EXIT})"
 fi
 
 odyssey_not_found_file="${odyssey_work_dir}/404.html"
@@ -276,7 +285,7 @@ if read_metrics "$odyssey_not_found_url" "$odyssey_not_found_file"; then
     pass_check '404 recovery: real 404 includes agent recovery links'
   fi
 else
-  fail_check '404 recovery: request failed'
+  fail_check "404 recovery: request failed (curl exit ${ODYSSEY_CURL_EXIT})"
 fi
 
 odyssey_sitemap_file="${odyssey_work_dir}/sitemap.xml"
@@ -290,22 +299,35 @@ if read_metrics "${odyssey_base_url}/sitemap.xml" "$odyssey_sitemap_file" && [[ 
     fail_check 'Sitemap coverage: no URLs were found in sitemap.xml'
   else
     export ODYSSEY_SITEMAP_CURL_BIN="$odyssey_curl_bin"
+    export ODYSSEY_SITEMAP_CURL_RETRY_ARGS="${odyssey_curl_retry_args[*]}"
+    export ODYSSEY_SITEMAP_WORK_DIR="$odyssey_work_dir"
     while IFS= read -r odyssey_sitemap_url; do
       [[ -n "$odyssey_sitemap_url" ]] && printf '%s\0' "$odyssey_sitemap_url"
     done < "$odyssey_sitemap_urls_file" | xargs -0 -P 6 -n 1 bash -c '
       odyssey_url="$1"
-      if odyssey_status="$("$ODYSSEY_SITEMAP_CURL_BIN" -sS --retry 1 --connect-timeout 10 --max-time 20 -o /dev/null -w "%{http_code}" "$odyssey_url" 2>/dev/null)"; then
-        printf "%s|%s\n" "$odyssey_status" "$odyssey_url"
+      read -r -a odyssey_retry_args <<< "$ODYSSEY_SITEMAP_CURL_RETRY_ARGS"
+      odyssey_error_file="$(mktemp "${ODYSSEY_SITEMAP_WORK_DIR}/curl-error.XXXXXX")"
+      odyssey_status="$("$ODYSSEY_SITEMAP_CURL_BIN" -sS "${odyssey_retry_args[@]}" --connect-timeout 10 --max-time 20 -o /dev/null -w "%{http_code}" "$odyssey_url" 2>"$odyssey_error_file")"
+      odyssey_exit=$?
+      if ((odyssey_exit == 0)); then
+        printf "%s|%s|\n" "$odyssey_status" "$odyssey_url"
       else
-        printf "000|%s\n" "$odyssey_url"
+        odyssey_error="$(tr -s "\r\n" "  " < "$odyssey_error_file")"
+        odyssey_error="${odyssey_error% }"
+        printf "000|%s|curl exit %s: %s\n" "$odyssey_url" "$odyssey_exit" "${odyssey_error:-no error message}"
       fi
+      rm -f "$odyssey_error_file"
     ' _ > "$odyssey_sitemap_results_file"
 
     odyssey_sitemap_failure_count=0
-    while IFS='|' read -r odyssey_sitemap_status odyssey_sitemap_url; do
+    while IFS='|' read -r odyssey_sitemap_status odyssey_sitemap_url odyssey_sitemap_error; do
       if [[ "$odyssey_sitemap_status" != '200' ]]; then
         odyssey_sitemap_failure_count=$((odyssey_sitemap_failure_count + 1))
-        fail_check "Sitemap URL: ${odyssey_sitemap_url} returned ${odyssey_sitemap_status}, expected 200"
+        if [[ -n "$odyssey_sitemap_error" ]]; then
+          fail_check "Sitemap URL: ${odyssey_sitemap_url} request failed (${odyssey_sitemap_error}), expected 200"
+        else
+          fail_check "Sitemap URL: ${odyssey_sitemap_url} returned ${odyssey_sitemap_status}, expected 200"
+        fi
       fi
     done < "$odyssey_sitemap_results_file"
 

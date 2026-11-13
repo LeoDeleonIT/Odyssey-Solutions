@@ -35,4 +35,24 @@ MOCK_HTTP_ROOT_STATUS=200 ODYSSEY_CURL_BIN="$odyssey_mock_curl" \
   > "${odyssey_test_dir}/audit.log" 2>&1
 grep -q 'Audit completed with findings.' "${odyssey_test_dir}/audit.log"
 
+# /contact/ is both a critical page and a sitemap URL, so this covers both request paths.
+MOCK_TRANSIENT_RESET_URL='https://example.test/contact/' ODYSSEY_CURL_BIN="$odyssey_mock_curl" \
+  bash "$odyssey_verifier" --mode strict https://example.test \
+  > "${odyssey_test_dir}/strict-transient-reset.log" 2>&1 || {
+  echo 'Expected strict mode to retry a one-off connection reset' >&2
+  cat "${odyssey_test_dir}/strict-transient-reset.log" >&2
+  exit 1
+}
+grep -q 'All production verification checks passed.' "${odyssey_test_dir}/strict-transient-reset.log"
+
+if MOCK_PERSISTENT_RESET_URL='https://example.test/contact/' ODYSSEY_CURL_BIN="$odyssey_mock_curl" \
+  bash "$odyssey_verifier" --mode strict https://example.test \
+  > "${odyssey_test_dir}/strict-persistent-reset.log" 2>&1; then
+  echo 'Expected strict mode to fail when a connection reset persists through every retry' >&2
+  exit 1
+fi
+grep -q 'Critical page: request failed for https://example.test/contact/ (curl exit 56)' "${odyssey_test_dir}/strict-persistent-reset.log"
+grep -q 'Sitemap URL: https://example.test/contact/ request failed (curl exit 56: curl: (56) Recv failure: Connection reset by peer), expected 200' "${odyssey_test_dir}/strict-persistent-reset.log"
+grep -q 'Strict production verification failed.' "${odyssey_test_dir}/strict-persistent-reset.log"
+
 echo 'Live endpoint verifier tests passed'
